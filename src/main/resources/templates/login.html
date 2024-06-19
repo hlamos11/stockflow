@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-US"
+
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Login - Wifi Dashboard</title>
+<!--  <link rel="stylesheet" href="assets/css/login.css">-->
+<!--  <link rel="stylesheet" href="assets/css/register.css">-->
+
+
+  <link rel="shortcut icon" href="assets/template/images/cloud.svg" />
+  <link rel="stylesheet" href="/assets/template/vendors/iconfonts/mdi/font/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/assets/template/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/assets/template/vendors/css/vendor.bundle.addons.css">
+
+  <link rel="stylesheet" href="/assets/template/css/vertical-layout-light/style.css">
+
+</head>
+
+<body>
+
+<!--  <div class="container-scroller">-->
+<!--    <div class="container-fluid page-body-wrapper">-->
+
+
+
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth">
+            <div class="row w-100">
+                <div class="col-lg-4 mx-auto">
+                    <div class="auth-form-light text-left p-5">
+<!--                        <div class="brand-logo">-->
+<!--                            <img src="assets/images/tigo.jpg" alt="logo">-->
+<!--                        </div>-->
+                        <h4>Operaciones Inalambricas</h4>
+                        <h6 class="font-weight-light">Inicio de Sesion</h6>
+                        <form class="pt-3" method="post" th:action="@{/login}">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-lg" name="username" id="username" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Password">
+                            </div>
+                            <div class="mt-3">
+<!--                                <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN IN</a>-->
+                                <input name="login" id="login" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit" value="Iniciar Sesion">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+
+
+<!--    </div>-->
+
+<!--  </div>-->
+
+  <!-- plugins:js -->
+  <script src="assets/template/vendors/js/vendor.bundle.base.js"></script>
+  <script src="assets/template/vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+
+  <script src="/assets/template/js/off-canvas.js"></script>
+  <script src="/assets/template/js/hoverable-collapse.js"></script>
+  <script src="/assets/template/js/template.js"></script>
+  <script src="/assets/template/js/settings.js"></script>
+<!--  <script src="/assets/template/js/todolist.js"></script>-->
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src=" /assets/template/js/dashboard.js"></script>
+  <script src=" /assets/template/js/data-table.js"></script>
+  <script src=" /assets/template/js/typeahead.js"></script>
+  <script src=" /assets/template/js/select2.js"></script>
+  <script src=" /assets/template/js/file-upload.js"></script>
+  <script src=" /assets/template/js/validate.js"></script>
+  <script src=" /assets/template/js/validate-date-movements.js"></script>
+<!-- <script src=" /assets/template/js/search-data.js"></script>-->
+  <script src=" /assets/template/js/modal_material.js"></script>
+  <script src=" /assets/template/js/alerts.js"></script>
+  <script src=" /assets/template/js/avgrund.js"></script>
+  <script src=" /assets/template/js/swal-confirm.js"></script>
+  <script src=" /assets/template/js/form-validation.js"></script>
+  <script src=" /assets/template/js/bt-maxLength.js"></script>
+  <!-- End custom js for this page-->
+
+</body>
+</html>
+

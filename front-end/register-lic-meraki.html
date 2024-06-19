@@ -1,0 +1,127 @@
+---
+layout: default
+title: "licences"
+permalink: /register-lic-meraki
+---
+
+{% include navbarTop.html %}
+<div>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      {% include navbarSide.html %}
+    </div>
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/authenticated">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="/lic-meraki">Lic. Meraki</a></li>
+            <li class="breadcrumb-item active">Registro de Licencias</li>
+          </ol>
+        </div>
+
+        <div class="container">
+          <div class="card-body" style="padding-top: 0px;">
+            <div class="row justify-content-center">
+              <div class="card px-0 pt-4 pb-0 mb-3">
+                <form id="basicform" method="post" th:action="@{/register-lic-meraki}" th:object="${licenseMerakiDTO}" >
+                  <ul id="progressreg">
+                    <li class="reg" id="register"><strong>Licencias</strong></li>
+                    <li id="end"><strong></strong></li>
+                  </ul>
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div> <br>
+                  <fieldset>
+                    <div class="form-card">
+                      <div class="row">
+                        <div class="col-7">
+                          <h2 class="fs-title">Registrar Licencia</h2>
+                        </div>
+                        <div class="col-5">
+                          <h2 class="steps">Step 1 - 1</h2>
+                        </div>
+                      </div>
+                      <div class="bg-light p-3 border">
+                        <div class="alert alert-info text-center" th:if="${message}" th:text="${message}"></div>
+                        <div class="alert alert-success text-center" th:if="${message_succefull}" th:text="${message_succefull}"></div>
+
+                        <!-- CLIENTE-->
+                        <div class="form-row py-1">
+                          <label for="clientId" class="form-label">Seleccione el Cliente: <label id="lb_client" class="required-text"></label></label>
+                          <select id="clientId" class="form-select"  required>
+                            <option selected></option>
+                            <option th:each="data:${dataClient}" th:text="${data.name}"
+                                    th:value="${data.id}" ></option>
+                          </select>
+                        </div>
+
+                        <!-- ESTABLECIMIENTO-->
+                        <div class="form-row py-1">
+                          <label for="establishmentId" class="form-label">Seleccione  Establecimiento: <label id="lb_establishment" class="required-text"></label></label>
+                          <select id="establishmentId" class="form-select" th:value="*{establishmentId}" name="establishmentId" required>
+                            <option selected></option>
+                            <option th:each="data:${dataEstablishment}" th:text="${data.nameestablishment}"
+                                    th:value="${data.id}" th:selected="(${data.id} == ${licenseMerakiDTO.establishmentId})"></option>
+                          </select>
+                        </div>
+
+                        <!-- ESTABLECIMIENTO DETALLE-->
+                        <div class="form-row py-1">
+                          <label for="establishmentDetailId" class="form-label">Seleccione el AP: <label id="lb_establishment_detail" class="required-text"></label></label>
+                          <select id="establishmentDetailId" class="form-select" th:value="*{establishmentDetailId}" name="establishmentDetailId" required>
+                            <option selected></option>
+                            <option th:each="data:${dataEstablishmentDetail}" th:text="${data.modelap}"
+                                    th:value="${data.id}" th:selected="(${data.id} == ${licenseMerakiDTO.establishmentDetailId})"></option>
+                          </select>
+                        </div>
+
+                        <!-- ORDEN-->
+                        <div class="form-row py-1">
+                          <label for="orderId" class="form-label">Seleccione la Orden: <label id="lb_order" class="required-text"></label></label>
+                          <select id="orderId" class="form-select" th:value="*{orderId}" name="orderId" required>
+                            <option selected></option>
+                            <option th:each="data:${dataOrder}" th:text="${data.ordernumber}"
+                                    th:value="${data.id}" th:selected="(${data.id} == ${licenseMerakiDTO.orderId})"></option>
+                          </select>
+                        </div>
+
+                        <!-- LICENCIA-->
+                        <div class="form-row py-1">
+                          <label for="license" class="form-label">Licencia: <label id="lb_license" class="required-text"></label></label>
+                          <input type="text" placeholder="Licencia" id="license" class="form-control" name="license" th:value="*{license}" th:errorClass="is-invalid">
+                          <div th:if="${#fields.hasErrors('license')}" th:errors="*{license}" class="invalid-feedback"></div>
+                        </div>
+
+                        <!--ENABLED-->
+                        <div class="form-row py-1">
+                          <label for="enabled" class="form-label">Habilitado: <label id="lb_enabled" class="required-text"></label></label>
+                          <select id="enabled" class="form-select" th:value="*{enabled}" name="enabled">
+                            <option value="TRUE">SI</option>
+                            <option value="FALSE">NO</option>
+                          </select>
+                          <div th:if="${#fields.hasErrors('enabled')}" th:errors="*{enabled}" class="invalid-feedback"></div>
+                        </div>
+
+                        <!--FECHA DE EXPIRACION-->
+                        <div class="form-row py-1">
+                          <label for="dateExpired">Fecha de Expiración: <label class="required-text">*</label></label>
+                          <input type="date" id="dateExpired"
+                                 placeholder="start time"
+                                 min="2021-01-01" max="2100-12-31"
+                                 class="form-control"
+                                 th:value="*{dateExpired}" name="dateExpired">
+                        </div>
+                      </div>
+                    </div>
+                    <input type="submit" class="action-button" value="GUARDAR"/>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

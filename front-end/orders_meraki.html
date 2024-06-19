@@ -1,0 +1,84 @@
+---
+layout: default
+title: "Ordenes Meraki"
+permalink: /ordersMeraki
+---
+{% include navbarTop.html %}
+<div>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      {% include navbarSide.html %}
+    </div>
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/authenticated">Dashboard</a></li>
+            <li class="breadcrumb-item active">Ordenes Meraki</li>
+          </ol>
+          <div class="alert alert-danger text-center" th:if="${message}" th:text="${message}"></div>
+          <div class="alert alert-success text-center" th:if="${message_succefull}" th:text="${message_succefull}"></div>
+          <div class="card mb-4">
+            <div class="card-header">
+              <i class="fas fa-table me-1"></i>
+              Lista de Ordenes
+            </div>
+            <div class="card-body">
+              <table id="datatablesSimple" class="table table-striped">
+                <thead class="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>PO</th>
+                  <th>N° FACTURA</th>
+                  <th>CANT. LICENCIAS</th>
+                  <th>NUM. ORDEN</th>
+                  <th>FEC. COMPRA</th>
+                  <th>FEC. EXPIRACION</th>
+                  <th>LIC. DISPONIBLES</th>
+                  <th>LIC. USADAS</th>
+                  <th>LIC. VENCIDAS</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  th:each="data : ${dataOrderLicMeraki}">
+                  <th scope="row" th:text="${data.id}">1</th>
+                  <td th:text="${data.ponumber}">10</td>
+                  <td th:text="${data.facturenumber}">9</td>
+                  <td th:text="${data.countlicenses}">3</td>
+                  <td th:text="${data.ordernumber}">2</td>
+                  <td th:text="${data.datepurchase}">4</td>
+                  <td th:text="${data.dateexpiration}">5</td>
+                  <td th:text="${data.countlicensesavailable}">6</td>
+                  <td th:text="${data.countlicensesused}">7</td>
+                  <td th:text="${data.countlicensesexpired}">8</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row justify-content-start">
+            <div class="col-auto">
+              <div class="card bg-success text-white mb-4">
+                <div class="card-footer d-flex align-items-center justify-content-center" th:if="${user.typeuser} == 'admin'">
+                  <a class="medium text-white" href="/register-meraki">Crear Orden</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Your Website 2021</div>
+            <div>
+              <a href="#">Privacy Policy</a>
+              &middot;
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>

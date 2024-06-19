@@ -1,0 +1,79 @@
+---
+layout: default
+title: "Type Business"
+permalink: /typebusiness
+---
+
+{% include navbarTop.html %}
+
+<div>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      {% include navbarSide.html %}
+    </div>
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/authenticated">Dashboard</a></li>
+            <li class="breadcrumb-item active">Tipos de Negocio</li>
+          </ol>
+          <div class="alert alert-danger text-center" th:if="${message}" th:text="${message}"></div>
+          <div class="alert alert-success text-center" th:if="${message_succefull}" th:text="${message_succefull}"></div>
+          <div class="card mb-4">
+            <div class="card-header">
+              <i class="fas fa-table me-1"></i>
+              Negocios
+            </div>
+            <div class="card-body">
+              <table id="datatablesSimple" class="table table-striped">
+                <thead class="table-dark">
+                <tr>
+                  <th>#</th>
+                  <th>NOMBRE</th>
+                  <th>DESCRIPCION</th>
+                  <th>ACTIVO</th>
+                  <th>OPCION</th>
+                  <th>OPCION</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  th:each="typeBusiness : ${typeBusiness}">
+                  <th scope="row" th:text="${typeBusiness.id}">1</th>
+                  <td th:text="${typeBusiness.name}">neo</td>
+                  <td th:text="${typeBusiness.description}">6</td>
+                  <td th:text="${typeBusiness.enabled} ? 'SI' : 'NO'">K</td>
+<!--                  <td><a class="btn btn-danger" th:href="@{/delete_type_business(id=${typeBusiness.id}, name=${typeBusiness.name})}">eliminar<i class="fa fa-trash"></i></a></td>-->
+                  <td>
+                    <div>
+                      <form  th:action="@{/editTypeBusiness(id=${typeBusiness.id})}" th:if="${user.typeuser} == 'admin'" method="post">
+                        <button type="submit" class="btn btn-warning">EDITAR</button>
+                      </form>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <form  th:action="@{/delete_type_business(id=${typeBusiness.id}, name=${typeBusiness.name})}" method="post">
+                        <button  type="submit" class="btn btn-danger">ELIMINAR</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row justify-content-start">
+            <div class="col-auto">
+              <div class="card bg-success text-white mb-4">
+                <div class="card-footer d-flex align-items-center justify-content-center">
+                  <a class="medium text-white" href="/register-typebusiness">Crear Tipo de Negocio</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

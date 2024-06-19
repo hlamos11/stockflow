@@ -1,0 +1,118 @@
+---
+layout: default
+title: "Register Capitalizations"
+permalink: /register-capitalizations
+---
+
+{% include navbarTop.html %}
+<div>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            {% include navbarSide.html %}
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="/authenticated">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/capitalizations">Capitalizaciones</a></li>
+                        <li class="breadcrumb-item active">Registrar Capitalizacion</li>
+                    </ol>
+                </div>
+                <div class="container">
+                    <div class="card-body" style="padding-top: 0px;">
+                        <div class="row justify-content-center">
+                            <div class="card px-0 pt-4 pb-0 mb-3">
+                                <form id="basicform" method="post" th:action="@{/register-capitalizations}" th:object="${capitalizationDTO}">
+                                    <ul id="progressreg">
+                                        <li class="reg" id="register"><strong>Capitalizacion</strong></li>
+                                        <li id="end"><strong></strong></li>
+                                    </ul>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div> <br>
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="fs-title">Informacion</h2>
+                                                </div>
+                                                <div class="col-5">
+                                                    <h2 class="steps">Step 1 - 1</h2>
+                                                </div>
+                                            </div>
+                                            <div class="bg-light p-3 border">
+                                                <div class="alert alert-info text-center" th:if="${message}" th:text="${message}"></div>
+                                                <div class="alert alert-success text-center" th:if="${message_succefull}" th:text="${message_succefull}"></div>
+                                                <div class="form-row py-1">
+                                                    <label for="clientId" class="form-label">Seleccione el Cliente: <label id="lb_client" class="required-text"></label></label>
+                                                    <select id="clientId" class="form-select" th:value="*{clientId}" name="clientId" required>
+                                                        <option selected></option>
+                                                        <option th:each="client:${client}" th:text="${client.name}"
+                                                                th:value="${client.id}" th:selected="(${client.id} == ${capitalizationDTO.clientId})"></option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-row py-1">
+                                                    <label>Numero de Orden: <label class="required-text">*</label></label>
+                                                    <input type="text" placeholder="Orden" class="form-control" name="orden" th:value="*{orden}" th:errorClass="is-invalid">
+                                                    <div th:if="${#fields.hasErrors('orden')}" th:errors="*{orden}" class="invalid-feedback"></div>
+                                                </div>
+                                                <div class="form-row py-1">
+                                                    <label>Serial AP: <label class="required-text">*</label></label>
+                                                    <input type="text" placeholder="S/N" id="serialap" class="form-control" name="serialap" th:value="*{serialap}" th:errorClass="is-invalid">
+                                                    <div th:if="${#fields.hasErrors('serialap')}" th:errors="*{serialap}" class="invalid-feedback"></div>
+                                                </div>
+                                                <div class="form-row py-1">
+                                                    <label>Modelo de Switch: <label class="required-text">*</label></label>
+                                                    <input type="text" placeholder="Modelo Switch" id="modelswitch" class="form-control" name="modelswitch" th:value="*{modelswitch}" th:errorClass="is-invalid">
+                                                    <div th:if="${#fields.hasErrors('modelswitch')}" th:errors="*{modelswitch}" class="invalid-feedback"></div>
+                                                </div>
+                                                <div class="form-row py-1">
+                                                    <label>Serial Switch: <label class="required-text">*</label></label>
+                                                    <input type="text" placeholder="S/N" id="serialswitch" class="form-control" name="serialswitch" th:value="*{serialswitch}" th:errorClass="is-invalid">
+                                                    <div th:if="${#fields.hasErrors('serialswitch')}" th:errors="*{serialswitch}" class="invalid-feedback"></div>
+                                                </div>
+
+                                                <div class="form-row py-1">
+                                                    <label>Modelo de PoE: <label class="required-text">*</label></label>
+                                                    <input type="text" placeholder="Modelo PoE" id="modelpoe" class="form-control" name="modelpoe" th:value="*{modelpoe}" th:errorClass="is-invalid">
+                                                    <div th:if="${#fields.hasErrors('modelpoe')}" th:errors="*{modelpoe}" class="invalid-feedback"></div>
+                                                </div>
+                                                <div class="form-row py-1">
+                                                    <label>Serial Switch: <label class="required-text">*</label></label>
+                                                    <input type="text" placeholder="S/N" id="serialpoe" class="form-control" name="serialpoe" th:value="*{serialpoe}" th:errorClass="is-invalid">
+                                                    <div th:if="${#fields.hasErrors('serialpoe')}" th:errors="*{serialpoe}" class="invalid-feedback"></div>
+                                                </div>
+
+                                                <div class="form-row py-1">
+                                                    <label>Reserva: <label class="required-text">*</label></label>
+                                                    <input type="number" placeholder="Reserva" id="reserve" class="form-control" name="reserve" th:value="*{reserve}" th:errorClass="is-invalid">
+                                                    <div th:if="${#fields.hasErrors('reserve')}" th:errors="*{reserve}" class="invalid-feedback"></div>
+                                                </div>
+
+                                                <div class="form-row py-1">
+                                                    <label>Mes: <label class="required-text">*</label></label>
+                                                    <input type="number" placeholder="Numero de Mes" id="month" class="form-control" name="month" th:value="*{month}" th:errorClass="is-invalid">
+                                                    <div th:if="${#fields.hasErrors('month')}" th:errors="*{month}" class="invalid-feedback"></div>
+                                                </div>
+
+                                                <div class="form-row py-1">
+                                                    <label for="enabled" class="form-label">Activo: <label class="required-text">*</label></label>
+                                                    <select name="enabled" id="enabled" class="form-select" th:value="*{enabled}" th:errorClass="is-invalid">
+                                                        <option value="true">SI</option>
+                                                        <option value="false">NO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="submit"  class="action-button" value="GUARDAR"/>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>

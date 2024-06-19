@@ -1,0 +1,205 @@
+---
+layout: default
+title: "Registro Material"
+permalink: /register-material
+---
+
+<div class="container-scroller">
+
+    {% include container.html %}
+    {% include navbarTop.html %}
+
+    <div class="container-fluid page-body-wrapper">
+
+        {% include navbarSide.html %}
+
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <div class="row grid-margin">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h4 class="card-title">Registro de Material</h4>
+                                <div class="alert alert-info text-center" th:if="${message}" th:text="${message}"></div>
+
+                                <form id="formRegMat" class="form-sample" method="post" th:action="@{/register-material}"
+                                      th:object="${materialDTO}">
+                                    <p class="card-description">
+
+                                    </p>
+                                    <!--Serial & Descripcion-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="snId" class="col-sm-3 col-form-label">Serial: <label
+                                                        id="lb_sn" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" id="snId" class="form-control"
+                                                           name="sn" th:value="*{sn}" th:errorClass="is-invalid"
+                                                           required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="descriptionId" class="col-sm-3 col-form-label">Descripción:
+                                                    <label id="lb_description" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" id="descriptionId" class="form-control"
+                                                           name="description" th:value="*{description}"
+                                                           th:errorClass="is-invalid" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!--# de Parte y Modelo-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="partId" class="col-sm-3 col-form-label">N° de Parte: <label
+                                                        id="lb_part" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" id="partId" class="form-control"
+                                                           name="part" th:value="*{part}" th:errorClass="is-invalid"
+                                                           required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="modelId" class="col-sm-3 col-form-label">Modelo: <label
+                                                        id="lb_model" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" id="modelId" class="form-control"
+                                                           name="model" th:value="*{model}" th:errorClass="is-invalid"
+                                                           required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!--Sitio & Bodega-->
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="brandId" class="col-sm-3 col-form-label">Fabricante: <label
+                                                        id="lb_brand" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <select id="brandId" class="js-example-basic-single"
+                                                            style="width:100%" th:value="*{brandId}" name="brandId"
+                                                            th:errorClass="is-invalid" required>
+                                                        <option value="" selected>Seleccione</option>
+                                                        <option th:each="data:${dataBrand}" th:text="${data.name}"
+                                                                th:value="${data.id}"
+                                                                th:selected="(${data.id} == ${materialDTO.brandId})"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="storeId" class="col-sm-3 col-form-label">Bodega: <label
+                                                        id="lb_store" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <select id="storeId" class="js-example-basic-single"
+                                                            style="width:100%" th:value="*{storeId}" name="storeId"
+                                                            th:errorClass="is-invalid" required="required">
+                                                        <option value="" selected>Seleccione</option>
+                                                        <option th:each="dataStore:${dataStore}"
+                                                                th:text="${dataStore.name}"
+                                                                th:value="${dataStore.id}"
+                                                                th:selected="(${dataStore.id} == ${materialDTO.storeId})"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!--<div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="siteId" class="col-sm-3 col-form-label">Sitio Asignado:
+                                                    <label
+                                                            id="lb_site" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <select id="siteId" class="js-example-basic-single"
+                                                            style="width:100%" th:value="*{siteId}" name="siteId"
+                                                            required>
+                                                        <option value="0" selected>Seleccione</option>
+                                                        <option th:each="data:${dataSite}" th:text="${data.id}"
+                                                                th:value="${data.id}"
+                                                                th:selected="(${data.id} == ${materialDTO.siteId})"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="enabled" class="col-sm-3 col-form-label">Disponible:
+                                                    <label id="lb_enabled" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <select id="enabled" class="js-example-basic-single"
+                                                            style="width:100%" th:value="*{enabled}"
+                                                            name="enabled" required>
+                                                        <option value="" selected>Seleccione</option>
+                                                        <option value="TRUE">SI</option>
+                                                        <option value="FALSE">NO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="inventoryMaterialId" class="col-sm-3 col-form-label">Inventario:
+                                                    <label id="lb_inventory" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <select id="inventoryMaterialId" class="js-example-basic-single"
+                                                            style="width:100%" th:value="*{inventoryMaterialId}"
+                                                            name="inventoryMaterialId"
+                                                            th:errorClass="is-invalid" required>
+                                                        <option value="" selected>Seleccione</option>
+                                                        <option th:each="data:${dataInventory}" th:text="${data.name}"
+                                                                th:value="${data.id}"
+                                                                th:selected="(${data.id} == ${materialDTO.inventoryMaterialId})"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="comment" class="col-sm-3 col-form-label">Comentario: <label
+                                                        id="lb_comment" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" id="comment" class="form-control"
+                                                           name="comment" th:value="*{comment}"
+                                                           th:errorClass="is-invalid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button id="btn_save_material" class="btn btn-info mb-2" >Guardar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include footer.html %}
+        </div>
+    </div>
+</div>

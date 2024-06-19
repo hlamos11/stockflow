@@ -1,0 +1,102 @@
+---
+layout: default
+title: "capitalizations wifi"
+permalink: /capitalizations
+---
+
+{% include navbarTop.html %}
+<div>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            {% include navbarSide.html %}
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Capitalizaciones WiFi
+                        </div>
+                        <div class="table-responsive">
+                            <table id="datatablesSimple" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Capitalizaciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="Dataclient : ${dataCapitalizations}">
+                                    <td th:text="${Dataclient.name}"></td>
+                                    <td>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>WO.</th>
+                                                <th>S/N AP</th>
+                                                <th>Modelo Switch</th>
+                                                <th>S/N Switch</th>
+                                                <th>Modelo PoE</th>
+                                                <th>S/N PoE</th>
+                                                <th>N° Reserva</th>
+                                                <th>Mes</th>
+                                                <th>Activo</th>
+                                                <th>Creado</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="detail : ${Dataclient.capitalizations}">
+                                                <td th:text="${detail.orden}"></td>
+                                                <td th:text="${detail.serialap}"></td>
+                                                <td th:text="${detail.modelswitch}"></td>
+                                                <td th:text="${detail.serialswitch}"></td>
+                                                <td th:text="${detail.modelpoe}"></td>
+                                                <td th:text="${detail.serialpoe}"></td>
+                                                <td th:text="${detail.reserve}"></td>
+                                                <td th:text="${detail.month}"></td>
+                                                <td th:text="${detail.enabled} ? 'SI' : 'NO'"></td>
+                                                <td th:text="${detail.createdAt}"></td>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-start">
+                        <div class="col-auto">
+                            <div class="card bg-success text-white mb-4">
+                                <div class="card-footer d-flex align-items-center justify-content-center" th:if="${user.typeuser} == 'admin'">
+                                    <a class="medium text-white" href="/register-capitalizations">Crear Capitalizacion</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>

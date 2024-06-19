@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en-US"
+
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Modelo AP - Wifi Dashboard</title>
+<!--  <link rel="stylesheet" href="assets/css/login.css">-->
+<!--  <link rel="stylesheet" href="assets/css/register.css">-->
+
+
+  <link rel="shortcut icon" href="assets/template/images/cloud.svg" />
+  <link rel="stylesheet" href="/assets/template/vendors/iconfonts/mdi/font/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/assets/template/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/assets/template/vendors/css/vendor.bundle.addons.css">
+
+  <link rel="stylesheet" href="/assets/template/css/vertical-layout-light/style.css">
+
+</head>
+
+<body>
+
+<!--  <div class="container-scroller">-->
+<!--    <div class="container-fluid page-body-wrapper">-->
+
+
+
+  <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+  <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+    <a class="navbar-brand brand-logo" href=""><img src="assets/template/images/antenna.svg" alt="logo"/></a>
+    <a class="navbar-brand brand-logo-mini" href=""><img src="assets/template/images/antenna.svg" alt="logo"/></a>
+  </div>
+  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+      <span class="mdi mdi-menu"></span>
+    </button>
+    <ul class="navbar-nav navbar-nav-right">
+
+      <li class="nav-item dropdown">
+        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+          <i class="mdi mdi-bell-outline mx-0"></i>
+          <span class="count"></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+          <a class="dropdown-item">
+            <p class="mb-0 font-weight-normal float-left">You have 4 new notifications
+            </p>
+            <span class="badge badge-pill badge-warning float-right">View all</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item preview-item">
+            <div class="preview-thumbnail">
+              <div class="preview-icon bg-success">
+                <i class="mdi mdi-information mx-0"></i>
+              </div>
+            </div>
+            <div class="preview-item-content">
+              <h6 class="preview-subject font-weight-medium">Application Error</h6>
+              <p class="font-weight-light small-text mb-0">
+                Just now
+              </p>
+            </div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item preview-item">
+            <div class="preview-thumbnail">
+              <div class="preview-icon bg-warning">
+                <i class="mdi mdi-settings mx-0"></i>
+              </div>
+            </div>
+            <div class="preview-item-content">
+              <h6 class="preview-subject font-weight-medium">Settings</h6>
+              <p class="font-weight-light small-text mb-0">
+                Private message
+              </p>
+            </div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item preview-item">
+            <div class="preview-thumbnail">
+              <div class="preview-icon bg-info">
+                <i class="mdi mdi-account-box mx-0"></i>
+              </div>
+            </div>
+            <div class="preview-item-content">
+              <h6 class="preview-subject font-weight-medium">New user registration</h6>
+              <p class="font-weight-light small-text mb-0">
+                2 days ago
+              </p>
+            </div>
+          </a>
+        </div>
+      </li>
+
+
+      <li class="nav-item nav-profile dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+          <img src="https://via.placeholder.com/30x30" alt="profile"/>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item">
+            <form method="post" th:action="@{/logout}" sec:authorize="isAuthenticated()">
+              <button type="submit" class="dropdown-item py-2" >
+                <i class="mdi mdi-logout text-primary"></i>
+                Logout
+              </button>
+            </form>
+          </a>
+        </div>
+      </li>
+
+
+      <li class="nav-item nav-settings d-none d-lg-block">
+        <a class="nav-link" href="#">
+          <i class="mdi mdi-apps"></i>
+        </a>
+      </li>
+
+    </ul>
+    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+      <span class="mdi mdi-menu"></span>
+    </button>
+  </div>
+</nav>
+
+<div>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <!-- partial:partials/_sidebar.html -->
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/authenticated">
+                <i class="mdi mdi-view-dashboard-outline menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <i class="mdi mdi-codepen menu-icon"></i>
+                <span class="menu-title">Gest. Operaciones</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/clients">Clientes</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/establishments">Sucursales</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/typebusiness">Tipos de Negocio</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/products">Productos</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/modelaps">Modelos de APs</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/modelswitch">Modelos de Switch</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/capitalizations">Capitalizaciones WiFi</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/lic-portal">Lic. Portal</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/lic-meraki">Lic. Meraki</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/ordersMeraki">Ordenes Meraki</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/ordersPortal">Ordenes Portal</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+                <span class="menu-title">Gest. Inventarios</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tables">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/materials-management">Materiales</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/inventory-management">Inventario</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/movements-material">Movimientos</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/store">Bodegas</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/brand">Fabricantes</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/responsible-management">Responsables</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+                <i class="mdi mdi-security-account-outline menu-icon"></i>
+                <span class="menu-title">Administracion</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="error">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/users"> Usuarios </a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+<!--    <div class="sb-sidenav-footer">-->
+<!--        <div class="small">Conectado como:</div>-->
+<!--        <span th:if="${user}" th:text="${user.username}"></span>-->
+<!--    </div>-->
+</nav>
+
+
+
+
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="/authenticated">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/modelaps">Modelos de APs</a></li>
+                        <li class="breadcrumb-item active">Registrar Modelo</li>
+                    </ol>
+                </div>
+                <div class="container">
+                    <div class="card-body" style="padding-top: 0px;">
+                        <div class="row justify-content-center">
+                            <div class="card px-0 pt-4 pb-0 mb-3">
+                                <form id="basicform" method="post" th:action="@{/register-model-ap}" th:object="${modelApDTO}">
+                                    <ul id="progressreg">
+                                        <li class="reg" id="register"><strong>Modelo</strong></li>
+                                        <li id="end"><strong></strong></li>
+                                    </ul>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div> <br>
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="fs-title">Registrar Modelo de AP</h2>
+                                                </div>
+                                                <div class="col-5">
+                                                    <h2 class="steps">Step 1 - 1</h2>
+                                                </div>
+                                            </div>
+                                            <div class="bg-light p-3 border">
+                                                <div class="alert alert-info text-center" th:if="${message}" th:text="${message}"></div>
+                                                <div class="form-row py-1">
+                                                    <label for="modelap">Modelo: <label class="required-text">*</label></label>
+                                                    <input type="text" placeholder="Ingrese el modelo del AP" id="modelap" class="form-control" name="modelap" th:value="*{modelap}" th:errorClass="is-invalid">
+                                                    <div th:if="${#fields.hasErrors('modelap')}" th:errors="*{modelap}" class="invalid-feedback"></div>
+                                                </div>
+
+                                                <div class="form-row py-1">
+                                                    <label for="brand">Marca: <label class="required-text">*</label></label>
+                                                    <input type="text" placeholder="Ingrese la marca del AP" id="brand" class="form-control" name="brand" th:value="*{brand}" th:errorClass="is-invalid">
+                                                    <div th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" class="invalid-feedback"></div>
+                                                </div>
+
+                                                <div class="form-row py-1">
+                                                    <label for="enabled">Modelo Activo: <label class="required-text">*</label></label>
+                                                    <select id="enabled" class="form-select" th:value="*{enabled}" name="enabled">
+                                                        <option value="TRUE">SI</option>
+                                                        <option value="FALSE">NO</option>
+                                                    </select>
+                                                    <div th:if="${#fields.hasErrors('enabled')}" th:errors="*{enabled}" class="invalid-feedback"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="submit" class="action-button" value="GUARDAR"/>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<!--    </div>-->
+
+<!--  </div>-->
+
+  <!-- plugins:js -->
+  <script src="assets/template/vendors/js/vendor.bundle.base.js"></script>
+  <script src="assets/template/vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+
+  <script src="/assets/template/js/off-canvas.js"></script>
+  <script src="/assets/template/js/hoverable-collapse.js"></script>
+  <script src="/assets/template/js/template.js"></script>
+  <script src="/assets/template/js/settings.js"></script>
+<!--  <script src="/assets/template/js/todolist.js"></script>-->
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src=" /assets/template/js/dashboard.js"></script>
+  <script src=" /assets/template/js/data-table.js"></script>
+  <script src=" /assets/template/js/typeahead.js"></script>
+  <script src=" /assets/template/js/select2.js"></script>
+  <script src=" /assets/template/js/file-upload.js"></script>
+  <script src=" /assets/template/js/validate.js"></script>
+  <script src=" /assets/template/js/validate-date-movements.js"></script>
+<!-- <script src=" /assets/template/js/search-data.js"></script>-->
+  <script src=" /assets/template/js/modal_material.js"></script>
+  <script src=" /assets/template/js/alerts.js"></script>
+  <script src=" /assets/template/js/avgrund.js"></script>
+  <script src=" /assets/template/js/swal-confirm.js"></script>
+  <script src=" /assets/template/js/form-validation.js"></script>
+  <script src=" /assets/template/js/bt-maxLength.js"></script>
+  <!-- End custom js for this page-->
+
+</body>
+</html>
+

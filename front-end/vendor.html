@@ -1,0 +1,68 @@
+---
+layout: default
+title: "Proveedor"
+permalink: /vendor
+---
+
+{% include navbarTop.html %}
+
+<div>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            {% include navbarSide.html %}
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="/authenticated">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Proveedor</li>
+                    </ol>
+                    <div class="alert alert-danger text-center" th:if="${message}" th:text="${message}"></div>
+                    <div class="alert alert-success text-center" th:if="${message_succefull}" th:text="${message_succefull}"></div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Modelos
+                        </div>
+                        <div class="card-body">
+                            <table id="datatablesSimple" class="table table-striped">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th>CODIGO</th>
+                                    <th>NOMBRE</th>
+                                    <th>HABILITADO</th>
+                                    <th>OPCION</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr  th:each="vendor : ${dataVendor}">
+                                    <th scope="row" th:text="${vendor.id}">1</th>
+                                    <td th:text="${vendor.name}">neo</td>
+                                    <td th:text="${vendor.enabled} ? 'SI' : 'NO'">K</td>
+                                    <!--                  <td><a th:href="@{/delete_model_ap(id=${modelap.id}, modelap=${modelap.modelap})}">eliminar</a></td>-->
+                                    <td>
+                                        <form  th:action="@{/delete_vendor(id=${vendor.id})}" method="post">
+                                            <button  type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row justify-content-start">
+                        <div class="col-auto">
+                            <div class="card bg-success text-white mb-4">
+                                <div class="card-footer d-flex align-items-center justify-content-center">
+                                    <a class="medium text-white" href="/register-vendor">Crear Proveedor</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>

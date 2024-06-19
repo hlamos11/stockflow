@@ -1,0 +1,80 @@
+---
+layout: default
+title: "licences"
+permalink: /lic-portal
+---
+
+{% include navbarTop.html %}
+
+<div>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            {% include navbarSide.html %}
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="/authenticated">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Lic. Portales</li>
+                    </ol>
+                    <div class="alert alert-danger text-center" th:if="${message}" th:text="${message}"></div>
+                    <div class="alert alert-success text-center" th:if="${message_succefull}" th:text="${message_succefull}"></div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Licencias
+                        </div>
+                        <div class="card-body">
+                            <table id="datatablesSimple" class="table table-striped">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>CLIENTE</th>
+                                    <th>SUCURSAL</th>
+                                    <th>LICENCIA</th>
+                                    <th>HABILITADA</th>
+                                    <th>OPCION</th>
+                                    <th>OPCION</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr  th:each="data : ${dataLicensePortal}">
+                                    <th scope="row" th:text="${data.id}">1</th>
+                                    <td th:text="${data.establishment.client.name}">cliente</td>
+                                    <td th:text="${data.establishment.nameestablishment}">Establecimiento</td>
+                                    <td th:text="${data.license}">neo</td>
+                                    <td th:text="${data.enabled} ? 'SI' : 'NO'">K</td>
+                                    <td>
+                                        <div>
+                                            <form  th:action="@{/editLicensePortal(id=${data.id})}" th:if="${user.typeuser} == 'admin'" method="post">
+                                                <button type="submit" class="btn btn-warning">EDITAR</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <form  th:action="@{/delete_license_portal(id=${data.id})}" method="post">
+                                                <button  type="submit" class="btn btn-danger">ELIMINAR</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row justify-content-start">
+                        <div class="col-auto">
+                            <div class="card bg-success text-white mb-4">
+                                <div class="card-footer d-flex align-items-center justify-content-center">
+                                    <a class="medium text-white" href="/register-lic-portal">Asignar Licencia</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
