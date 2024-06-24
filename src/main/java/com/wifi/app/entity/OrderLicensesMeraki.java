@@ -1,17 +1,21 @@
 package com.wifi.app.entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name = "order_licenses_meraki")
-@Getter @Setter
 public class OrderLicensesMeraki {
 
     @Id
@@ -39,6 +43,4 @@ public class OrderLicensesMeraki {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<LicenseMeraki> order;
 
-    public OrderLicensesMeraki() {
-    }
 }

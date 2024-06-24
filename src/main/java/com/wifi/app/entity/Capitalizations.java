@@ -1,15 +1,19 @@
 package com.wifi.app.entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name = "Capitalizations")
-@Getter @Setter
 public class Capitalizations {
 
     @Id
@@ -29,8 +33,5 @@ public class Capitalizations {
     private boolean enabled;
     @Column(name = "created_at")
     private Timestamp createdAt;
-
-    public Capitalizations() {
-    }
 
 }

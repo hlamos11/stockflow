@@ -1,14 +1,18 @@
 package com.wifi.app.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 import java.util.Set;
 
-@Getter @Setter
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name = "Clients")
 public class Clients {
@@ -31,8 +35,5 @@ public class Clients {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<Capitalizations> capitalizations;
-
-    public Clients() {
-    }
 
 }

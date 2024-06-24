@@ -1,12 +1,16 @@
 package com.wifi.app.entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Getter @Setter
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table (name = "type_client")
 public class Typeclient {
@@ -17,6 +21,4 @@ public class Typeclient {
     private String description;
     private Boolean enabled;
 
-    public Typeclient() {
-    }
 }

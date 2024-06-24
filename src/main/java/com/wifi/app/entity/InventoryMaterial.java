@@ -1,15 +1,19 @@
 package com.wifi.app.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name = "inventory_material")
-@Getter @Setter
 public class InventoryMaterial {
 
     @Id
@@ -32,7 +36,4 @@ public class InventoryMaterial {
     @OneToMany(mappedBy = "inventoryMaterial", cascade = CascadeType.ALL)
     private List<Material> materials;
 
-
-    public InventoryMaterial() {
-    }
 }

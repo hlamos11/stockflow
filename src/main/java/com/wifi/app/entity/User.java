@@ -1,6 +1,7 @@
 package com.wifi.app.entity;
 
 
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name="user")
 public class User implements UserDetails {
@@ -40,8 +47,6 @@ public class User implements UserDetails {
     inverseJoinColumns = @JoinColumn(name="authority_id"))
     private List<Authority> authorities;
 
-    public User() {
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -81,7 +86,7 @@ public class User implements UserDetails {
     }
 
 
-    public Integer getId() {
+   /* public Integer getId() {
         return id;
     }
 
@@ -159,7 +164,7 @@ public class User implements UserDetails {
 
     public void setLock_time(Timestamp lock_time) {
         this.lock_time = lock_time;
-    }
+    }*/
 
 
 }

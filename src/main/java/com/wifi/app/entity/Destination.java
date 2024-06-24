@@ -1,16 +1,20 @@
 package com.wifi.app.entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name = "destination")
-@Getter @Setter
 public class Destination {
 
     @Id
@@ -26,6 +30,4 @@ public class Destination {
 
     private Boolean enabled;
 
-    public Destination() {
-    }
 }

@@ -1,7 +1,6 @@
 package com.wifi.app.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -9,8 +8,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
-@Getter @Setter
 @Table(name = "responsible")
 public class Responsible {
 
@@ -24,6 +28,4 @@ public class Responsible {
     private String email;
     private Boolean enabled;
 
-    public Responsible() {
-    }
 }

@@ -1,8 +1,7 @@
 package com.wifi.app.entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -10,9 +9,14 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name="establishment")
-@Getter @Setter
 public class Establishment {
 
     @Id
@@ -48,10 +52,8 @@ public class Establishment {
     @OneToMany(mappedBy = "establishment", cascade = CascadeType.ALL)
     private Set<EstablishmentDetail> establishmentDetail;
 
-    public Establishment() {
-    }
 
-    @Override
+/*    @Override
     public String toString() {
         return "Establishment{" +
                 "id=" + id +
@@ -73,5 +75,5 @@ public class Establishment {
                 ", licensePortals=" + licensePortals +
                 ", establishmentDetail=" + establishmentDetail +
                 '}';
-    }
+    }*/
 }

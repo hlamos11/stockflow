@@ -1,13 +1,17 @@
 package com.wifi.app.entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Getter @Setter
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name="model_ap")
 public class ModelAp {
@@ -20,10 +24,5 @@ public class ModelAp {
     private boolean enabled;
     @Column(name = "created_at")
     private Timestamp createdAt;
-
-
-    public ModelAp() {
-    }
-
 
 }

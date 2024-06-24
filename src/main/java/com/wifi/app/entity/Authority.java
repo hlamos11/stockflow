@@ -1,8 +1,16 @@
 package com.wifi.app.entity;
 
 
+import lombok.*;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name="authority")
 public class Authority {
@@ -11,9 +19,6 @@ public class Authority {
     private Integer id;
 
     private String authority;
-
-    public Authority(){
-    }
 
     public Integer getId() {
         return id;

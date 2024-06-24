@@ -1,14 +1,18 @@
 package com.wifi.app.entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-@Getter @Setter
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name = "movements_material")
 public class MovementsMaterial {
@@ -59,7 +63,4 @@ public class MovementsMaterial {
     @Column(name = "comment")
     private String comment;
 
-
-    public MovementsMaterial() {
-    }
 }

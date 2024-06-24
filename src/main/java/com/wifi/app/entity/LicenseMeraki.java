@@ -1,15 +1,19 @@
 package com.wifi.app.entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name = "licenses_meraki")
-@Getter @Setter
 public class LicenseMeraki {
 
     @Id
@@ -31,8 +35,5 @@ public class LicenseMeraki {
     @ManyToOne
     @JoinColumn
     private OrderLicensesMeraki order;
-
-    public LicenseMeraki() {
-    }
 
 }

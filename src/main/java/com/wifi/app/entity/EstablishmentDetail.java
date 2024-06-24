@@ -1,14 +1,18 @@
 package com.wifi.app.entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name="establishment_detail")
-@Getter @Setter
 public class EstablishmentDetail {
 
     @Id
@@ -26,8 +30,7 @@ public class EstablishmentDetail {
     private Integer countswitch;
 
 
-    public EstablishmentDetail() {
-    }
+
     /*
 
     public EstablishmentDetail(String modelap, Integer countap, Integer countpower, String modelswitch, Integer countswitch, Establishment establishments) {
