@@ -5,9 +5,9 @@ package com.wifi.app.controllers;
 import com.wifi.app.entity.*;
 import com.wifi.app.objects.MaterialDTO;
 import com.wifi.app.service.*;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +27,7 @@ import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
 
 
 @Controller
+@RequiredArgsConstructor
 public class MaterialsController {
 
     private static final Logger log = LoggerFactory.getLogger(MaterialsController.class);
@@ -37,16 +38,6 @@ public class MaterialsController {
     private final InventoryMaterialService inventoryMaterialService;
 
     private final SiteService siteService;
-
-    @Autowired
-    public MaterialsController(MaterialService materialService, DestinationService destinationService, StoreService storeService, BrandService brandService, InventoryMaterialService inventoryMaterialService, SiteService siteService) {
-        this.materialService = materialService;
-        this.destinationService = destinationService;
-        this.storeService = storeService;
-        this.brandService = brandService;
-        this.inventoryMaterialService = inventoryMaterialService;
-        this.siteService = siteService;
-    }
 
     /*Metodo que valida que los campos no esten en null*/
     @InitBinder

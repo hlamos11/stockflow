@@ -7,6 +7,7 @@ import com.wifi.app.objects.SucursalDetail;
 import com.wifi.app.repository.ClientRepository;
 import com.wifi.app.repository.EstablishmentsRepository;
 import com.wifi.app.service.*;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class EstablishmentsController {
 
     @Autowired
@@ -43,18 +45,6 @@ public class EstablishmentsController {
     private final ModelApService modelApService;
     private final ModelSwitchService modelSwitchService;
     private final TypeBusinessService typeBusinessService;
-
-    @Autowired
-    public EstablishmentsController(EstablishmentService establishmentService, ClientService clientService, ProvinceService provinceService, ProductService productService, ModelApService modelApService, ModelSwitchService modelSwitchService, TypeBusinessService typeBusinessService) {
-        this.establishmentService = establishmentService;
-        this.clientService = clientService;
-        this.provinceService = provinceService;
-        this.productService = productService;
-        this.modelApService = modelApService;
-        this.modelSwitchService = modelSwitchService;
-        this.typeBusinessService = typeBusinessService;
-    }
-
 
     /*Metodo que valida que los campos no esten en null*/
     @InitBinder

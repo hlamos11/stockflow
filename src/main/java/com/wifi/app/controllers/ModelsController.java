@@ -10,6 +10,7 @@ import com.wifi.app.service.EstablishmentDetailService;
 import com.wifi.app.service.EstablishmentService;
 import com.wifi.app.service.ModelApService;
 import com.wifi.app.service.ModelSwitchService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,21 +30,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class ModelsController {
 
     private static final Logger log = LoggerFactory.getLogger(ModelsController.class);
     private final ModelApService modelApService;
     private final ModelSwitchService modelSwitchService;
-    private final EstablishmentService establishmentService;
+   // private final EstablishmentService establishmentService;
     private final EstablishmentDetailService establishmentDetailService;
-
-    @Autowired
-    public ModelsController(ModelApService modelApService, ModelSwitchService modelSwitchService, EstablishmentService establishmentService, EstablishmentDetailService establishmentDetailService) {
-        this.modelApService = modelApService;
-        this.modelSwitchService = modelSwitchService;
-        this.establishmentService = establishmentService;
-        this.establishmentDetailService = establishmentDetailService;
-    }
 
     /*Metodo que valida que los campos no esten en null*/
     @InitBinder

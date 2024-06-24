@@ -3,6 +3,7 @@ package com.wifi.app.controllers;
 
 import com.wifi.app.entity.Vendor;
 import com.wifi.app.service.VendorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -14,14 +15,10 @@ import org.springframework.web.bind.annotation.InitBinder;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class VendorController {
 
     private final VendorService vendorService;
-
-    @Autowired
-    public VendorController(VendorService vendorService) {
-        this.vendorService = vendorService;
-    }
 
     /*Metodo que valida que los campos no esten en null*/
     @InitBinder

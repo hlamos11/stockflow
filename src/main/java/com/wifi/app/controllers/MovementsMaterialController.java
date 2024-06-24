@@ -4,6 +4,7 @@ import com.wifi.app.entity.*;
 import com.wifi.app.objects.MovementDTO;
 import com.wifi.app.res.CalculateInventory;
 import com.wifi.app.service.*;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.util.List;
 import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
 
 @Controller
+@RequiredArgsConstructor
 public class MovementsMaterialController {
 
     @Autowired
@@ -38,18 +40,6 @@ public class MovementsMaterialController {
     private final InventoryMaterialService inventoryMaterialService;
     private static final Logger log = LoggerFactory.getLogger(ClientController.class);
 
-
-    @Autowired
-    public MovementsMaterialController(MovementsMaterialService movementsMaterialService, MaterialService materialService, DestinationService destinationService, StoreService storeService, ResponsibleMaterialService responsibleMaterialService, BrandService brandService, SiteService siteService, InventoryMaterialService inventoryMaterialService) {
-        this.movementsMaterialService = movementsMaterialService;
-        this.materialService = materialService;
-        this.destinationService = destinationService;
-        this.storeService = storeService;
-        this.responsibleMaterialService = responsibleMaterialService;
-        this.brandService = brandService;
-        this.siteService = siteService;
-        this.inventoryMaterialService = inventoryMaterialService;
-    }
 
     /*Metodo que valida que los campos no esten en null*/
     @InitBinder

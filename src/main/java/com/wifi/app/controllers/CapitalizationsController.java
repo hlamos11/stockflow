@@ -5,6 +5,7 @@ import com.wifi.app.entity.Clients;
 import com.wifi.app.objects.CapitalizationDTO;
 import com.wifi.app.service.CapitalizationsService;
 import com.wifi.app.service.ClientService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +25,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class CapitalizationsController {
 
     private static final Logger log = LoggerFactory.getLogger(CapitalizationsController.class);
 
     private final CapitalizationsService capitalizationsService;
     private final ClientService clientService;
-
-    @Autowired
-    public CapitalizationsController(CapitalizationsService capitalizationsService, ClientService clientService) {
-        this.capitalizationsService = capitalizationsService;
-        this.clientService = clientService;
-    }
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder){

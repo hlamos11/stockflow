@@ -2,6 +2,7 @@ package com.wifi.app.controllers;
 
 
 import com.wifi.app.service.QueryService;
+import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;

@@ -7,6 +7,7 @@ import com.wifi.app.exception.NotFoundException;
 import com.wifi.app.res.MaterialExcelExporter;
 import com.wifi.app.service.InventoryMaterialService;
 import com.wifi.app.service.MaterialService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.Date;
 
 @Controller
+@RequiredArgsConstructor
 public class InventoryController {
 
     private static final Logger log = LoggerFactory.getLogger(InventoryController.class);
@@ -36,11 +38,6 @@ public class InventoryController {
     private final InventoryMaterialService inventoryMaterialService;
     private final MaterialService materialService;
 
-    @Autowired
-    public InventoryController(InventoryMaterialService inventoryMaterialService, MaterialService materialService) {
-        this.inventoryMaterialService = inventoryMaterialService;
-        this.materialService = materialService;
-    }
 
     /*Metodo que valida que los campos no esten en null*/
     @InitBinder
@@ -49,7 +46,6 @@ public class InventoryController {
         dataBinder.registerCustomEditor(String.class,stringTrimmerEditor);
 
     }
-
 
     @GetMapping("/inventory-management")
     public String getWifiInventory(Model model) {

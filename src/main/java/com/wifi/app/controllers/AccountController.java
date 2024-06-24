@@ -12,6 +12,7 @@ import com.wifi.app.repository.UserRepository;
 import com.wifi.app.service.AuthorityService;
 import com.wifi.app.service.UserHistService;
 import com.wifi.app.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,7 @@ import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
 import static com.wifi.app.res.NewDateExpired.NewDate;
 
 @Controller
+@RequiredArgsConstructor
 public class AccountController {
 
     private static final Logger log = LoggerFactory.getLogger(AccountController.class);
@@ -50,18 +52,6 @@ public class AccountController {
     private final AuthorityService authorityService;
     private final UserHistService userHistService;
 
-
-
-
-    @Autowired
-    public AccountController(UserService userService, BCryptPasswordEncoder passwordEncoder, UserRepository userRepository, TipeUserRepository typeUserRepository, AuthorityService authorityService, UserHistService userHistService){
-        this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
-        this.typeUserRepository = typeUserRepository;
-        this.authorityService = authorityService;
-        this.userHistService = userHistService;
-    }
 
     @GetMapping("/users")
     public  String list(Model model){

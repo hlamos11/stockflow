@@ -4,6 +4,7 @@ package com.wifi.app.controllers;
 import com.wifi.app.entity.OrderLicensesPortal;
 import com.wifi.app.objects.OrderLicensesPortalDTO;
 import com.wifi.app.service.OrderLicensesPortalService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -22,14 +23,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class LicenciasPortalController {
 
     private final OrderLicensesPortalService orderLicensesPortalService;
     private static final Logger log = LoggerFactory.getLogger(LicenciasPortalController.class);
 
-    public LicenciasPortalController(OrderLicensesPortalService orderLicensesPortalService) {
-        this.orderLicensesPortalService = orderLicensesPortalService;
-    }
 
     /*Metodo que valida que los campos no esten en null*/
     @InitBinder

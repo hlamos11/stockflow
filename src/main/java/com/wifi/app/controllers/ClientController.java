@@ -9,6 +9,7 @@ import com.wifi.app.service.ClientService;
 import com.wifi.app.service.EstablishmentService;
 import com.wifi.app.service.QueryService;
 import com.wifi.app.service.TypeClientService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class ClientController {
 
     @Autowired
@@ -38,13 +40,6 @@ public class ClientController {
     private final ClientService clientService;
     private final TypeClientService typeClientService;
     private final EstablishmentService establishmentService;
-
-    @Autowired
-    public ClientController(ClientService clientService, TypeClientService typeClientService, EstablishmentService establishmentService) {
-        this.clientService = clientService;
-        this.typeClientService = typeClientService;
-        this.establishmentService = establishmentService;
-    }
 
     @GetMapping("/clients")
     public String list(Model model) {

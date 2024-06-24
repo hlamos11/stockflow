@@ -1,14 +1,18 @@
 package com.wifi.app.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Set;
 
 
-@Getter @Setter
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table (name = "material")
 public class Material {
@@ -50,7 +54,4 @@ public class Material {
     @JoinColumn
     private Site site;
 
-
-    public Material() {
-    }
 }

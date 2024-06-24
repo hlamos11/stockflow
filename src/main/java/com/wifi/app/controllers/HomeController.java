@@ -10,6 +10,7 @@ import com.wifi.app.repository.ClientRepository;
 import com.wifi.app.repository.EstablishmentsRepository;
 import com.wifi.app.repository.UserRepository;
 import com.wifi.app.service.QueryService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ import static com.wifi.app.res.ConvertDateSql.convertDateString;
 
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
     private static final Logger log = LoggerFactory.getLogger(HomeController.class);
@@ -46,9 +48,6 @@ public class HomeController {
     @Autowired
     EstablishmentsRepository establishmentsRepository;
 
-    public HomeController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @GetMapping("/")
     public String index(Authentication authentication){

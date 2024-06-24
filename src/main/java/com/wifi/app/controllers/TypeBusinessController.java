@@ -6,6 +6,7 @@ import com.wifi.app.entity.TypeBusiness;
 import com.wifi.app.objects.TypeBusinessDTO;
 import com.wifi.app.service.EstablishmentService;
 import com.wifi.app.service.TypeBusinessService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -24,16 +25,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class TypeBusinessController {
 
     private static final Logger log = LoggerFactory.getLogger(TypeBusinessController.class);
     private final TypeBusinessService typeBusinessService;
     private final EstablishmentService establishmentService;
-
-    public TypeBusinessController(TypeBusinessService typeBusinessService, EstablishmentService establishmentService) {
-        this.typeBusinessService = typeBusinessService;
-        this.establishmentService = establishmentService;
-    }
 
     @GetMapping("/typebusiness")
     public String list(Model model) {

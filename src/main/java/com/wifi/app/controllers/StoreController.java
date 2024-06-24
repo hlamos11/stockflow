@@ -3,6 +3,7 @@ package com.wifi.app.controllers;
 import com.wifi.app.entity.Store;
 import com.wifi.app.objects.StoreDTO;
 import com.wifi.app.service.StoreService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +26,11 @@ import java.util.List;
 import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
 
 @Controller
+@RequiredArgsConstructor
 public class StoreController {
 
     private final StoreService storeService;
     private static final Logger log = LoggerFactory.getLogger(StoreController.class);
-
-
-    @Autowired
-    public StoreController(StoreService storeService) {
-        this.storeService = storeService;
-    }
 
     /*Metodo que valida que los campos no esten en null*/
     @InitBinder

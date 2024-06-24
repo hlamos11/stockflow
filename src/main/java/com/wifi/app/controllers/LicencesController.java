@@ -5,6 +5,7 @@ import com.wifi.app.entity.*;
 import com.wifi.app.objects.LicenseMerakiDTO;
 import com.wifi.app.objects.LicensePortalDTO;
 import com.wifi.app.service.*;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class LicencesController {
 
     private static final Logger log = LoggerFactory.getLogger(LicencesController.class);
@@ -39,17 +41,6 @@ public class LicencesController {
 
     private final EstablishmentDetailService establishmentDetailService;
 
-
-    @Autowired
-    public LicencesController(EstablishmentService establishmentService, LicensePortalService licensePortalService, LicenseMerakiService licenseMerakiService, ClientService clientService, OrderLicensesPortalService orderLicensesPortalService, OrderLicensesMerakiService orderLicensesMerakiService, EstablishmentDetailService establishmentDetailService) {
-        this.establishmentService = establishmentService;
-        this.licensePortalService = licensePortalService;
-        this.licenseMerakiService = licenseMerakiService;
-        this.clientService = clientService;
-        this.orderLicensesPortalService = orderLicensesPortalService;
-        this.orderLicensesMerakiService = orderLicensesMerakiService;
-        this.establishmentDetailService = establishmentDetailService;
-    }
 
     /*Metodo que valida que los campos no esten en null*/
     @InitBinder

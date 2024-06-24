@@ -4,6 +4,7 @@ package com.wifi.app.controllers;
 import com.wifi.app.entity.Responsible;
 import com.wifi.app.objects.ResponsibleMaterialDTO;
 import com.wifi.app.service.ResponsibleMaterialService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +26,12 @@ import java.util.List;
 import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
 
 @Controller
+@RequiredArgsConstructor
 public class ResponsibleController {
 
     private final ResponsibleMaterialService responsibleMaterialService;
     private static final Logger log = LoggerFactory.getLogger(ResponsibleController.class);
 
-
-    @Autowired
-    public ResponsibleController(ResponsibleMaterialService responsibleMaterialService) {
-        this.responsibleMaterialService = responsibleMaterialService;
-    }
 
     /*Metodo que valida que los campos no esten en null*/
     @InitBinder

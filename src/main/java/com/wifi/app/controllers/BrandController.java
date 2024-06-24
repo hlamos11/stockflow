@@ -3,6 +3,7 @@ package com.wifi.app.controllers;
 import com.wifi.app.entity.Brand;
 import com.wifi.app.objects.BrandDTO;
 import com.wifi.app.service.BrandService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +23,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class BrandController {
 
     private final BrandService brandService;
     private static final Logger log = LoggerFactory.getLogger(BrandController.class);
-
-
-    @Autowired
-    public BrandController(BrandService brandService) {
-        this.brandService = brandService;
-    }
 
     /*Metodo que valida que los campos no esten en null*/
     @InitBinder
