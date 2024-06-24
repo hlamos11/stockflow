@@ -66,14 +66,14 @@ permalink: /brand
                       <td th:text="${data.enabled} ? 'SI' : 'NO'">K</td>
                       <td>
                         <div>
-                          <form  th:action="@{/editBrand(id=${data.id})}" th:if="${user.typeuser} == 'admin'" method="post">
+                          <form  th:action="@{/editBrand(id=${data.id})}" th:if="${user.typeuser} == 'superadmin'" method="post">
                             <button type="submit" class="btn btn-warning">EDITAR</button>
                           </form>
                         </div>
                       </td>
                       <td>
                         <div>
-                          <form  th:action="@{/delete_brand(id=${data.id})}" method="post">
+                          <form  th:action="@{/delete_brand(id=${data.id})}" th:if="${user.typeuser} == 'superadmin'" method="post">
                             <button  type="submit" class="btn btn-danger">ELIMINR</button>
                           </form>
                         </div>
