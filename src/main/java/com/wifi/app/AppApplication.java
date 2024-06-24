@@ -17,10 +17,10 @@ public class AppApplication  {
 
     public static void main(String[] args) {
 
-       SpringApplication.run(AppApplication.class, args);
+//       SpringApplication.run(AppApplication.class, args);
 
 
-/*       SpringApplication app = new SpringApplication(AppApplication.class);
+       SpringApplication app = new SpringApplication(AppApplication.class);
 
 
         final Properties properties = new Properties();
@@ -41,7 +41,7 @@ public class AppApplication  {
 
 
         app.setDefaultProperties(properties);
-        app.run(args);*/
+        app.run(args);
 
 
     }
