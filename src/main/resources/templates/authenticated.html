@@ -171,7 +171,7 @@
         </li>
 
 
-        <li class="nav-item">
+        <!--<li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="mdi mdi-codepen menu-icon"></i>
                 <span class="menu-title">Gest. Operaciones</span>
@@ -192,7 +192,7 @@
                     <li class="nav-item"> <a class="nav-link" href="/ordersPortal">Ordenes Portal</a></li>
                 </ul>
             </div>
-        </li>
+        </li>-->
 
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
@@ -242,48 +242,69 @@
                     <div class="col-md-6 col-lg-3 grid-margin stretch-card">
                         <div class="card bg-gradient-primary text-white text-center card-shadow-primary">
                             <div class="card-body">
-                                <h6 class="font-weight-normal">Total invoices</h6>
-                                <h2 class="mb-0">28893</h2>
+                                <h6 class="font-weight-normal">Total Materiales FWA</h6>
+                                <h2 class="mb-0" th:text="${liCountFWA}" >28893</h2>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3 grid-margin stretch-card">
                         <div class="card bg-gradient-danger text-white text-center card-shadow-danger">
                             <div class="card-body">
-                                <h6 class="font-weight-normal">Total invoices</h6>
-                                <h2 class="mb-0">28893</h2>
+                                <h6 class="font-weight-normal">Total Materiales RAN</h6>
+                                <h2 class="mb-0" th:text="${liCountRAN}" >28893</h2>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3 grid-margin stretch-card">
                         <div class="card bg-gradient-warning text-white text-center card-shadow-warning">
                             <div class="card-body">
-                                <h6 class="font-weight-normal">Total invoices</h6>
-                                <h2 class="mb-0">28893</h2>
+                                <h6 class="font-weight-normal">Total Materiales WiFi</h6>
+                                <h2 class="mb-0" th:text="${liCountWiFi}" >28893</h2>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3 grid-margin stretch-card">
                         <div class="card bg-gradient-info text-white text-center card-shadow-info">
                             <div class="card-body">
-                                <h6 class="font-weight-normal">Total invoices</h6>
-                                <h2 class="mb-0">28893</h2>
+                                <h6 class="font-weight-normal">Total Materiales Cell-Fi</h6>
+                                <h2 class="mb-0" th:text="${liCountCellFi}">28893</h2>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-12 grid-margin">
+                    <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Monthly Analytics</h4>
-                                <p class="card-description">Products that are creating the most revenue and their sales
-                                    throughout the year and the variation in behavior of sales.</p>
-                                <div id="js-legend" class="chartjs-legend mt-4 mb-5 analytics-legend"></div>
-                                <div class="demo-chart">
-                                    <canvas id="dashboard-monthly-analytics"></canvas>
-                                </div>
+                                <h4 class="card-title">Materiales por Inventario</h4>
+                                <div id="chart-material-all"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Line chart</h4>
+                                <div id="morris-line-example"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Area chart</h4>
+                                <div id="morris-area-example"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Doughnut chart</h4>
+                                <div id="morris-donut-example"></div>
                             </div>
                         </div>
                     </div>
@@ -336,6 +357,8 @@
   <script src=" /assets/template/js/swal-confirm.js"></script>
   <script src=" /assets/template/js/form-validation.js"></script>
   <script src=" /assets/template/js/bt-maxLength.js"></script>
+  <script src=" /assets/js/charts-wifi.js"></script>
+  <script src=" /assets/template/js/morris.js"></script>
   <!-- End custom js for this page-->
 
 </body>

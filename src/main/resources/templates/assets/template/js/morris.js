@@ -135,6 +135,42 @@ $(function() {
       labels: ['Series A', 'Series B']
     });
   }
+
+
+    if ($("#chart-material-all-PR").length) {
+      Morris.Bar({
+        element: 'chart-material-all',
+        barColors: ['#63CF72', '#F36368', '#76C1FA', '#FABA66'],
+        data: [{
+            y: 'FWA',
+            a: 100,
+            b: 90
+          },
+          {
+            y: 'WiFi',
+            a: 75,
+            b: 65
+          },
+          {
+            y: 'RAN',
+            a: 50,
+            b: 40
+          },
+          {
+            y: 'Cell-Fi',
+            a: 75,
+            b: 3335
+          },
+        ],
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['Series A', 'Series B']
+      });
+    }
+
+
+
+
   if ($("#morris-donut-example").length) {
     Morris.Donut({
       element: 'morris-donut-example',

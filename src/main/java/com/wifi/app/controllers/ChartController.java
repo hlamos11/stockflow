@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 import java.math.BigInteger;
@@ -31,13 +32,13 @@ public class ChartController {
 
     @GetMapping("/charts")
     public String charts(Model model){
-
+        getData();
         return "charts";
     }
 
 
     //@RequestMapping("/chartswifi") -- Comente esta linea tengo que recordar bien como funciona, puse charts mientras
-    @RequestMapping("/charts")
+    @RequestMapping("/chartswifi")
     @ResponseBody
     public String getData(){
 

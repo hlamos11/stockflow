@@ -12,7 +12,7 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>tables wifi hlamos - Wifi Dashboard</title>
+  <title>Graficos - Wifi Dashboard</title>
 <!--  <link rel="stylesheet" href="assets/css/login.css">-->
 <!--  <link rel="stylesheet" href="assets/css/register.css">-->
 
@@ -30,6 +30,32 @@
 
 <!--  <div class="container-scroller">-->
 <!--    <div class="container-fluid page-body-wrapper">-->
+
+
+
+  <div class="container-scroller">
+
+        <!-- partial:partials/_settings-panel.html -->
+      <div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="mdi mdi-settings"></i></div>
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close mdi mdi-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles primary"></div>
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles light"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+          </div>
+        </div>
+      </div>
 
 
 
@@ -131,8 +157,9 @@
     </button>
   </div>
 </nav>
-<div id="layoutSidenav">
-  <div id="layoutSidenav_nav">
+
+  <div class="container-fluid page-body-wrapper">
+
     <!-- partial:partials/_sidebar.html -->
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
@@ -144,7 +171,7 @@
         </li>
 
 
-        <li class="nav-item">
+        <!--<li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="mdi mdi-codepen menu-icon"></i>
                 <span class="menu-title">Gest. Operaciones</span>
@@ -165,7 +192,7 @@
                     <li class="nav-item"> <a class="nav-link" href="/ordersPortal">Ordenes Portal</a></li>
                 </ul>
             </div>
-        </li>
+        </li>-->
 
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
@@ -208,83 +235,37 @@
 
 
 
-  </div>
-  <div id="layoutSidenav_content">
-    <main>
-      <div class="container-fluid px-4">
-        <ol class="breadcrumb mb-4">
-          <li class="breadcrumb-item"><a href="/authenticated">Dashboard</a></li>
-          <li class="breadcrumb-item active">Graficas</li>
-        </ol>
-        <!--        <div class="card mb-4">-->
-        <!--          <div class="card-body">-->
-        <!--            Chart.js is a third party plugin that is used to generate the charts in this template. The charts below have been customized - for further customization options, please visit the official-->
-        <!--            <a target="_blank" href="https://www.chartjs.org/docs/latest/">Chart.js documentation</a>-->
-        <!--            .-->
-        <!--          </div>-->
-        <!--        </div>-->
-        <div class="card mb-4">
-          <div class="card-header">
-            <i class="fas fa-chart-area me-1"></i>
-            Area Chart Example
-          </div>
-          <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
-          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-        </div>
+
+    <div class="main-panel">
+      <div class="content-wrapper">
+
         <div class="row">
-          <div class="col-lg-6">
-            <div class="card mb-4">
-              <div class="card-header">
-                <i class="fas fa-chart-pie me-1"></i>
-                Pie Chart Example
+          <div class="col-12 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Monthly Analytics</h4>
+                <p class="card-description">Products that are creating the most revenue and their sales
+                  throughout the year and the variation in behavior of sales.</p>
+                <div id="js-legend" class="chartjs-legend mt-4 mb-5 analytics-legend"></div>
+                <div class="demo-chart">
+                  <canvas id="ChartTop5Establishments"></canvas>
+                </div>
               </div>
-              <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="card mb-4">
-              <div class="card-header">
-                <i class="fas fa-chart-bar me-1"></i>
-                Top 5 de Clientes
-              </div>
-              <div class="card-body"><canvas id="ChartTop5Establishments" width="100%" height="50"></canvas></div>
-              <div class="card-footer small text-muted">Clientes con mas sucursales activas </div>
-              <!--                <h1 class="text-center" > <button class="btn btn-success" onclick="getChartData()">Graficar</button></h1>-->
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="card mb-4">
-              <div class="card-header">
-                <i class="fas fa-chart-bar me-1"></i>
-                Instalaciones
-              </div>
-              <div class="card-body"><canvas id="ChartInstallationsForMonth" width="100%" height="50"></canvas></div>
-              <div class="card-footer small text-muted">Instalaciones por Mes </div>
             </div>
           </div>
         </div>
+        <!-- partial:partials/_footer.html -->
+<footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. All rights reserved.</span>
+        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Ing. Hugo Lamos</span>
+    </div>
+</footer>
+<!-- partial -->
       </div>
-    </main>
-    <footer class="py-4 bg-light mt-auto">
-      <div class="container-fluid px-4">
-        <div class="d-flex align-items-center justify-content-between small">
-          <div class="text-muted">Copyright &copy; Your Website 2022</div>
-          <div>
-            <a href="#">Privacy Policy</a>
-            &middot;
-            <a href="#">Terms &amp; Conditions</a>
-          </div>
-        </div>
-      </div>
-    </footer>
+    </div>
   </div>
 </div>
-
-
-
-
-
 
 
 
@@ -321,6 +302,8 @@
   <script src=" /assets/template/js/swal-confirm.js"></script>
   <script src=" /assets/template/js/form-validation.js"></script>
   <script src=" /assets/template/js/bt-maxLength.js"></script>
+  <script src=" /assets/js/charts-wifi.js"></script>
+  <script src=" /assets/template/js/morris.js"></script>
   <!-- End custom js for this page-->
 
 </body>

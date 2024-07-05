@@ -17,5 +17,6 @@ public interface MaterialRepository extends JpaRepository<Material, Integer> {
    List<Material> findMaterialByBrandId(Integer id);
    Integer countMaterialByEnabledAndInventoryMaterialId(Boolean enabled, Integer id);
 
+   Integer countMaterialByInventoryMaterialId(Integer id);
    Optional <Material> deleteMaterialById (Integer Id);
 }
