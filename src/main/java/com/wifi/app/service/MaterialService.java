@@ -61,6 +61,11 @@ public class MaterialService {
         return materialRepository.findMaterialById(Id);
     }
 
+    @Transactional
+    public Integer getMaterialCountByStoreIdAndInventoryMaterialId(Integer storeId, Integer Id){
+        return materialRepository.countMaterialByStoreIdAndInventoryMaterialId(storeId, Id);
+    }
+
 
     @Transactional
     public List<Material> findMaterialByBrandId (Integer id){

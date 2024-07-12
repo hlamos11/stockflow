@@ -168,5 +168,20 @@ public class QueryService implements IQueryService{
 
     }
 
+    @Override
+    public BigInteger JPQLQueryChartMaterialByStoreAndInventory(int idStore, int idInventory) {
+
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNativeQuery("SELECT COUNT(*) AS COUNT\n" +
+                "FROM material\n" +
+                "WHERE store_id = "+ idStore + "\n" +
+                "AND inventory_material_id = "+ idInventory + ";" );
+
+        BigInteger count = (BigInteger) query.getSingleResult();
+        em.close();
+        return count;
+    }
+
 
 }

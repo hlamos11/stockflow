@@ -4,20 +4,20 @@ package com.wifi.app.controllers;
 
 
 
+
 import com.wifi.app.entity.InventoryMaterial;
+import com.wifi.app.entity.Store;
 import com.wifi.app.entity.User;
-import com.wifi.app.objects.SucursalDetail;
-import com.wifi.app.repository.ClientRepository;
-import com.wifi.app.repository.EstablishmentsRepository;
 import com.wifi.app.repository.UserRepository;
 import com.wifi.app.service.InventoryMaterialService;
 import com.wifi.app.service.MaterialService;
 import com.wifi.app.service.QueryService;
+import com.wifi.app.service.StoreService;
 import lombok.RequiredArgsConstructor;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,10 +30,10 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.TreeMap;
+
 
 import static com.wifi.app.res.ConvertDateSql.convertDateString;
 
@@ -44,20 +44,12 @@ public class HomeController {
 
     private static final Logger log = LoggerFactory.getLogger(HomeController.class);
     private final UserRepository userRepository;
-
-    private final MaterialService materialService;
     private final InventoryMaterialService inventoryMaterialService;
+    private final MaterialService materialService;
+    private final StoreService storeService;
+
+    private final QueryService queryservice;
     public static String GLOBAL_USER_NAME = null;
-
-    /*@Autowired
-    QueryService queryservice;
-
-    @Autowired
-    ClientRepository clientRepository;
-
-    /*@Autowired
-    EstablishmentsRepository establishmentsRepository;*/
-
 
     @GetMapping("/")
     public String index(Authentication authentication){
@@ -69,37 +61,14 @@ public class HomeController {
     public String authenticated(Authentication authentication,Model model) throws ParseException {
 
         GLOBAL_USER_NAME = authentication.getName();
-        Map<String, Integer> graphData = new TreeMap<>();
 
-
-        //List<InventoryMaterial> list = inventoryMaterialService.getListInventoryMaterial();
-
-        Integer liCountFWA = materialService.getMaterialCountByInventoryMaterialId(1);
-        Integer liCountWiFi = materialService.getMaterialCountByInventoryMaterialId(2);
-        Integer liCountRAN = materialService.getMaterialCountByInventoryMaterialId(3);
-        Integer liCountCellFi = materialService.getMaterialCountByInventoryMaterialId(4);
-
-        model.addAttribute("liCountFWA", liCountFWA);
-        model.addAttribute("liCountWiFi", liCountWiFi);
-        model.addAttribute("liCountRAN", liCountRAN);
-        model.addAttribute("liCountCellFi", liCountCellFi);
-
-        Integer liCountFWAEnabled = materialService.getMaterialCountByEnabledAndInventoryMaterialId(true, 1);
-        Integer liCountWiFiEnabled = materialService.getMaterialCountByEnabledAndInventoryMaterialId(true,2);
-        Integer liCountRANEnabled = materialService.getMaterialCountByEnabledAndInventoryMaterialId(true,3);
-        Integer liCountCellFiEnabled = materialService.getMaterialCountByEnabledAndInventoryMaterialId(true,4);
+        model.addAttribute("liCountFWA", materialService.getMaterialCountByInventoryMaterialId(1));
+        model.addAttribute("liCountWiFi", materialService.getMaterialCountByInventoryMaterialId(2));
+        model.addAttribute("liCountRAN", materialService.getMaterialCountByInventoryMaterialId(3));
+        model.addAttribute("liCountCellFi", materialService.getMaterialCountByInventoryMaterialId(4));
 
 
         String res = validatePass();
-
-        //BigInteger count = (BigInteger) queryservice.JPQLQueryClientsTotal();
-        //log.info(">>  count    ********************** : {}",count);
-        //model.addAttribute("total",count);
-        //model.addAttribute("clients", clientRepository.findAll());
-        //model.addAttribute("establishments", establishmentsRepository.findAll());
-
-        //List<SucursalDetail> detail = queryservice.JPQLQuery();
-        //model.addAttribute("detailestablishments", detail);
 
         return res;
 
@@ -114,7 +83,7 @@ public class HomeController {
 
     @RequestMapping("/chartMaterial")
     @ResponseBody
-    public String getDataMaterial(){
+    public String getDataMaterialAll(){
 
         JSONObject jsonObject = new JSONObject ();
 
@@ -139,6 +108,38 @@ public class HomeController {
         jsonObject.put("fCELLFI", liCountCellFiFalse);
 
         //log.info(">> jsonObject.toString()********************** : {}",jsonObject.toString());
+
+        return jsonObject.toString();
+
+    }
+
+    @RequestMapping("/chartMaterialByStoreAndInventoryId")
+    @ResponseBody
+    public String getDataMaterialByStore(){
+
+        List<InventoryMaterial> inventoryMaterialList = inventoryMaterialService.getListInventoryMaterial();
+        List<Store> storeList = storeService.getStoreList();
+        List<BigInteger> list = new ArrayList<>();
+
+        JSONArray jsonArrayCount = new JSONArray();
+
+        JSONObject jsonObject = new JSONObject ();
+
+        for(Store stores : storeList){
+            //System.out.println("Bodega id: "+stores.getId() + " Bodega nombre: " +  stores.getName());
+            if(stores.getId() != 8){
+                for(InventoryMaterial inventory : inventoryMaterialList){
+                    BigInteger count = queryservice.JPQLQueryChartMaterialByStoreAndInventory(stores.getId(), inventory.getId());
+                    //System.out.println("inventario id: "+inventory.getId() + " inventario nombre: " +  inventory.getName() + " Count:"+ count);
+                    list.add(count);
+                }
+            }
+        }
+
+        jsonArrayCount.put(list);
+        jsonObject.put("object", jsonArrayCount);
+
+        log.info(">> jsonObject.toString()********************** : {}",jsonObject.toString());
 
         return jsonObject.toString();
 

@@ -14,6 +14,7 @@ public interface IQueryService {
     BigInteger JPQLQueryClientsTotal();
     BigInteger JPQLQueryEstablishments(int id, String name);
     BigInteger JPQLQueryEstablishmentByClientId(int client_id);
-
     Integer JPQLQueryMaxStepMovementMaterial(int materialId);
+
+    BigInteger JPQLQueryChartMaterialByStoreAndInventory(int idStore, int idInventory);
 }

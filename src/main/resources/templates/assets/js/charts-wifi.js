@@ -53,6 +53,7 @@ function renderChart(data, labels) {
 }
 
 var ctxm = document.getElementById("ChartInstallationsForMonth");
+
 function renderChartm(datam, labelsm) {
 
     var myChart = new Chart(ctxm, {
@@ -134,18 +135,19 @@ function getChartData() {
 
 var ct = document.getElementById("chart-material-all");
 getChartDataMaterial();
+
 function getChartDataMaterial() {
     $.ajax({
         url: "chartMaterial",
         dataType: 'json',
         success: function(result) {
 
-            renderChartMaterial(result.tFWA,result.tWiFi,result.tRAN,result.tCELLFI,result.fFWA,result.fWiFi,result.fRAN,result.fCELLFI);
+            renderChartMaterial(result.tFWA, result.tWiFi, result.tRAN, result.tCELLFI, result.fFWA, result.fWiFi, result.fRAN, result.fCELLFI);
         }
     });
 }
 
-function renderChartMaterial(tFWA,tWiFi,tRAN,tCELLFI,fFWA,fWiFi,fRAN,fCELLFI) {
+function renderChartMaterial(tFWA, tWiFi, tRAN, tCELLFI, fFWA, fWiFi, fRAN, fCELLFI) {
     'use strict';
     if ($("#chart-material-all").length) {
         Morris.Bar({
@@ -176,6 +178,204 @@ function renderChartMaterial(tFWA,tWiFi,tRAN,tCELLFI,fFWA,fWiFi,fRAN,fCELLFI) {
             ykeys: ['a', 'b'],
             labels: ['Disponibles', 'Utilizados']
         });
+    }
+
+}
+
+
+var ct = document.getElementById("ct-chart-stacked-bar-app");
+getChartDataMaterialByStoreAndInventoryId();
+
+function getChartDataMaterialByStoreAndInventoryId() {
+    $.ajax({
+        url: "chartMaterialByStoreAndInventoryId",
+        dataType: 'json',
+        success: function(result) {
+
+            console.log(result.object);
+
+            renderChartMaterialByStoreAndInventoryId(result.object);
+        }
+    });
+}
+
+function renderChartMaterialByStoreAndInventoryId(data) {
+    //Stacked bar Chart
+    if ($('#ct-chart-stacked-bar-app').length) {
+        new Chartist.Bar('#ct-chart-stacked-bar-app', {
+            labels: ['ILG', 'BOC', 'AGUADULCE', 'C. RADIAL', 'TERRONAL'],
+            series: [
+                [data[0][0], data[0][4], data[0][8], data[0][12], data[0][16]],
+                [data[0][1], data[0][5], data[0][9], data[0][13], data[0][17]],
+                [data[0][2], data[0][6], data[0][10], data[0][14], data[0][18]],
+                [data[0][3], data[0][7], data[0][11], data[0][15], data[0][19]]
+            ]
+        }, {
+            stackBars: true,
+            showLabel: true,
+            axisY: {
+                labelInterpolationFnc: function(value) {
+                    return (value);
+                },
+                onlyInteger: true
+            }
+        }).on('draw', function(data) {
+            if (data.type === 'bar') {
+                data.element.attr({
+                    style: 'stroke-width: 30px'
+                });
+            }
+        });
+    }
+
+    if ($("#chart-material-by-store-inventory").length) {
+        Morris.Bar({
+            element: 'chart-material-by-store-inventory',
+            barColors: ['#63CF72', '#F36368', '#76C1FA', '#FABA66'],
+            data: [{
+                    y: 'ILG',
+                    a: data[0][0],
+                    b: data[0][1],
+                    c: data[0][2],
+                    d: data[0][3]
+                },
+                {
+                    y: 'BOC',
+                    a: data[0][4],
+                    b: data[0][5],
+                    c: data[0][6],
+                    d: data[0][7]
+                },
+                {
+                    y: 'AGUADULCE',
+                    a: data[0][8],
+                    b: data[0][9],
+                    c: data[0][10],
+                    d: data[0][11]
+                },
+                {
+                    y: 'C. RADIAL',
+                    a: data[0][12],
+                    b: data[0][13],
+                    c: data[0][14],
+                    d: data[0][15]
+                },
+                {
+                    y: 'TERRONAL',
+                    a: data[0][16],
+                    b: data[0][17],
+                    c: data[0][18],
+                    d: data[0][19]
+                }
+            ],
+            xkey: 'y',
+            ykeys: ['a', 'b', 'c', 'd'],
+            labels: ['FWA', 'WIFI', 'RAN', 'CELL-FI']
+        });
+    }
+
+    if ($("#chart-mat-by-store-inventory-app").length) {
+        var ctx = document.getElementById('chart-mat-by-store-inventory-app').getContext("2d");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['ILG', 'BOC','AGUADULCE', 'C. RADIAL','TERRONAL'],
+                datasets: [{
+                        label: "FWA",
+                        borderColor: 'rgba(77, 124, 255, .8)',
+                        backgroundColor: 'rgba(77, 124, 255, .8)',
+                        pointRadius: 0,
+                        fill: true,
+                        borderWidth: 1,
+                        fill: 'origin',
+                        data: [data[0][0], data[0][4], data[0][8], data[0][12], data[0][16]]
+                    },
+                    {
+                        label: "WIFI",
+                        borderColor: 'rgba(235, 105, 143, .9)',
+                        backgroundColor: 'rgba(235, 105, 143, .9)',
+                        pointRadius: 0,
+                        fill: true,
+                        borderWidth: 1,
+                        fill: 'origin',
+                        data: [data[0][1], data[0][5], data[0][9], data[0][13], data[0][17]]
+                    },
+                    {
+                        label: "RAN",
+                        borderColor: 'rgba(241, 155, 84, .8)',
+                        backgroundColor: 'rgba(241, 155, 84, .8)',
+                        pointRadius: 0,
+                        fill: true,
+                        borderWidth: 1,
+                        fill: 'origin',
+                        data: [data[0][2], data[0][6], data[0][10], data[0][14], data[0][18]]
+                    },
+                    {
+                        label: "CELL-FI",
+                        borderColor: 'rgba(37, 117, 6, 1)',
+                        backgroundColor: 'rgba(37, 117, 6, 1)',
+                        pointRadius: 0,
+                        fill: true,
+                        borderWidth: 1,
+                        fill: 'origin',
+                        data: [data[0][3], data[0][7], data[0][11], data[0][15], data[0][19]]
+                    }/*,
+                    {
+                        label: "TERRONAL",
+                        borderColor: 'rgba(25, 116, 148, 1)',
+                        backgroundColor: 'rgba(25, 116, 148, 1)',
+                        pointRadius: 0,
+                        fill: true,
+                        borderWidth: 1,
+                        fill: 'origin',
+                        data: [data[0][16], data[0][17], data[0][18], data[0][19]]
+                    }*/
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                legend: {
+                    display: false,
+                    position: "top"
+                },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            display: true,
+                            beginAtZero: true,
+                            fontColor: '#696969'
+                        },
+                        gridLines: {
+                            display: false,
+                            drawBorder: false,
+                            color: 'transparent',
+                            zeroLineColor: '#eeeeee'
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            drawBorder: false,
+                            display: true,
+                            color: '#b8b8b8',
+                        },
+                        categoryPercentage: 0.5,
+                        ticks: {
+                            display: true,
+                            beginAtZero: true,
+                            stepSize: 200,
+                            max: 2000,
+                            fontColor: '#696969'
+                        }
+                    }]
+                },
+            },
+            elements: {
+                point: {
+                    radius: 0
+                }
+            }
+        });
+        document.getElementById('js-legend').innerHTML = myChart.generateLegend();
     }
 
 }
