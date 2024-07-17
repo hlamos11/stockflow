@@ -97,6 +97,8 @@ public class MovementsMaterialController {
         Integer respMovement = movementsByMaterial(movementDTO.getMaterialId(), movementDTO.getTypeMovement());
         Integer resp = 0;
 
+        log.info("register-movement: GLOBAL_USER_NAME = ", GLOBAL_USER_NAME);
+
         if (GLOBAL_USER_NAME != null ){
             movementDTO.setUser(GLOBAL_USER_NAME);
         }else {
@@ -156,6 +158,14 @@ public class MovementsMaterialController {
 
         if (movementDTO.getTypeMovement().equals("TRASLADO")) {
             resp = calculateInventory.calculateInventory(movementDTO.getMaterialId(), 3, movementDTO);
+        }
+
+        if (movementDTO.getTypeMovement().equals("RMA")) {
+            resp = calculateInventory.calculateInventory(movementDTO.getMaterialId(), 4, movementDTO);
+        }
+
+        if (movementDTO.getTypeMovement().equals("DESCARTE")) {
+            resp = calculateInventory.calculateInventory(movementDTO.getMaterialId(), 5, movementDTO);
         }
 
         if (resp == 1) {

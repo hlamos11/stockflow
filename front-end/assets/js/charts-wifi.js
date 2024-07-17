@@ -292,8 +292,8 @@ function renderChartMaterialByStoreAndInventoryId(data) {
                     },
                     {
                         label: "WIFI",
-                        borderColor: 'rgba(235, 105, 143, .9)',
-                        backgroundColor: 'rgba(235, 105, 143, .9)',
+                        borderColor: 'rgba(255, 0, 0)',
+                        backgroundColor: 'rgba(255, 0, 0)',
                         pointRadius: 0,
                         fill: true,
                         borderWidth: 1,
@@ -302,8 +302,8 @@ function renderChartMaterialByStoreAndInventoryId(data) {
                     },
                     {
                         label: "RAN",
-                        borderColor: 'rgba(241, 155, 84, .8)',
-                        backgroundColor: 'rgba(241, 155, 84, .8)',
+                        borderColor: 'rgba(238, 127, 35)',
+                        backgroundColor: 'rgba(238, 127, 35)',
                         pointRadius: 0,
                         fill: true,
                         borderWidth: 1,
@@ -312,8 +312,8 @@ function renderChartMaterialByStoreAndInventoryId(data) {
                     },
                     {
                         label: "CELL-FI",
-                        borderColor: 'rgba(37, 117, 6, 1)',
-                        backgroundColor: 'rgba(37, 117, 6, 1)',
+                        borderColor: 'rgba(99, 207, 114)',
+                        backgroundColor: 'rgba(99, 207, 114)',
                         pointRadius: 0,
                         fill: true,
                         borderWidth: 1,

@@ -66,6 +66,17 @@ public class CalculateInventory {
                     material.setStore(store);
                     materialService.save(material);
                     return 1;
+                case 4:
+                    //RMA
+                    break;
+                case 5:
+                    //DESCARTE
+                    site = siteService.findSiteById(8);
+                    store = storeService.findStoreById(movementDTO.getStoreId());
+                    material.setEnabled(false);
+                    material.setSite(site);
+                    material.setStore(store);
+                    break;
                 default:
                     break;
             }
