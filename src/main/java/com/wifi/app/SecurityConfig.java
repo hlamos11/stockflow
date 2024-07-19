@@ -22,21 +22,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Optional;
 
+import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     private  final UserService userService;
-    private  final ClientService clientService;
     private  final BCryptPasswordEncoder passwordEncoder;
     private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
 
     @Autowired
-    public SecurityConfig (UserService userService, ClientService clientService, BCryptPasswordEncoder passwordEncoder){
+    public SecurityConfig (UserService userService, BCryptPasswordEncoder passwordEncoder){
         this.passwordEncoder = passwordEncoder;
         this.userService = userService;
-        this.clientService = clientService;
     }
 
     @Bean
@@ -46,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         return (UserDetailsService) username -> {
             Optional<User> user = userService.findUserByUsername(username);
+            GLOBAL_USER_NAME = user.get().getUsername();
             if(user.isEmpty()){
                 throw new UsernameNotFoundException("No user found with username: "+username);
             }

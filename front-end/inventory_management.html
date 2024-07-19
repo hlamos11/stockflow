@@ -65,7 +65,10 @@ permalink: /inventory-management
                       <td>
                         <div>
                           <form  th:action="@{/search_inventory(id=${data.id})}" method="post">
-                            <button  type="submit" class="btn btn-success">ver</button>
+<!--                            <button  type="submit" class="btn btn-success">ver</button>-->
+                            <button type="submit" class="btn btn-light">
+                              <i class="mdi mdi-eye text-primary"></i>Ver
+                            </button>
                           </form>
                         </div>
                       </td>

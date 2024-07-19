@@ -1,9 +1,6 @@
 package com.wifi.app.service;
 
-import com.wifi.app.controllers.MaterialsController;
 import com.wifi.app.entity.Material;
-import com.wifi.app.entity.Site;
-import com.wifi.app.entity.Store;
 import com.wifi.app.objects.MaterialDTO;
 import com.wifi.app.repository.MaterialRepository;
 import org.modelmapper.ModelMapper;
@@ -64,6 +61,11 @@ public class MaterialService {
     @Transactional
     public Integer getMaterialCountByStoreIdAndInventoryMaterialId(Integer storeId, Integer Id){
         return materialRepository.countMaterialByStoreIdAndInventoryMaterialId(storeId, Id);
+    }
+
+    @Transactional
+    public Integer getMaterialCountByStoreId(Integer storeId){
+        return materialRepository.countByStoreId(storeId);
     }
 
 

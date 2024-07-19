@@ -239,38 +239,85 @@
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row">
-                    <div class="col-md-6 col-lg-3 grid-margin stretch-card">
-                        <div class="card bg-gradient-primary text-white text-center card-shadow-primary">
+
+                    <div class="col-12 grid-margin">
+
+
+                        <div class="card">
                             <div class="card-body">
-                                <h6 class="font-weight-normal">Total Materiales FWA</h6>
-                                <h2 class="mb-0" th:text="${liCountFWA}" >28893</h2>
+                                <div class="row" style="float:right;">
+                                    <div class="row">
+                                        <div class="test">
+                                            <form method="GET" action="/materials-management">
+                                                <button type="submit" class="btn btn-primary btn-lg">Materiales</button>
+                                            </form>
+                                        </div>
+
+                                        <div class="test">
+                                            <form method="GET" action="/inventory-management">
+                                                <button type="submit" class="btn btn-primary btn-lg">Inventarios</button>
+                                            </form>
+                                        </div>
+
+                                        <div class="test">
+                                            <form method="GET" action="/movements-material">
+                                                <button type="submit" class="btn btn-primary btn-lg">Movimientos</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                    <div style="padding-left: 10px;">
+                                        <form action="#">
+                                            <div class="form-group d-flex search-field">
+                                                <input type="text" class="form-control" placeholder="Search Here">
+                                                <button class="btn btn-primary ml-3">Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row" style="padding-left: 20px; padding-right: 20px;">
+
+                                <div class="col-md-6 col-lg-3 grid-margin stretch-card">
+                                    <div class="card bg-gradient-primary text-white text-center card-shadow-primary">
+                                        <div class="card-body">
+                                            <h6 class="font-weight-normal">Total Materiales FWA</h6>
+                                            <h2 class="mb-0" th:text="${liCountFWA}">28893</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 grid-margin stretch-card">
+                                    <div class="card bg-gradient-danger text-white text-center card-shadow-danger">
+                                        <div class="card-body">
+                                            <h6 class="font-weight-normal">Total Materiales RAN</h6>
+                                            <h2 class="mb-0" th:text="${liCountRAN}">28893</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 grid-margin stretch-card">
+                                    <div class="card bg-gradient-warning text-white text-center card-shadow-warning">
+                                        <div class="card-body">
+                                            <h6 class="font-weight-normal">Total Materiales WiFi</h6>
+                                            <h2 class="mb-0" th:text="${liCountWiFi}">28893</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 grid-margin stretch-card">
+                                    <div class="card bg-gradient-info text-white text-center card-shadow-info">
+                                        <div class="card-body">
+                                            <h6 class="font-weight-normal">Total Materiales Cell-Fi</h6>
+                                            <h2 class="mb-0" th:text="${liCountCellFi}">28893</h2>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-3 grid-margin stretch-card">
-                        <div class="card bg-gradient-danger text-white text-center card-shadow-danger">
-                            <div class="card-body">
-                                <h6 class="font-weight-normal">Total Materiales RAN</h6>
-                                <h2 class="mb-0" th:text="${liCountRAN}" >28893</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 grid-margin stretch-card">
-                        <div class="card bg-gradient-warning text-white text-center card-shadow-warning">
-                            <div class="card-body">
-                                <h6 class="font-weight-normal">Total Materiales WiFi</h6>
-                                <h2 class="mb-0" th:text="${liCountWiFi}" >28893</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 grid-margin stretch-card">
-                        <div class="card bg-gradient-info text-white text-center card-shadow-info">
-                            <div class="card-body">
-                                <h6 class="font-weight-normal">Total Materiales Cell-Fi</h6>
-                                <h2 class="mb-0" th:text="${liCountCellFi}">28893</h2>
-                            </div>
-                        </div>
-                    </div>
+
+
                 </div>
 
                 <div class="row">

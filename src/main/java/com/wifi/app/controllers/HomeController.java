@@ -60,18 +60,10 @@ public class HomeController {
     @GetMapping("/authenticated")
     public String authenticated(Authentication authentication,Model model) throws ParseException {
 
-        log.info("authenticated: getDetails().to = ", authentication.getDetails().toString());
-        log.info("authenticated: getName = ", authentication.getName().toString());
-        log.info("authenticated: getName = ", authentication.getDetails());
-        GLOBAL_USER_NAME = authentication.getName();
-
         model.addAttribute("liCountFWA", materialService.getMaterialCountByInventoryMaterialId(1));
         model.addAttribute("liCountWiFi", materialService.getMaterialCountByInventoryMaterialId(2));
         model.addAttribute("liCountRAN", materialService.getMaterialCountByInventoryMaterialId(3));
         model.addAttribute("liCountCellFi", materialService.getMaterialCountByInventoryMaterialId(4));
-
-        log.info("authenticated: GLOBAL_USER_NAME = ", GLOBAL_USER_NAME);
-
 
         String res = validatePass();
 

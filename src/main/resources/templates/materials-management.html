@@ -239,140 +239,108 @@
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row grid-margin">
-                    <div class="col-12">
+
+                    <div class="col-md-4 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
+                                <h4 class="card-title">Herramientas</h4>
+                                <div class="template-demo">
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="modal_material" role="dialog">
-                                    <div class="modal-dialog">
-
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Material</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group row">
-                                                    <div class="col">
-                                                        <label>Disponible</label>
-                                                        <div id="enabled">
-                                                            <input class="typeahead" type="text" id="txt_enabled" disabled>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <label>Inventario</label>
-                                                        <div id="name">
-                                                            <input class="typeahead" type="text" id="txt_name" disabled>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <label>Año</label>
-                                                        <div id="inventory">
-                                                            <input class="typeahead" type="text" id="txt_inventory" disabled>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <div class="col">
-                                                        <label>Sitio</label>
-                                                        <div id="site">
-                                                            <input class="typeahead" type="text" id="txt_site" disabled>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <label>Bodega</label>
-                                                        <div id="stored">
-                                                            <input class="typeahead" type="text" id="txt_stored" disabled>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    <form method="GET" action="/register-material">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                            <i class="mdi mdi-settings"></i>
+                                            Crear Material
+                                        </button>
+                                    </form>
 
 
-                                                <div class="form-group row">
-                                                    <div class="col">
-                                                        <label>Comentario</label>
-                                                        <div id="comment">
-                                                            <textarea class="typeahead" type="text" id="txt_comment" rows="5" cols="150" disabled></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-warning btn-lg" data-dismiss="modal">Cerrar</button>
-                                            </div>
-                                        </div>
 
-                                    </div>
+                                    <button type="button" class="btn btn-primary btn-lg btn-block">
+                                        <i class="mdi mdi-settings"></i>
+                                        Buscar Material
+                                    </button>
+
+                                    <!--<button type="button" class="btn btn-primary btn-lg btn-block">
+                                        <i class="mdi mdi-nfc-variant"></i>
+                                        Bodegas
+                                    </button>
+
+                                    <button type="button" class="btn btn-primary btn-lg btn-block">
+                                        <i class="mdi mdi-vector-square"></i>
+                                        Fabricantes
+                                    </button>
+
+                                    <button type="button" class="btn btn-primary btn-lg btn-block">
+                                        <i class="mdi mdi-account"></i>
+                                        Responsables
+                                    </button>
+
+                                    <button type="button" class="btn btn-primary btn-lg btn-block">
+                                        <i class="mdi mdi-view-list"></i>
+                                        Inventarios
+                                    </button>
+
+                                    <button type="button" class="btn btn-primary btn-lg btn-block">
+                                        <i class="mdi mdi-vector-polyline"></i>
+                                        Movimientos
+                                    </button>-->
+
                                 </div>
+                            </div>
+                        </div>
+                    </div>
 
-
+                    <div class="col-md-4 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
                                 <h4 class="card-title">Materiales</h4>
-
-                                <div class="d-flex table-responsive">
-                                    <div class="btn-group mr-2" th:if="${user.typeuser} == 'admin'">
-                                        <a class="btn btn-sm btn-primary" href="/register-material" role="tab"
-                                           aria-controls="home-2" aria-selected="true">
-                                            <i class="mdi mdi-plus-circle-outline"></i> Crear
-                                        </a>
-                                    </div>
-                                    <div class="btn-group mr-2">
-                                        <button type="button" class="btn btn-light"><i
-                                                class="mdi mdi-alert-circle-outline"></i></button>
-                                    </div>
-                                    <div class="btn-group mr-2">
-                                        <button type="button" class="btn btn-light"><i class="mdi mdi-printer"></i>
-                                        </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-light"><i class="mdi mdi-cloud"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-light"><i
-                                                class="mdi mdi-dots-vertical"></i></button>
-                                    </div>
-                                </div>
-
-                                <div class="table-responsive" style="padding-top: 20px;">
-                                    <table id="tbl_material" class="table">
+                                <div class="template-demo">
+                                    <table class="table mb-0">
                                         <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th style="visibility:collapse; display:none;">Name</th>
-                                            <th style="visibility:collapse; display:none;">Inventario</th>
-                                            <th style="visibility:collapse; display:none;">Sitio</th>
-                                            <th style="visibility:collapse; display:none;">Bodega</th>
-                                            <th>Serial</th>
-                                            <th>Parte</th>
-                                            <th>Fabricante</th>
-                                            <th>Descrip.</th>
-                                            <th>Modelo</th>
-                                            <th style="visibility:collapse; display:none;">Disponible</th>
-                                            <th style="visibility:collapse; display:none;">Comentario</th>
-                                            <th>Opcion</th>
+                                            <th class="pl-0">Bodega</th>
+                                            <th class="text-right">Cantidad</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="data : ${DataMaterialList}">
-                                            <th scope="row" th:text="${data.id}">Id</th>
-                                            <td style="visibility:collapse; display:none;" th:text="${data.inventoryMaterial.name}">name</td>
-                                            <td style="visibility:collapse; display:none;" th:text="${data.inventoryMaterial.year}">inventario</td>
-                                            <td style="visibility:collapse; display:none;" th:text="${data.site.id}">Sitio</td>
-                                            <td style="visibility:collapse; display:none;" th:text="${data.store.name}">bodega</td>
-                                            <td th:text="${data.sn}">numero de serie</td>
-                                            <td th:text="${data.part}"># de parte</td>
-                                            <td th:text="${data.brand.name}">marca</td>
-                                            <td th:text="${data.description}">description</td>
-                                            <td th:text="${data.model}">modelo</td>
-                                            <td style="visibility:collapse; display:none;" th:text="${data.enabled} ? 'SI' : 'NO'">K</td>
-                                            <td style="visibility:collapse; display:none;" th:text="${data.comment}">comment</td>
-                                            <td>
+                                        <tr th:each="data : ${dataMaterialCountByStore}">
+                                            <td class="pl-0" th:text="${data.name}">name</td>
+                                            <td class="pr-0 text-right" ><div th:text="${data.count}"class="badge badge-pill badge-warning">4</div></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Bodegas</h4>
+<!--                                <p class="card-description">Materiales disponibles en Bodegas</p>-->
+                                <div class="template-demo">
+                                    <table class="table mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th class="pl-0">Bodega</th>
+                                            <th class="text-center">Opción</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="data : ${dataMaterialByStore}">
+                                            <th style="visibility:collapse; display:none;" scope="row" th:text="${data.id}">Id</th>
+                                            <td class="pl-0" th:text="${data.name}">Store</td>
+                                            <td class="pr-0 text-center" style="
+                                                border-top-width: 0px;
+                                                padding-top: 5px;
+                                                padding-bottom: 5px;
+                                            ">
                                                 <div>
-                                                    <form  th:action="@{/delete_material(id=${data.id})}" method="post" th:if="${user.typeuser} == 'superadmin'">
-                                                        <button  type="submit" class="btn btn-danger">Eliminar</button>
+                                                    <form  th:action="@{/searchMaterialByStore(id=${data.id})}" method="post">
+                                                        <button type="submit" class="btn btn-material-view">
+                                                            Ver
+                                                        </button>
                                                     </form>
                                                 </div>
                                             </td>
@@ -383,6 +351,9 @@
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
             <!-- partial:partials/_footer.html -->

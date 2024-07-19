@@ -4,6 +4,7 @@ package com.wifi.app.controllers;
 
 import com.wifi.app.entity.*;
 import com.wifi.app.objects.MaterialDTO;
+import com.wifi.app.objects.ResponseCountDTO;
 import com.wifi.app.service.*;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -21,9 +22,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
+
 
 
 @Controller
@@ -50,8 +53,32 @@ public class MaterialsController {
     @GetMapping("/materials-management")
     public String getall(Model model){
 
-        List<Material> materialList = materialService.getMaterialList();
-        model.addAttribute("DataMaterialList", materialList);
+        ArrayList<Integer> list = new ArrayList<>();
+
+        list.add(8);
+        /*List<Store> storeList = storeService.getStoreList();
+
+
+
+        List<Store> list1 = storeService.findByIdIn(list);*/
+
+        List<Store> list1 = storeService.findByIdNotIn(list);
+
+
+        ArrayList<ResponseCountDTO> responseCountDTOArrayList = new ArrayList<>();
+
+
+
+        for(Store stores : list1){
+            ResponseCountDTO responseCountDTO = new ResponseCountDTO();
+            responseCountDTO.setCount(materialService.getMaterialCountByStoreId(stores.getId()));
+            responseCountDTO.setName(stores.getName());
+            responseCountDTOArrayList.add(responseCountDTO);
+        }
+
+
+        model.addAttribute("dataMaterialByStore",list1);
+        model.addAttribute("dataMaterialCountByStore",responseCountDTOArrayList);
         return "materials-management";
     }
 

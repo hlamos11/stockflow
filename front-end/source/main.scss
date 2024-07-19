@@ -2954,6 +2954,17 @@ textarea.form-control-lg {
   z-index: 3;
 }
 
+.btnView{
+  display: inline-block;
+  font-weight: 100;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
 .btn {
   display: inline-block;
   font-weight: 400;
