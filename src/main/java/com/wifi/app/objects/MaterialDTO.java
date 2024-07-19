@@ -2,12 +2,14 @@ package com.wifi.app.objects;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
 @Getter @Setter
+@ToString
 public class MaterialDTO {
 
     private Integer id;
@@ -34,20 +36,4 @@ public class MaterialDTO {
     public MaterialDTO() {
     }
 
-    @Override
-    public String toString() {
-        return "MaterialDTO{" +
-                "user='" + user + '\'' +
-                ", storeId=" + storeId +
-                ", brandId=" + brandId +
-                ", sn='" + sn + '\'' +
-                ", part='" + part + '\'' +
-                ", model='" + model + '\'' +
-                ", description='" + description + '\'' +
-                ", inventoryMaterialId=" + inventoryMaterialId +
-                ", enabled=" + enabled +
-                ", comment='" + comment + '\'' +
-                ", siteId=" + siteId +
-                '}';
-    }
 }

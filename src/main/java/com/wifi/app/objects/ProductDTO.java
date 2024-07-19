@@ -2,12 +2,14 @@ package com.wifi.app.objects;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Getter @Setter
+@ToString
 public class ProductDTO {
 
     @NotBlank(message = "Debe ingresar el nombre")
@@ -21,12 +23,4 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-    @Override
-    public String toString() {
-        return "ProductDTO{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", enabled=" + enabled +
-                '}';
-    }
 }

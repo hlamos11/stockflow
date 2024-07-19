@@ -1,5 +1,13 @@
 package com.wifi.app.objects;
 
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class AuthorityDTO {
 
 
@@ -9,27 +17,4 @@ public class AuthorityDTO {
     public AuthorityDTO() {
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
-    }
-
-    @Override
-    public String toString() {
-        return "AuthorityDTO{" +
-                "id=" + id +
-                ", authority='" + authority + '\'' +
-                '}';
-    }
 }

@@ -3,8 +3,10 @@ package com.wifi.app.objects;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter @Setter
+@ToString
 public class CapitalizationDTO {
 
     private Integer id;
@@ -20,21 +22,5 @@ public class CapitalizationDTO {
     private boolean enabled;
 
     public CapitalizationDTO() {
-    }
-
-    @Override
-    public String toString() {
-        return "CapitalizationDTO{" +
-                "orden='" + orden + '\'' +
-                ", clientId=" + clientId +
-                ", serialap='" + serialap + '\'' +
-                ", modelswitch='" + modelswitch + '\'' +
-                ", serialswitch='" + serialswitch + '\'' +
-                ", modelpoe='" + modelpoe + '\'' +
-                ", serialpoe='" + serialpoe + '\'' +
-                ", reserve='" + reserve + '\'' +
-                ", month=" + month +
-                ", enabled=" + enabled +
-                '}';
     }
 }

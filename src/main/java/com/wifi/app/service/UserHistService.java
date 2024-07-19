@@ -1,7 +1,7 @@
 package com.wifi.app.service;
 
 
-import com.wifi.app.entity.User;
+
 import com.wifi.app.entity.UserHist;
 import com.wifi.app.repository.UserHistRepository;
 import org.modelmapper.ModelMapper;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserHistService {

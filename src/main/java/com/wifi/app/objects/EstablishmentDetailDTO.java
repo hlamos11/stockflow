@@ -2,8 +2,10 @@ package com.wifi.app.objects;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter @Setter
+@ToString
 public class EstablishmentDetailDTO {
 
     private Integer id;
@@ -17,16 +19,4 @@ public class EstablishmentDetailDTO {
     public EstablishmentDetailDTO() {
     }
 
-    @Override
-    public String toString() {
-        return "EstablishmentDetailDTO{" +
-                "id=" + id +
-                ", establishmentId=" + establishmentId +
-                ", modelap='" + modelap + '\'' +
-                ", countap=" + countap +
-                ", countpower=" + countpower +
-                ", modelswitch='" + modelswitch + '\'' +
-                ", countswitch=" + countswitch +
-                '}';
-    }
 }

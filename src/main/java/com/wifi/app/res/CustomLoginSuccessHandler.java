@@ -2,8 +2,6 @@ package com.wifi.app.res;
 
 
 
-
-import com.wifi.app.controllers.AccountController;
 import com.wifi.app.entity.User;
 import com.wifi.app.service.UserService;
 import org.slf4j.Logger;

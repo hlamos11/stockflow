@@ -2,6 +2,7 @@ package com.wifi.app.objects;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 @Getter @Setter
+@ToString
 public class MovementDTO {
 
     private  Integer Id;
@@ -30,25 +32,6 @@ public class MovementDTO {
     private String comment;
 
     public MovementDTO() {
-    }
-
-    @Override
-    public String toString() {
-        return "MovementDTO{" +
-                "Id=" + Id +
-                ", user='" + user + '\'' +
-                ", materialId=" + materialId +
-                ", responsibleId=" + responsibleId +
-                ", storeId=" + storeId +
-                ", typeMovement='" + typeMovement + '\'' +
-                ", dateIn=" + dateIn +
-                ", dateOut=" + dateOut +
-                ", dateTransfer=" + dateTransfer +
-                ", dateReturn=" + dateReturn +
-                ", siteId=" + siteId +
-                ", step=" + step +
-                ", comment='" + comment + '\'' +
-                '}';
     }
 
 }

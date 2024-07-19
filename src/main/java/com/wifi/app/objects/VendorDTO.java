@@ -2,11 +2,13 @@ package com.wifi.app.objects;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
 @Getter @Setter
+@ToString
 public class VendorDTO {
 
     private String user;
@@ -18,13 +20,4 @@ public class VendorDTO {
     public VendorDTO() {
     }
 
-    @Override
-    public String toString() {
-        return "VendorDTO{" +
-                ", user='" + user + '\'' +
-                ", createAt=" + createAt +
-                ", name='" + name + '\'' +
-                ", enabled=" + enabled +
-                '}';
-    }
 }

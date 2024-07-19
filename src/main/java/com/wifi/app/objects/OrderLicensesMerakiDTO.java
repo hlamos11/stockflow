@@ -2,11 +2,13 @@ package com.wifi.app.objects;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 
 import java.sql.Date;
 
 @Getter @Setter
+@ToString
 public class OrderLicensesMerakiDTO {
 
     private Integer ponumber;
@@ -30,18 +32,4 @@ public class OrderLicensesMerakiDTO {
     public OrderLicensesMerakiDTO() {
     }
 
-    @Override
-    public String toString() {
-        return "OrderLicensesMerakiDTO{" +
-                "ponumber=" + ponumber +
-                ", facturenumber='" + facturenumber + '\'' +
-                ", countlicenses=" + countlicenses +
-                ", ordernumber='" + ordernumber + '\'' +
-                ", datepurchase=" + datepurchase +
-                ", dateexpiration=" + dateexpiration +
-                ", countlicensesavailable=" + countlicensesavailable +
-                ", countlicensesused=" + countlicensesused +
-                ", countlicensesexpired=" + countlicensesexpired +
-                '}';
-    }
 }

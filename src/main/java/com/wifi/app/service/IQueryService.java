@@ -5,7 +5,6 @@ import com.wifi.app.objects.SucursalDetail;
 
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Optional;
 
 public interface IQueryService {
     List<SucursalDetail> JPQLQuery();

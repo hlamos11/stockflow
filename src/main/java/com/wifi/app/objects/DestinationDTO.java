@@ -2,12 +2,14 @@ package com.wifi.app.objects;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
 @Getter @Setter
+@ToString
 public class DestinationDTO {
 
     private String user;
@@ -20,13 +22,4 @@ public class DestinationDTO {
     public DestinationDTO() {
     }
 
-    @Override
-    public String toString() {
-        return "DestinationDTO{" +
-                "user='" + user + '\'' +
-                ", create_at=" + create_at +
-                ", name='" + name + '\'' +
-                ", enabled=" + enabled +
-                '}';
-    }
 }

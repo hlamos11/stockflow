@@ -1,5 +1,11 @@
 package com.wifi.app.objects;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter @Setter
+@ToString
 public class ClientsTop {
 
     private Integer count;
@@ -12,22 +18,6 @@ public class ClientsTop {
 
     public ClientsTop(Integer count) {
         this.count = count;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 

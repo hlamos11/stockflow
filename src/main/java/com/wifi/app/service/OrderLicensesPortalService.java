@@ -1,9 +1,8 @@
 package com.wifi.app.service;
 
 
-import com.wifi.app.entity.OrderLicensesMeraki;
+
 import com.wifi.app.entity.OrderLicensesPortal;
-import com.wifi.app.objects.OrderLicensesMerakiDTO;
 import com.wifi.app.objects.OrderLicensesPortalDTO;
 import com.wifi.app.repository.OrderLicensesPortalRepository;
 import org.modelmapper.ModelMapper;

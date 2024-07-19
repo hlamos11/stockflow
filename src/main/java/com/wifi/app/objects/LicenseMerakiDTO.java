@@ -3,11 +3,13 @@ package com.wifi.app.objects;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 
 import java.sql.Date;
 
 @Getter @Setter
+@ToString
 public class LicenseMerakiDTO {
 
     private Integer id;
@@ -23,18 +25,4 @@ public class LicenseMerakiDTO {
     public LicenseMerakiDTO() {
     }
 
-    @Override
-    public String toString() {
-        return "LicenseMerakiDTO{" +
-                "id=" + id +
-                ", user='" + user + '\'' +
-                ", date=" + date +
-                ", establishmentDetailId=" + establishmentDetailId +
-                ", license='" + license + '\'' +
-                ", enabled=" + enabled +
-                ", dateExpired=" + dateExpired +
-                ", establishmentId=" + establishmentId +
-                ", orderId=" + orderId +
-                '}';
-    }
 }

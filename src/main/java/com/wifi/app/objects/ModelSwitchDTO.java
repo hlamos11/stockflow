@@ -1,10 +1,15 @@
 package com.wifi.app.objects;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+@Getter @Setter
+@ToString
 public class ModelSwitchDTO {
     @NotBlank(message = "Debe ingresar el modelo")
     @Length(max = 25, message = "maximo 25 caracteres")
@@ -18,36 +23,4 @@ public class ModelSwitchDTO {
     public ModelSwitchDTO() {
     }
 
-    public String getModelswitch() {
-        return modelswitch;
-    }
-
-    public void setModelswitch(String modelswitch) {
-        this.modelswitch = modelswitch;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    @Override
-    public String toString() {
-        return "ModelSwitchDTO{" +
-                "modelswitch='" + modelswitch + '\'' +
-                ", brand='" + brand + '\'' +
-                ", enabled=" + enabled +
-                '}';
-    }
 }

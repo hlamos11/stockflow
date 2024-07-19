@@ -2,12 +2,14 @@ package com.wifi.app.objects;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 
 @Getter @Setter
+@ToString
 public class EstablishmentsDTO {
 
     //@Size(min = 3, max = 8, message="El código del producto tiene que tener entre 3 y 8 caracteres")
@@ -29,24 +31,4 @@ public class EstablishmentsDTO {
     private String lastmille;
     private Integer countap;
 
-
-    @Override
-    public String toString() {
-        return "EstablishmentsDTO{" +
-                "id=" + id +
-                ", clientId=" + clientId +
-                ", nameestablishment='" + nameestablishment + '\'' +
-                ", province='" + province + '\'' +
-                ", product='" + product + '\'' +
-                ", purpple=" + purpple +
-                ", status=" + status +
-                ", type='" + type + '\'' +
-                ", datesend=" + datesend +
-                ", dateoperative=" + dateoperative +
-                ", datedown=" + datedown +
-                ", inventory=" + inventory +
-                ", lastmille='" + lastmille + '\'' +
-                ", countap=" + countap +
-                '}';
-    }
 }
