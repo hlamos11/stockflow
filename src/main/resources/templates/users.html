@@ -24,6 +24,8 @@
 
   <link rel="stylesheet" href="/assets/template/css/vertical-layout-light/style.css">
 
+
+
 </head>
 
 <body>
@@ -247,7 +249,7 @@
                                 <h4 class="card-title">Administración de Usuaurios</h4>
 
                                 <div class="d-flex table-responsive">
-                                    <div class="btn-group mr-2" th:if="${user.typeuser} == 'admin'">
+                                    <div class="btn-group mr-2" th:if="${user.typeuser} == 'admin' OR ${user.typeuser} == 'superuser'">
                                         <a class="btn btn-sm btn-primary" href="/register" role="tab" aria-controls="home-2" aria-selected="true">
                                             <i class="mdi mdi-plus-circle-outline"></i> Crear
                                         </a>
@@ -283,7 +285,7 @@
                                             <th scope="row" th:text="${usersall.id}">1</th>
                                             <td th:text="${usersall.username}">neo</td>
                                             <td th:text="${usersall.typeuser}">npx</td>
-                                            <td th:text="${usersall.firstname}">6</td>
+                                            <td th:text="${usersall.firstname}">7</td>
                                             <td th:text="${usersall.lastname}">Otto</td>
                                             <td th:text="${usersall.enabled} ? 'SI' : 'NO'">K</td>
                                             <!--<td><a th:href="@{/toEdit(id=${usersall.id})}" th:if="${user.typeuser} == 'admin'">editar</a></td>
@@ -313,7 +315,6 @@
 <!--    </div>-->
 
 <!--  </div>-->
-
   <!-- plugins:js -->
   <script src="assets/template/vendors/js/vendor.bundle.base.js"></script>
   <script src="assets/template/vendors/js/vendor.bundle.addons.js"></script>
@@ -346,7 +347,9 @@
   <script src=" /assets/js/charts-wifi.js"></script>
   <script src=" /assets/template/js/morris.js"></script>
   <script src=" /assets/template/js/chartist.js"></script>
-<script src=" /assets/template/js/chart.js"></script>
+  <script src=" /assets/template/js/chart.js"></script>
+<script src=" /assets/template/js/js-grid.js"></script>
+<script src=" /assets/template/js/db.js"></script>
   <!-- End custom js for this page-->
 
 

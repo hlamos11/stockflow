@@ -20,61 +20,54 @@ permalink: /materials-management
             <div class="content-wrapper">
                 <div class="row grid-margin">
 
-                    <div class="col-md-4 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Herramientas</h4>
-                                <div class="template-demo">
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal_material_view" role="dialog">
+                        <div class="modal-dialog modal-lg">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Materiales</h4>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="table-responsive">
+                                        <div id="js-grid-mat"></div>
+
+                                        <table id="tablaPersonal" class="table table-bordered"
+                                               style="width: 100%;"></table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-warning btn-lg" data-dismiss="modal">Cerrar
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 grid-margin grid-margin-md-0 stretch-card">
+                            <div class="card">
+
+                                <div class="template-demo" style="
+                                            padding-left: 25px;
+                                            padding-right: 25px;
+                                            padding-top: 25px;
+                                            padding-bottom: 25px;
+                                        " th:if="${user.typeuser} == 'admin' OR ${user.typeuser} == 'superuser'">
 
                                     <form method="GET" action="/register-material">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                            <i class="mdi mdi-settings"></i>
+                                            <i class="mdi mdi-table-edit"></i>
                                             Crear Material
                                         </button>
                                     </form>
 
-
-
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">
-                                        <i class="mdi mdi-settings"></i>
-                                        Buscar Material
-                                    </button>
-
-                                    <!--<button type="button" class="btn btn-primary btn-lg btn-block">
-                                        <i class="mdi mdi-nfc-variant"></i>
-                                        Bodegas
-                                    </button>
-
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">
-                                        <i class="mdi mdi-vector-square"></i>
-                                        Fabricantes
-                                    </button>
-
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">
-                                        <i class="mdi mdi-account"></i>
-                                        Responsables
-                                    </button>
-
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">
-                                        <i class="mdi mdi-view-list"></i>
-                                        Inventarios
-                                    </button>
-
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">
-                                        <i class="mdi mdi-vector-polyline"></i>
-                                        Movimientos
-                                    </button>-->
-
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-md-4 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Materiales</h4>
-                                <div class="template-demo">
+                                <div class="card-body text-center">
                                     <table class="table mb-0">
                                         <thead>
                                         <tr>
@@ -85,55 +78,74 @@ permalink: /materials-management
                                         <tbody>
                                         <tr th:each="data : ${dataMaterialCountByStore}">
                                             <td class="pl-0" th:text="${data.name}">name</td>
-                                            <td class="pr-0 text-right" ><div th:text="${data.count}"class="badge badge-pill badge-warning">4</div></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Bodegas</h4>
-<!--                                <p class="card-description">Materiales disponibles en Bodegas</p>-->
-                                <div class="template-demo">
-                                    <table class="table mb-0">
-                                        <thead>
-                                        <tr>
-                                            <th class="pl-0">Bodega</th>
-                                            <th class="text-center">Opción</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="data : ${dataMaterialByStore}">
-                                            <th style="visibility:collapse; display:none;" scope="row" th:text="${data.id}">Id</th>
-                                            <td class="pl-0" th:text="${data.name}">Store</td>
-                                            <td class="pr-0 text-center" style="
-                                                border-top-width: 0px;
-                                                padding-top: 5px;
-                                                padding-bottom: 5px;
-                                            ">
-                                                <div>
-                                                    <form  th:action="@{/searchMaterialByStore(id=${data.id})}" method="post">
-                                                        <button type="submit" class="btn btn-material-view">
-                                                            Ver
-                                                        </button>
-                                                    </form>
+                                            <td class="pr-0 text-right">
+                                                <div th:text="${data.count}" class="badge badge-pill badge-success">4
                                                 </div>
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
+
+                                    <div class="border-top pt-3">
+                                        <div class="row">
+                                            <p class="mt-4 card-text">
+                                                En esta lista podran encontrar la cantidad total de materiales
+                                                existentes por bodega a nivel nacional de la empresa.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 grid-margin grid-margin-md-0 stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Bodegas</h4>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th class="pt-1 pl-0">
+                                                    Nombre
+                                                </th>
+                                                <th class="pt-1">
+                                                    Disponible
+                                                </th>
+                                                <th class="pt-1">
+                                                    Opcion
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="data : ${dataMaterialByStore}">
+                                                <td class="py-1 pl-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="ml-3">
+                                                            <p class="mb-2" th:text="${data.name}">Bodega</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td th:text="${data.enabled} ? 'SI' : 'NO'">
+                                                    Web App
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <form th:action="@{/materials-detail(id=${data.id})}"
+                                                              method="post">
+                                                            <button type="submit" class="btn btn-light">
+                                                                <i class="mdi mdi-eye text-primary"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
             {% include footer.html %}

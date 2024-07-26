@@ -9,10 +9,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Entity
 @Table(name = "order_licenses_portal")
 public class OrderLicensesPortal {

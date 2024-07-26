@@ -7,10 +7,6 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Entity
 @Table(name="type_user")
 public class TypeUser {

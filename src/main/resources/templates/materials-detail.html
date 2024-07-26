@@ -12,7 +12,7 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Registro Responsable - Wifi Dashboard</title>
+  <title>Gestionar Materiales - Wifi Dashboard</title>
 <!--  <link rel="stylesheet" href="assets/css/login.css">-->
 <!--  <link rel="stylesheet" href="assets/css/register.css">-->
 
@@ -37,7 +37,7 @@
 
   <div class="container-scroller">
 
-          <!-- partial:partials/_settings-panel.html -->
+        <!-- partial:partials/_settings-panel.html -->
       <div class="theme-setting-wrapper">
         <div id="settings-trigger"><i class="mdi mdi-settings"></i></div>
         <div id="theme-settings" class="settings-panel">
@@ -61,7 +61,7 @@
 
 
 
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+  <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
     <a class="navbar-brand brand-logo" href=""><img src="assets/template/images/antenna.svg" alt="logo"/></a>
     <a class="navbar-brand brand-logo-mini" href=""><img src="assets/template/images/antenna.svg" alt="logo"/></a>
@@ -160,9 +160,9 @@
   </div>
 </nav>
 
-    <div class="container-fluid page-body-wrapper">
+  <div class="container-fluid page-body-wrapper">
 
-        <!-- partial:partials/_sidebar.html -->
+    <!-- partial:partials/_sidebar.html -->
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
@@ -238,55 +238,50 @@
 
 
 
-        <div class="main-panel">
-            <div class="content-wrapper">
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row grid-margin">
 
-                <div class="row grid-margin">
-                    <div class="col-12 grid-margin">
-                        <div class="card">
-                            <div class="card-body">
-
-                                <h4 class="card-title">Registro de Bodega</h4>
-
-
-                                <form id="basicform" class="form-sample" method="post" th:action="@{/register-store}"
-                                      th:object="${storeDTO}">
-                                    <p class="card-description">
-
-                                    </p>
-                                    <!--Serial & Descripcion-->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label for="name" class="col-sm-3 col-form-label">Nombre: <label id="lb_name" class="required-text"></label></label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" id="name" class="form-control" name="name" th:value="*{name}" th:errorClass="is-invalid">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label for="enabled" class="col-sm-3 col-form-label">Habilitado: <label id="lb_enabled" class="required-text"></label></label>
-                                                <div class="col-sm-9">
-
-
-                                                    <select id="enabled" class="form-select" style="width:100%" th:value="*{enabled}" name="enabled" required>
-                                                        <option value="TRUE">SI</option>
-                                                        <option value="FALSE">NO</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-success mb-2">Guardar</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Data table</h4>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                      <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Inventario</th>
+                        <th>Bodega</th>
+                        <th>Fabricante</th>
+                        <th>Descripcion</th>
+                        <th>Modelo</th>
+                        <th>Parte</th>
+                        <th>Serial</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr th:each="data : ${dataMaterialByStoreId}">
+                        <th scope="row" th:text="${data.id}">Id</th>
+                        <td th:text="${data.inventoryMaterial.year}">inventario</td>
+                        <td th:text="${data.store.name}">bodega</td>
+                        <td th:text="${data.brand.name}">marca</td>
+                        <td th:text="${data.description}">description</td>
+                        <td th:text="${data.model}">modelo</td>
+                        <td th:text="${data.part}"># de parte</td>
+                        <td th:text="${data.sn}">numero de serie</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
+              </div>
             </div>
-            <!-- partial:partials/_footer.html -->
+          </div>
+        </div>
+      </div>
+      <!-- partial:partials/_footer.html -->
 <footer class="footer">
     <div class="d-sm-flex justify-content-center justify-content-sm-between">
         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. All rights reserved.</span>
@@ -294,9 +289,11 @@
     </div>
 </footer>
 <!-- partial -->
-        </div>
     </div>
+  </div>
 </div>
+
+
 
 <!--    </div>-->
 

@@ -11043,9 +11043,8 @@ fieldset:disabled .wizard > .actions a,
 }
 
 .btn-material-view, .wizard > .actions a {
-  color: #fff;
-  background-color: #07CF34;
-  border-color: #07CF34;
+  color: #212529;
+    background-color: #6fd96f;
 }
 
 .btn-material-view:hover, .wizard > .actions a:hover {

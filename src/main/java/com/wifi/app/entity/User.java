@@ -14,12 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Getter @Setter
 @Entity
 @Table(name="user")
 public class User implements UserDetails {
@@ -84,87 +79,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
-
-
-   /* public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getTypeuser() {
-        return typeuser;
-    }
-
-    public void setTypeuser(String typeuser) {
-        this.typeuser = typeuser;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public void setAuthorities(List<Authority> authorities) {
-        this.authorities = authorities;
-    }
-
-    public Date getDate_expired() {
-        return date_expired;
-    }
-
-    public void setDate_expired(Date date_expired) {
-        this.date_expired = date_expired;
-    }
-
-    public Integer getFail_attempt() {
-        return fail_attempt;
-    }
-
-    public void setFail_attempt(Integer fail_attempt) {
-        this.fail_attempt = fail_attempt;
-    }
-
-    public Timestamp getLock_time() {
-        return lock_time;
-    }
-
-    public void setLock_time(Timestamp lock_time) {
-        this.lock_time = lock_time;
-    }*/
-
 
 }

@@ -8,10 +8,6 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Entity
 @Table(name="model_ap")
 public class ModelAp {

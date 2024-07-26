@@ -2,13 +2,18 @@ package com.wifi.app.controllers;
 
 
 
+import com.google.gson.Gson;
 import com.wifi.app.entity.*;
+import com.wifi.app.objects.MatDTO;
 import com.wifi.app.objects.MaterialDTO;
 import com.wifi.app.objects.ResponseCountDTO;
 import com.wifi.app.service.*;
 import lombok.RequiredArgsConstructor;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,17 +21,21 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.math.BigInteger;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
-
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 
 @Controller
@@ -39,8 +48,12 @@ public class MaterialsController {
     private final StoreService storeService;
     private final BrandService brandService;
     private final InventoryMaterialService inventoryMaterialService;
-
     private final SiteService siteService;
+
+    private Model GlobalModel;
+
+    @Autowired
+    QueryService queryservice;
 
     /*Metodo que valida que los campos no esten en null*/
     @InitBinder
@@ -52,6 +65,8 @@ public class MaterialsController {
 
     @GetMapping("/materials-management")
     public String getall(Model model){
+
+        GlobalModel = model;
 
         ArrayList<Integer> list = new ArrayList<>();
 
@@ -153,7 +168,60 @@ public class MaterialsController {
     @PostMapping("/view_material")
     public String view(@Validated Integer id, Model model, RedirectAttributes redirectAttributes) {
 
+        List<Material> materialList = materialService.findMaterialByStoreId(id);
+        model.addAttribute("dataMaterialList", materialList);
+
         return "redirect:/materials-management";
+    }
+    @GetMapping("/materials-detail")
+    public String get(Model model) {
+
+        return "materials-detail";
+    }
+
+
+    @PostMapping("/materials-detail")
+    public String viewMaterialByStoreId(@Validated Integer id, Model model) {
+
+        System.out.println("post id: "+id);
+
+        List<Material> materialList = materialService.findMaterialByStoreId(id);
+
+        System.out.println("post materialList : "+materialList);
+
+        model.addAttribute("dataMaterialByStoreId", materialList);
+
+        return "materials-detail";
+    }
+
+
+
+
+    @RequestMapping(value="/searchMaterialByStore", params = "id", method = GET)
+    @ResponseBody
+    public String searchMaterialByStore(@RequestParam("id") int id){
+
+        //List<Object[]> listMat = queryservice.JPQLQueryFindMaterialByStoreId(id);
+        List<MatDTO> list = queryservice.JPQLQueryMat(id);
+        System.out.println("JPQLQueryMat: " + list);
+       // List <Material> list = materialService.findMaterialByStoreId(id);
+
+        JSONArray jsonArrayMat = new JSONArray();
+        //JSONArray jsonArrayMat1 = new JSONArray();
+
+        JSONObject jsonObject = new JSONObject ();
+
+        jsonArrayMat.put(list);
+        //jsonArrayMat1.put(listMat);
+
+        jsonObject.put("ListMat", jsonArrayMat);
+        //jsonObject.put("ListMat1", jsonArrayMat1);
+
+        log.info(">> jsonObject.toString()********************** : {}",jsonObject.toString());
+
+
+        return jsonObject.toString();
+
     }
 
     private String deleteMaterial (Integer id){

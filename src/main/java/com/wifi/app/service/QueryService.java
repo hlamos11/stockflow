@@ -2,6 +2,7 @@ package com.wifi.app.service;
 
 
 
+import com.wifi.app.objects.MatDTO;
 import com.wifi.app.objects.SucursalDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,6 +90,40 @@ public class QueryService implements IQueryService{
     }
 
     @Override
+    public List<Object[]> JPQLQueryFindMaterialByStoreId(int id) {
+
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNativeQuery("SELECT sn, part, model, description\n" +
+                "FROM material\n" +
+                "WHERE store_id = "+ id );
+        List<Object[]> list =(List<Object[]>)query.getResultList();
+
+        em.close();
+        return list;
+    }
+
+    @Override
+    public List<MatDTO> JPQLQueryMat(int id) {
+        EntityManager em = emf.createEntityManager();
+
+        String typedQuery = "SELECT NEW com.wifi.app.objects.MatDTO( m.sn,\n" +
+                "       m.part,\n" +
+                "       m.model,\n" +
+                "       m.description\n" +
+                " ) FROM Material m\n" +
+                " WHERE m.store = " + id ;
+
+        TypedQuery<MatDTO> queryTipado = em.createQuery(typedQuery, MatDTO.class);
+        List<MatDTO> list = queryTipado.getResultList();
+
+        em.close();
+
+        return list;
+    }
+
+
+    @Override
     public List<Object[]> JPQLQueryInstallationsForMonth() {
 
         EntityManager em = emf.createEntityManager();
@@ -101,7 +136,6 @@ public class QueryService implements IQueryService{
                 "    (SELECT last_day(curdate()))\n" +
                 "GROUP BY dateoperative");
         List<Object[]> list =(List<Object[]>)query.getResultList();
-
         em.close();
         return list;
     }

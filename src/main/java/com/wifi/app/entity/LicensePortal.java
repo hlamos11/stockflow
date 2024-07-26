@@ -8,10 +8,6 @@ import java.sql.Date;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Entity
 @Table(name = "licenses_portal")
 public class LicensePortal {

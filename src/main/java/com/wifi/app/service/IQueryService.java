@@ -1,6 +1,7 @@
 package com.wifi.app.service;
 
 
+import com.wifi.app.objects.MatDTO;
 import com.wifi.app.objects.SucursalDetail;
 
 import java.math.BigInteger;
@@ -16,4 +17,8 @@ public interface IQueryService {
     Integer JPQLQueryMaxStepMovementMaterial(int materialId);
 
     BigInteger JPQLQueryChartMaterialByStoreAndInventory(int idStore, int idInventory);
+
+    List<Object[]> JPQLQueryFindMaterialByStoreId(int id);
+
+    List<MatDTO> JPQLQueryMat(int id);
 }

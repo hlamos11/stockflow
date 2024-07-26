@@ -115,7 +115,7 @@ public class AccountController {
 
         //Mensaje de usuario Registrado
         redirectAttributes.addFlashAttribute("message", "Usuario Registrado");
-        //log.info(">> userDTO : {}", userDTO.toString());
+        log.info(">> userDTO : {}", userDTO.toString());
         userService.register(userDTO);
         Optional<User> user = userRepository.findUserByUsername(userDTO.getUsername());
         AuthorityDTO authorityDTO = new AuthorityDTO();

@@ -24,4 +24,91 @@ $('#tbl_material').on('click', 'tr td', function(evt) {
 
 });
 
+function searchMaterialByStore(id) {
 
+    //    $('#btnApp').trigger('click');
+
+    $.ajax({
+        url: "searchMaterialByStore",
+        data: {
+            id: id
+        },
+        dataType: 'json',
+        success: function(result) {
+
+            console.log(result);
+
+
+            var data = [];
+            var dbm = {};
+            window.dbm = dbm;
+
+            data.push(result.ListMat);
+
+            let claves = Object.keys(result.ListMat);
+
+            for(let i=0; i< claves.length; i++){
+              let clave = claves[i];
+              console.log(result.ListMat[clave]);
+
+            }
+
+
+            console.log("dbm.mats: " + dbm.mats);
+
+            if ($("#js-grid-mat").length) {
+                $("#js-grid-mat").jsGrid({
+                    height: "500px",
+                    width: "100%",
+                    filtering: false,
+                    editing: false,
+                    inserting: false,
+                    sorting: true,
+                    paging: true,
+                    autoload: true,
+                    pageSize: 5,
+                    pageButtonCount: 5,
+                    data: result.ListMat[0],
+                    fields: [{
+                            name: "part",
+                            type: "text",
+                            width: 70
+                        },
+                        {
+                            name: "description",
+                            type: "text",
+                            width: 70
+                        },
+                        {
+                            name: "model",
+                            type: "text",
+                            width: 70
+                        },
+                        {
+                            name: "sn",
+                            type: "text",
+                            width: 200
+                        }
+                    ]
+                });
+            }
+
+
+
+        }
+    });
+
+    $("#modal_material_view").modal('show');
+
+}
+
+$("#btnApp").on('click', function() {
+    console.log('Acción ejecutada!')
+});
+
+$('#btnViewMat').on('click', function(evt) {
+    var target;
+    target = $(event.target);
+    $("#modal_material_view").modal('show');
+
+});

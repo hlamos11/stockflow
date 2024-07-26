@@ -24,6 +24,8 @@
 
   <link rel="stylesheet" href="/assets/template/css/vertical-layout-light/style.css">
 
+
+
 </head>
 
 <body>
@@ -244,7 +246,7 @@
 
 
                         <div class="card">
-                            <div class="card-body">
+                            <!--<div class="card-body">
                                 <div class="row" style="float:right;">
                                     <div class="row">
                                         <div class="test">
@@ -255,13 +257,15 @@
 
                                         <div class="test">
                                             <form method="GET" action="/inventory-management">
-                                                <button type="submit" class="btn btn-primary btn-lg">Inventarios</button>
+                                                <button type="submit" class="btn btn-primary btn-lg">Inventarios
+                                                </button>
                                             </form>
                                         </div>
 
                                         <div class="test">
                                             <form method="GET" action="/movements-material">
-                                                <button type="submit" class="btn btn-primary btn-lg">Movimientos</button>
+                                                <button type="submit" class="btn btn-primary btn-lg">Movimientos
+                                                </button>
                                             </form>
                                         </div>
 
@@ -277,41 +281,44 @@
                                     </div>
 
                                 </div>
-                            </div>
+                            </div>-->
 
-                            <div class="row" style="padding-left: 20px; padding-right: 20px;">
+<!--                            <div class="row" style="padding-left: 20px; padding-right: 20px;">-->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-3 grid-margin stretch-card">
+                                        <div class="card bg-gradient-primary text-white text-center card-shadow-primary">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-normal">Total Materiales FWA</h6>
+                                                <h2 class="mb-0" th:text="${liCountFWA}">28893</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 grid-margin stretch-card">
+                                        <div class="card bg-gradient-danger text-white text-center card-shadow-danger">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-normal">Total Materiales RAN</h6>
+                                                <h2 class="mb-0" th:text="${liCountRAN}">28893</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 grid-margin stretch-card">
+                                        <div class="card bg-gradient-warning text-white text-center card-shadow-warning">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-normal">Total Materiales WiFi</h6>
+                                                <h2 class="mb-0" th:text="${liCountWiFi}">28893</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 grid-margin stretch-card">
+                                        <div class="card bg-gradient-info text-white text-center card-shadow-info">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-normal">Total Materiales Cell-Fi</h6>
+                                                <h2 class="mb-0" th:text="${liCountCellFi}">28893</h2>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                <div class="col-md-6 col-lg-3 grid-margin stretch-card">
-                                    <div class="card bg-gradient-primary text-white text-center card-shadow-primary">
-                                        <div class="card-body">
-                                            <h6 class="font-weight-normal">Total Materiales FWA</h6>
-                                            <h2 class="mb-0" th:text="${liCountFWA}">28893</h2>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-3 grid-margin stretch-card">
-                                    <div class="card bg-gradient-danger text-white text-center card-shadow-danger">
-                                        <div class="card-body">
-                                            <h6 class="font-weight-normal">Total Materiales RAN</h6>
-                                            <h2 class="mb-0" th:text="${liCountRAN}">28893</h2>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-3 grid-margin stretch-card">
-                                    <div class="card bg-gradient-warning text-white text-center card-shadow-warning">
-                                        <div class="card-body">
-                                            <h6 class="font-weight-normal">Total Materiales WiFi</h6>
-                                            <h2 class="mb-0" th:text="${liCountWiFi}">28893</h2>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-3 grid-margin stretch-card">
-                                    <div class="card bg-gradient-info text-white text-center card-shadow-info">
-                                        <div class="card-body">
-                                            <h6 class="font-weight-normal">Total Materiales Cell-Fi</h6>
-                                            <h2 class="mb-0" th:text="${liCountCellFi}">28893</h2>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -380,7 +387,6 @@
 <!--    </div>-->
 
 <!--  </div>-->
-
   <!-- plugins:js -->
   <script src="assets/template/vendors/js/vendor.bundle.base.js"></script>
   <script src="assets/template/vendors/js/vendor.bundle.addons.js"></script>
@@ -413,7 +419,9 @@
   <script src=" /assets/js/charts-wifi.js"></script>
   <script src=" /assets/template/js/morris.js"></script>
   <script src=" /assets/template/js/chartist.js"></script>
-<script src=" /assets/template/js/chart.js"></script>
+  <script src=" /assets/template/js/chart.js"></script>
+<script src=" /assets/template/js/js-grid.js"></script>
+<script src=" /assets/template/js/db.js"></script>
   <!-- End custom js for this page-->
 
 

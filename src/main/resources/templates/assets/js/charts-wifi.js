@@ -192,7 +192,7 @@ function getChartDataMaterialByStoreAndInventoryId() {
         dataType: 'json',
         success: function(result) {
 
-            console.log(result.object);
+            //console.log(result.object);
 
             renderChartMaterialByStoreAndInventoryId(result.object);
         }

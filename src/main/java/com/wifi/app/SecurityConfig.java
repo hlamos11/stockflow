@@ -29,26 +29,26 @@ import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    private  final UserService userService;
-    private  final BCryptPasswordEncoder passwordEncoder;
+    private final UserService userService;
+    private final BCryptPasswordEncoder passwordEncoder;
     private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
 
     @Autowired
-    public SecurityConfig (UserService userService, BCryptPasswordEncoder passwordEncoder){
+    public SecurityConfig(UserService userService, BCryptPasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
         this.userService = userService;
     }
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
 
-        log.info(">> ******************************************************** userDetailsService : {}");
+        // log.info(">> ******************************************************** userDetailsService : {}");
 
         return (UserDetailsService) username -> {
             Optional<User> user = userService.findUserByUsername(username);
             GLOBAL_USER_NAME = user.get().getUsername();
-            if(user.isEmpty()){
-                throw new UsernameNotFoundException("No user found with username: "+username);
+            if (user.isEmpty()) {
+                throw new UsernameNotFoundException("No user found with username: " + username);
             }
             return user.get();
         };
@@ -56,21 +56,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        log.info(">> ******************************************************** configure : {}");
         auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers( "/","/assets/**", "/register", "/register-client", "/register-establishments")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+                .authorizeRequests().antMatchers("/", "/assets/**").permitAll()
+                .antMatchers("/register/**","/register-material/**","/register-movement/**","/register-store/**", "/register-responsible/**","/register-brand/**","/register-user/**").hasAnyAuthority("superuser", "admin")
+                .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
+                .formLogin().loginPage("/login")
                 .usernameParameter("username")
                 .failureHandler(loginFailureHandler)
                 .successHandler(successHandler)

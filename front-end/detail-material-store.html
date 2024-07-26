@@ -1,0 +1,66 @@
+---
+layout: default
+title: "Gestionar Materiales"
+permalink: /materials-detail
+---
+
+
+<div class="container-scroller">
+
+  {% include container.html %}
+
+
+  {% include navbarTop.html %}
+
+  <div class="container-fluid page-body-wrapper">
+
+    {% include navbarSide.html %}
+
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row grid-margin">
+
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Data table</h4>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                      <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Inventario</th>
+                        <th>Bodega</th>
+                        <th>Fabricante</th>
+                        <th>Descripcion</th>
+                        <th>Modelo</th>
+                        <th>Parte</th>
+                        <th>Serial</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr th:each="data : ${dataMaterialByStoreId}">
+                        <th scope="row" th:text="${data.id}">Id</th>
+                        <td th:text="${data.inventoryMaterial.year}">inventario</td>
+                        <td th:text="${data.store.name}">bodega</td>
+                        <td th:text="${data.brand.name}">marca</td>
+                        <td th:text="${data.description}">description</td>
+                        <td th:text="${data.model}">modelo</td>
+                        <td th:text="${data.part}"># de parte</td>
+                        <td th:text="${data.sn}">numero de serie</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% include footer.html %}
+    </div>
+  </div>
+</div>
+

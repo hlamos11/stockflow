@@ -9,10 +9,6 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Entity
 @Table(name = "movements_material")
 public class MovementsMaterial {

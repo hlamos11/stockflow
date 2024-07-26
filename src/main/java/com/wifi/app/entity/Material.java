@@ -9,10 +9,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Entity
 @Table (name = "material")
 public class Material {

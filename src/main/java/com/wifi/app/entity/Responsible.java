@@ -10,10 +10,6 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Entity
 @Table(name = "responsible")
 public class Responsible {

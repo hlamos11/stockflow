@@ -7,10 +7,6 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Entity
 @Table(name="type_business")
 public class TypeBusiness {
