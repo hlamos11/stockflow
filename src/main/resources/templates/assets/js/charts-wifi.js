@@ -141,7 +141,6 @@ function getChartDataMaterial() {
         url: "chartMaterial",
         dataType: 'json',
         success: function(result) {
-
             renderChartMaterial(result.tFWA, result.tWiFi, result.tRAN, result.tCELLFI, result.fFWA, result.fWiFi, result.fRAN, result.fCELLFI);
         }
     });
@@ -197,6 +196,62 @@ function getChartDataMaterialByStoreAndInventoryId() {
             renderChartMaterialByStoreAndInventoryId(result.object);
         }
     });
+}
+
+var ct = document.getElementById("pie-chart-user");
+getChartMovementsByUser();
+
+function getChartMovementsByUser() {
+    $.ajax({
+        url: "chartMovementsByUser",
+        dataType: 'json',
+        success: function(result) {
+            //console.log(result.obj);
+
+            renderChartMovementsByUser(result.obj);
+        }
+    });
+}
+
+
+function renderChartMovementsByUser(dataT) {
+
+    let data = [];
+    let color = ["#ef5350","#78909c","#ffca28","#bdbdbd","#66bb6a","#ffa726","#26a69a","#7e57c2","#ffee58","#8d6e63","#42a5f5","#ec407a"];
+
+    for (let i = 0; i < dataT[0].length; i++) {
+        console.log(dataT[0][i]);
+        data[i] = {data: dataT[0][i][0],color: color[i],label: dataT[0][i][1]};
+    }
+
+    'use strict';
+
+    if ($("#pie-chart-user").length) {
+        $.plot("#pie-chart-user", data, {
+            series: {
+                pie: {
+                    show: true,
+                    radius: 1,
+                    label: {
+                        show: true,
+                        radius: 3 / 4,
+                        formatter: labelFormatter,
+                        background: {
+                            opacity: 0.5
+                        }
+                    }
+                }
+            },
+            legend: {
+                show: false
+            }
+        });
+    }
+
+    function labelFormatter(label, series) {
+        return "<div style='font-size:8pt; text-align:center; padding:2px; color:black;'>" + label + "<br/>" + Math.round(series.percent) + "%</div>";
+    }
+
 }
 
 function renderChartMaterialByStoreAndInventoryId(data) {
@@ -279,7 +334,7 @@ function renderChartMaterialByStoreAndInventoryId(data) {
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['ILG', 'BOC','AGUADULCE', 'C. RADIAL','TERRONAL'],
+                labels: ['ILG', 'BOC', 'AGUADULCE', 'C. RADIAL', 'TERRONAL'],
                 datasets: [{
                         label: "FWA",
                         borderColor: 'rgba(77, 124, 255, .8)',
@@ -319,17 +374,18 @@ function renderChartMaterialByStoreAndInventoryId(data) {
                         borderWidth: 1,
                         fill: 'origin',
                         data: [data[0][3], data[0][7], data[0][11], data[0][15], data[0][19]]
-                    }/*,
-                    {
-                        label: "TERRONAL",
-                        borderColor: 'rgba(25, 116, 148, 1)',
-                        backgroundColor: 'rgba(25, 116, 148, 1)',
-                        pointRadius: 0,
-                        fill: true,
-                        borderWidth: 1,
-                        fill: 'origin',
-                        data: [data[0][16], data[0][17], data[0][18], data[0][19]]
-                    }*/
+                    }
+                    /*,
+                                        {
+                                            label: "TERRONAL",
+                                            borderColor: 'rgba(25, 116, 148, 1)',
+                                            backgroundColor: 'rgba(25, 116, 148, 1)',
+                                            pointRadius: 0,
+                                            fill: true,
+                                            borderWidth: 1,
+                                            fill: 'origin',
+                                            data: [data[0][16], data[0][17], data[0][18], data[0][19]]
+                                        }*/
                 ]
             },
             options: {

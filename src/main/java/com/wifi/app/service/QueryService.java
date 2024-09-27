@@ -103,6 +103,39 @@ public class QueryService implements IQueryService{
         return list;
     }
 
+   /* @Override
+    public List<Object[]> JPQLQueryChartUsersMovements() {
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNativeQuery("SELECT COUNT(*) AS count,  \n" +
+                "       m.user\n" +
+                "FROM movements_material m \n" +
+                "GROUP BY user\n" +
+                "ORDER BY count DESC");
+
+        List<Object[]> list =(List<Object[]>)query.getResultList();
+
+
+        em.close();
+        return list;
+    }*/
+
+    @Override
+    public List<Object[]> JPQLQueryChartUsersMovements() {
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNativeQuery("SELECT COUNT(*) AS count,  \n" +
+                "       m.user\n" +
+                "FROM movements_material m \n" +
+                "GROUP BY user");
+
+        List<Object[]> list =(List<Object[]>)query.getResultList();
+
+
+        em.close();
+        return list;
+    }
+
     @Override
     public List<MatDTO> JPQLQueryMat(int id) {
         EntityManager em = emf.createEntityManager();

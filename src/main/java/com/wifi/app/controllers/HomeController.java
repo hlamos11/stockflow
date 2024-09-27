@@ -8,6 +8,7 @@ package com.wifi.app.controllers;
 import com.wifi.app.entity.InventoryMaterial;
 import com.wifi.app.entity.Store;
 import com.wifi.app.entity.User;
+import com.wifi.app.objects.ChartMovementsDTO;
 import com.wifi.app.repository.UserRepository;
 import com.wifi.app.service.InventoryMaterialService;
 import com.wifi.app.service.MaterialService;
@@ -31,6 +32,7 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -136,9 +138,29 @@ public class HomeController {
         jsonArrayCount.put(list);
         jsonObject.put("object", jsonArrayCount);
 
+
+
+
         log.info(">> jsonObject.toString()********************** : {}",jsonObject.toString());
 
         return jsonObject.toString();
+
+    }
+
+    @RequestMapping("/chartMovementsByUser")
+    @ResponseBody
+    public String getDataMovementsByUser(){
+
+        List<Object[]> listU = queryservice.JPQLQueryChartUsersMovements();
+
+        JSONArray jsonArrayCountUser = new JSONArray();
+        jsonArrayCountUser.put(listU);
+        JSONObject jsonObjectUser = new JSONObject ();
+        jsonObjectUser.put("obj", jsonArrayCountUser);
+
+        log.info(">> jsonObjectUser.toString()********************** : {}",jsonObjectUser.toString());
+
+        return jsonObjectUser.toString();
 
     }
 

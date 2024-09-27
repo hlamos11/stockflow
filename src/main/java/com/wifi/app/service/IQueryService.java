@@ -20,5 +20,7 @@ public interface IQueryService {
 
     List<Object[]> JPQLQueryFindMaterialByStoreId(int id);
 
+    List<Object[]> JPQLQueryChartUsersMovements();
+
     List<MatDTO> JPQLQueryMat(int id);
 }
