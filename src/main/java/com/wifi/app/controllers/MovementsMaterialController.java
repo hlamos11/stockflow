@@ -93,11 +93,14 @@ public class MovementsMaterialController {
     @PostMapping("/register-movement")
     public String register(@Validated MovementDTO movementDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws ParseException {
 
+        log.info("register-movement: movementDTO = ", movementDTO);
+
         CalculateInventory calculateInventory = new CalculateInventory(inventoryMaterialService, materialService, siteService, storeService);
         Integer respMovement = movementsByMaterial(movementDTO.getMaterialId(), movementDTO.getTypeMovement());
         Integer resp = 0;
+        Material material = materialService.findMaterialById(movementDTO.getMaterialId());
 
-        log.info("register-movement: GLOBAL_USER_NAME = ", GLOBAL_USER_NAME);
+        //log.info("register-movement: GLOBAL_USER_NAME = ", GLOBAL_USER_NAME);
 
         if (GLOBAL_USER_NAME != null ){
             movementDTO.setUser(GLOBAL_USER_NAME);
@@ -116,7 +119,6 @@ public class MovementsMaterialController {
 
         if (respMovement == 1 || respMovement == 0) {
             //Se puede registrar
-
             if (movementDTO.getDateReturn() == null) {
                 movementDTO.setDateReturn(null);
             }
@@ -134,10 +136,12 @@ public class MovementsMaterialController {
             }
 
             if (movementDTO.getStoreId() == null) {
-                movementDTO.setStoreId(8);
+                movementDTO.setStoreId(material.getStore().getId());
+                //movementDTO.setStoreId(8);
             }
             if (movementDTO.getSiteId() == null) {
-                movementDTO.setSiteId(8);
+                movementDTO.setSiteId(material.getSite().getId());
+                //movementDTO.setSiteId(8);
             }
 
         } else if (respMovement == -1) {

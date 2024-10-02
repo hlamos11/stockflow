@@ -351,14 +351,18 @@
                 </div>
 
                 <div class="row">
+
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Materiales por Inventario</h4>
-                                <div id="chart-material-all"></div>
+                                <h4 class="card-title">Movimientos por Bodega</h4>
+                                <div class="flot-chart-container">
+                                    <div id="Bar-chart-Mov-Store" class="flot-chart"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
 
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
@@ -374,24 +378,51 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="col-12 grid-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Materiales en Bodega</h4>
-                                <div class="ct-chart ct-perfect-fourth" id="ct-chart-stacked-bar-app"></div>
+                                <h4 class="card-title">Top Repuestos Utilizados por Bodega</h4>
+                                <div class="demo-chart">
+                                    <canvas id="barChartMatTest"></canvas>
+                                </div>
+
                             </div>
                         </div>
                     </div>
 
+                </div>
+
+                <div class="row">
+
+                    <!-- <div class="col-lg-6 grid-margin stretch-card">
+                         <div class="card">
+                             <div class="card-body">
+                                 <h4 class="card-title">Top Repuestos Utilizados por Bodega</h4>
+                                 <div id="morris-donut-mat"></div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="col-lg-6 grid-margin stretch-card">
+                         <div class="card">
+                             <div class="card-body">
+                                 <h4 class="card-title">Materiales en Bodega</h4>
+                                 <div class="ct-chart ct-perfect-fourth" id="ct-chart-stacked-bar-app"></div>
+                             </div>
+                         </div>
+                     </div>-->
+
                     <div class="col-lg-6 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Materiales en Bodega</h4>
-                            <div class="ct-chart ct-perfect-fourth" id="ct-chart-stacked-bar-ap"></div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Materiales por Inventario</h4>
+                                <div id="chart-material-all"></div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-                </div>
+
+
                 <!-- partial:partials/_footer.html -->
 <footer class="footer">
     <div class="d-sm-flex justify-content-center justify-content-sm-between">
@@ -418,6 +449,10 @@
   <!-- End plugin js for this page-->
   <!-- inject:js -->
 
+<!-- Plugin js for this page-->
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- End plugin js for this page-->
+
   <script src="/assets/template/js/off-canvas.js"></script>
   <script src="/assets/template/js/hoverable-collapse.js"></script>
   <script src="/assets/template/js/template.js"></script>
@@ -443,9 +478,10 @@
   <script src=" /assets/template/js/morris.js"></script>
   <script src=" /assets/template/js/chartist.js"></script>
   <script src=" /assets/template/js/chart.js"></script>
-<script src=" /assets/template/js/js-grid.js"></script>
-<script src=" /assets/template/js/db.js"></script>
+  <script src=" /assets/template/js/js-grid.js"></script>
+  <script src=" /assets/template/js/db.js"></script>
   <!-- End custom js for this page-->
+
 
 
 </body>

@@ -129,14 +129,18 @@ permalink: /authenticated
                 </div>
 
                 <div class="row">
+
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Materiales por Inventario</h4>
-                                <div id="chart-material-all"></div>
+                                <h4 class="card-title">Movimientos por Bodega</h4>
+                                <div class="flot-chart-container">
+                                    <div id="Bar-chart-Mov-Store" class="flot-chart"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
 
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
@@ -152,24 +156,51 @@ permalink: /authenticated
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="col-12 grid-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Materiales en Bodega</h4>
-                                <div class="ct-chart ct-perfect-fourth" id="ct-chart-stacked-bar-app"></div>
+                                <h4 class="card-title">Top Repuestos Utilizados por Bodega</h4>
+                                <div class="demo-chart">
+                                    <canvas id="barChartMatTest"></canvas>
+                                </div>
+
                             </div>
                         </div>
                     </div>
 
+                </div>
+
+                <div class="row">
+
+                    <!-- <div class="col-lg-6 grid-margin stretch-card">
+                         <div class="card">
+                             <div class="card-body">
+                                 <h4 class="card-title">Top Repuestos Utilizados por Bodega</h4>
+                                 <div id="morris-donut-mat"></div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="col-lg-6 grid-margin stretch-card">
+                         <div class="card">
+                             <div class="card-body">
+                                 <h4 class="card-title">Materiales en Bodega</h4>
+                                 <div class="ct-chart ct-perfect-fourth" id="ct-chart-stacked-bar-app"></div>
+                             </div>
+                         </div>
+                     </div>-->
+
                     <div class="col-lg-6 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Materiales en Bodega</h4>
-                            <div class="ct-chart ct-perfect-fourth" id="ct-chart-stacked-bar-ap"></div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Materiales por Inventario</h4>
+                                <div id="chart-material-all"></div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-                </div>
+
+
                 {% include footer.html %}
             </div>
         </div>

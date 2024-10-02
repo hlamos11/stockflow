@@ -133,54 +133,11 @@ function getChartData() {
     });
 }
 
-var ct = document.getElementById("chart-material-all");
-getChartDataMaterial();
 
-function getChartDataMaterial() {
-    $.ajax({
-        url: "chartMaterial",
-        dataType: 'json',
-        success: function(result) {
-            renderChartMaterial(result.tFWA, result.tWiFi, result.tRAN, result.tCELLFI, result.fFWA, result.fWiFi, result.fRAN, result.fCELLFI);
-        }
-    });
-}
 
-function renderChartMaterial(tFWA, tWiFi, tRAN, tCELLFI, fFWA, fWiFi, fRAN, fCELLFI) {
-    'use strict';
-    if ($("#chart-material-all").length) {
-        Morris.Bar({
-            element: 'chart-material-all',
-            barColors: ['#63CF72', '#F36368', '#76C1FA', '#FABA66'],
-            data: [{
-                    y: 'FWA',
-                    a: tFWA,
-                    b: fFWA
-                },
-                {
-                    y: 'WiFi',
-                    a: tWiFi,
-                    b: fWiFi
-                },
-                {
-                    y: 'RAN',
-                    a: tRAN,
-                    b: fRAN
-                },
-                {
-                    y: 'Cell-Fi',
-                    a: tCELLFI,
-                    b: fCELLFI
-                },
-            ],
-            xkey: 'y',
-            ykeys: ['a', 'b'],
-            labels: ['Disponibles', 'Utilizados']
-        });
-    }
-
-}
-
+/*-------------------------------------------
+ ----- Chart Materiales por Inventario -----
+ ------------------------------------------*/
 
 var ct = document.getElementById("ct-chart-stacked-bar-app");
 getChartDataMaterialByStoreAndInventoryId();
@@ -198,63 +155,9 @@ function getChartDataMaterialByStoreAndInventoryId() {
     });
 }
 
-var ct = document.getElementById("pie-chart-user");
-getChartMovementsByUser();
-
-function getChartMovementsByUser() {
-    $.ajax({
-        url: "chartMovementsByUser",
-        dataType: 'json',
-        success: function(result) {
-            //console.log(result.obj);
-
-            renderChartMovementsByUser(result.obj);
-        }
-    });
-}
-
-
-function renderChartMovementsByUser(dataT) {
-
-    let data = [];
-    let color = ["#ef5350","#78909c","#ffca28","#bdbdbd","#66bb6a","#ffa726","#26a69a","#7e57c2","#ffee58","#8d6e63","#42a5f5","#ec407a"];
-
-    for (let i = 0; i < dataT[0].length; i++) {
-        console.log(dataT[0][i]);
-        data[i] = {data: dataT[0][i][0],color: color[i],label: dataT[0][i][1]};
-    }
-
-    'use strict';
-
-    if ($("#pie-chart-user").length) {
-        $.plot("#pie-chart-user", data, {
-            series: {
-                pie: {
-                    show: true,
-                    radius: 1,
-                    label: {
-                        show: true,
-                        radius: 3 / 4,
-                        formatter: labelFormatter,
-                        background: {
-                            opacity: 0.5
-                        }
-                    }
-                }
-            },
-            legend: {
-                show: false
-            }
-        });
-    }
-
-    function labelFormatter(label, series) {
-        return "<div style='font-size:8pt; text-align:center; padding:2px; color:black;'>" + label + "<br/>" + Math.round(series.percent) + "%</div>";
-    }
-
-}
-
 function renderChartMaterialByStoreAndInventoryId(data) {
+
+    console.log(data);
     //Stacked bar Chart
     if ($('#ct-chart-stacked-bar-app').length) {
         new Chartist.Bar('#ct-chart-stacked-bar-app', {
@@ -418,8 +321,8 @@ function renderChartMaterialByStoreAndInventoryId(data) {
                         ticks: {
                             display: true,
                             beginAtZero: true,
-                            stepSize: 200,
-                            max: 2000,
+                            //stepSize: 200,
+                            //max: 2000,
                             fontColor: '#696969'
                         }
                     }]
@@ -434,4 +337,284 @@ function renderChartMaterialByStoreAndInventoryId(data) {
         document.getElementById('js-legend').innerHTML = myChart.generateLegend();
     }
 
+}
+
+/*-------------------------------
+ ----- Chart Materiales ALL -----
+ -------------------------------*/
+
+var ct = document.getElementById("chart-material-all");
+getChartDataMaterial();
+
+function getChartDataMaterial() {
+    $.ajax({
+        url: "chartMaterial",
+        dataType: 'json',
+        success: function(result) {
+            renderChartMaterial(result.tFWA, result.tWiFi, result.tRAN, result.tCELLFI, result.fFWA, result.fWiFi, result.fRAN, result.fCELLFI);
+        }
+    });
+}
+
+function renderChartMaterial(tFWA, tWiFi, tRAN, tCELLFI, fFWA, fWiFi, fRAN, fCELLFI) {
+    'use strict';
+    if ($("#chart-material-all").length) {
+        Morris.Bar({
+            element: 'chart-material-all',
+            barColors: ['#63CF72', '#F36368', '#76C1FA', '#FABA66'],
+            data: [{
+                    y: 'FWA',
+                    a: tFWA,
+                    b: fFWA
+                },
+                {
+                    y: 'WiFi',
+                    a: tWiFi,
+                    b: fWiFi
+                },
+                {
+                    y: 'RAN',
+                    a: tRAN,
+                    b: fRAN
+                },
+                {
+                    y: 'Cell-Fi',
+                    a: tCELLFI,
+                    b: fCELLFI
+                },
+            ],
+            xkey: 'y',
+            ykeys: ['a', 'b'],
+            labels: ['Disponibles', 'Utilizados']
+        });
+    }
+
+}
+
+
+
+
+/*---------------------------------------
+ ----- Chart Movimientos por Bodega ----
+ --------------------------------------*/
+
+var ctTf = document.getElementById("Bar-chart-Mov-Store");
+getChartMovementsByStore();
+
+function getChartMovementsByStore() {
+    $.ajax({
+        url: "chartMovementsByStore",
+        dataType: 'json',
+        success: function(result) {
+            console.log('objMovementsByStore');
+            //console.log(result.objMovementsByStore);
+            renderChartMovementsByStore(result.objMovementsByStore)
+
+
+        }
+    });
+}
+
+function renderChartMovementsByStore(varData) {
+
+    let data = [];
+
+    for (let i = 0; i < varData[0].length; i++) {
+        data.push([varData[0][i][1], varData[0][i][0]]);
+    }
+
+    if ($("#Bar-chart-Mov-Store").length) {
+        $.plot("#Bar-chart-Mov-Store", [data], {
+            series: {
+                bars: {
+                    show: true,
+                    barWidth: 0.6,
+                    align: "center",
+                    color: '#b8b8b8'
+                }
+            },
+            xaxis: {
+                mode: "categories",
+                tickLength: 0,
+                color: '#b8b8b8'
+            },
+
+            grid: {
+                borderWidth: 0,
+                labelMargin: 10,
+                hoverable: true,
+                clickable: true,
+                mouseActiveRadius: 6,
+                color: '#b8b8b8'
+            }
+
+        });
+    }
+
+}
+
+/*---------------------------------------------
+----- Chart % Movimientos por Usuario.INI -----
+---------------------------------------------*/
+
+var ct = document.getElementById("pie-chart-user");
+getChartMovementsByUser();
+
+function getChartMovementsByUser() {
+    $.ajax({
+        url: "chartMovementsByUser",
+        dataType: 'json',
+        success: function(result) {
+            //console.log(result.obj);
+
+            renderChartMovementsByUser(result.obj);
+        }
+    });
+}
+
+
+function renderChartMovementsByUser(dataT) {
+
+    let data = [];
+    let color = ["#ef5350", "#78909c", "#ffca28", "#bdbdbd", "#66bb6a", "#ffa726", "#26a69a", "#7e57c2", "#ffee58", "#8d6e63", "#42a5f5", "#ec407a"];
+
+    for (let i = 0; i < dataT[0].length; i++) {
+        //console.log(dataT[0][i]);
+        data[i] = {
+            data: dataT[0][i][0],
+            color: color[i],
+            label: dataT[0][i][1]
+        };
+    }
+
+    'use strict';
+
+    if ($("#pie-chart-user").length) {
+        $.plot("#pie-chart-user", data, {
+            series: {
+                pie: {
+                    show: true,
+                    radius: 1,
+                    label: {
+                        show: true,
+                        radius: 3 / 4,
+                        formatter: labelFormatter,
+                        background: {
+                            opacity: 0.5
+                        }
+                    }
+                }
+            },
+            legend: {
+                show: false
+            }
+        });
+    }
+
+    function labelFormatter(label, series) {
+        return "<div style='font-size:8pt; text-align:center; padding:2px; color:black;'>" + label + "<br/>" + Math.round(series.percent) + "%</div>";
+    }
+
+}
+
+
+/*-----------------------------------------------------
+ ----- Chart Top Material por Movimientos y Bodega ----
+ ----------------------------------------------------*/
+
+getChartTopMaterialByMovementsStore();
+
+function getChartTopMaterialByMovementsStore() {
+    $.ajax({
+        url: "chartTopMaterialByMovementsStore",
+        dataType: 'json',
+        success: function(result) {
+            //console.log('objTopMaterialByMovementsStore');
+            //console.log(result.objTopMaterialByMovementsStore);
+            renderChartTopMaterialByMovementsStore(result.objTopMaterialByMovementsStore)
+
+
+        }
+    });
+}
+
+function renderChartTopMaterialByMovementsStore(varData) {
+
+    var data = {
+        labels: [varData[0][0].store + ': ' + varData[0][0].material, varData[0][1].store + ': ' + varData[0][1].material, varData[0][2].store + ': ' + varData[0][2].material, varData[0][3].store + ': ' + varData[0][3].material, varData[0][4].store + ': ' + varData[0][4].material, varData[0][6].store + ': ' + varData[0][6].material, varData[0][7].store + ': ' + varData[0][7].material],
+        datasets: [{
+          label: '',
+          data:  [varData[0][0].count,varData[0][1].count, varData[0][2].count,varData[0][3].count, varData[0][4].count, varData[0][6].count, varData[0][7].count],
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 206, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(153, 102, 255)',
+            'rgb(255, 159, 64)',
+            'rgb(180, 180, 180)',
+            'rgb(210, 210, 210)'
+          ],
+          borderColor: [
+            'rgb(255,99,132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 206, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(153, 102, 255)',
+            'rgb(255, 159, 64)',
+            'rgb(180, 180, 180)',
+            'rgb(210, 210, 210)'
+          ],
+          borderWidth: 1,
+          fill: false
+        }]
+      };
+
+      var options = {
+                      maintainAspectRatio: false,
+                      legend: {
+                          display: false,
+                          position: "top"
+                      },
+                      scales: {
+                          xAxes: [{
+                              ticks: {
+                                  display: true,
+                                  beginAtZero: true,
+                                  fontColor: '#696969'
+                              },
+                              gridLines: {
+                                  display: false,
+                                  drawBorder: false,
+                                  color: 'transparent',
+                                  zeroLineColor: '#eeeeee'
+                              }
+                          }],
+                          yAxes: [{
+                              gridLines: {
+                                  drawBorder: false,
+                                  display: true,
+                                  color: '#b8b8b8',
+                              },
+                              ticks: {
+                                  display: true,
+                                  beginAtZero: true,
+                                  //stepSize: 10,
+                                  //max: 100,
+                                  fontColor: '#696969'
+                              }
+                          }]
+                      },
+                  };
+
+    if ($("#barChartMatTest").length) {
+        var barChartCanvas = $("#barChartMatTest").get(0).getContext("2d");
+        // This will get the first returned node in the jQuery collection.
+        var barChart = new Chart(barChartCanvas, {
+          type: 'bar',
+          data: data,
+          options: options
+        });
+        document.getElementById('jsLegendMatTest').innerHTML = barChart.generateLegend();
+      }
 }

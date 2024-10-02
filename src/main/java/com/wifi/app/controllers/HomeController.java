@@ -8,7 +8,8 @@ package com.wifi.app.controllers;
 import com.wifi.app.entity.InventoryMaterial;
 import com.wifi.app.entity.Store;
 import com.wifi.app.entity.User;
-import com.wifi.app.objects.ChartMovementsDTO;
+import com.wifi.app.objects.MaterialTopFiveByStore;
+import com.wifi.app.objects.ResultQueryDTO;
 import com.wifi.app.repository.UserRepository;
 import com.wifi.app.service.InventoryMaterialService;
 import com.wifi.app.service.MaterialService;
@@ -138,10 +139,7 @@ public class HomeController {
         jsonArrayCount.put(list);
         jsonObject.put("object", jsonArrayCount);
 
-
-
-
-        log.info(">> jsonObject.toString()********************** : {}",jsonObject.toString());
+        //log.info(">> jsonObject.toString()********************** : {}",jsonObject.toString());
 
         return jsonObject.toString();
 
@@ -158,9 +156,80 @@ public class HomeController {
         JSONObject jsonObjectUser = new JSONObject ();
         jsonObjectUser.put("obj", jsonArrayCountUser);
 
-        log.info(">> jsonObjectUser.toString()********************** : {}",jsonObjectUser.toString());
+        //log.info(">> jsonObjectUser.toString()********************** : {}",jsonObjectUser.toString());
 
         return jsonObjectUser.toString();
+
+    }
+
+    @RequestMapping("/chartTopFiveMaterialUsed")
+    @ResponseBody
+    public String getDataTopFiveMaterialUsed(){
+
+        List<Object[]> listU = queryservice.JPQLQueryChartTopFiveMaterialUsed();
+
+        JSONArray jsonArrayCountTopFive = new JSONArray();
+        jsonArrayCountTopFive.put(listU);
+        JSONObject jsonObject = new JSONObject ();
+        jsonObject.put("objTopFive", jsonArrayCountTopFive);
+
+        //log.info(">> jsonObjectUser.toString()********************** : {}",jsonObject.toString());
+
+        return jsonObject.toString();
+
+    }
+
+    @RequestMapping("/chartMovementsByStore")
+    @ResponseBody
+    public String getDataMovementsByStore(){
+
+        List<Object[]> listU = queryservice.JPQLQueryChartMovementsByStore();
+
+        JSONArray jsonArrayCountTopFive = new JSONArray();
+        jsonArrayCountTopFive.put(listU);
+        JSONObject jsonObject = new JSONObject ();
+        jsonObject.put("objMovementsByStore", jsonArrayCountTopFive);
+
+        //log.info(">> jsonObject.toString()********************** : {}",jsonObject.toString());
+
+        return jsonObject.toString();
+
+    }
+
+    @RequestMapping("/chartTopMaterialByMovementsStore")
+    @ResponseBody
+    public String getDataMovementsByStoreAndExit(){
+
+        List<Store> listStore = storeService.getStoreList();
+        MaterialTopFiveByStore [] arr = new MaterialTopFiveByStore [listStore.size()];
+
+        for ( int i=0; i < listStore.size(); i++) {
+            System.out.println("store:  " + listStore.get(i).getId());
+               // if(listStore.get(i).getId() !=8 ){
+                    List<Object[]> resultQueryDTO = queryservice.JPQLQueryChartTopFiveMaterialByStore(listStore.get(i).getId());
+
+                    boolean ans = resultQueryDTO.isEmpty();
+
+                    if (ans == false){
+                        for (Object[] result : resultQueryDTO) {
+                            //System.out.println("result[0]:  " + result[0]);
+                            Integer count = ((BigInteger) result[0]).intValue();
+                            arr[i] = new MaterialTopFiveByStore(listStore.get(i).getName(), (String)result[2], count);
+                        }
+                    }else {
+                        arr[i] = new MaterialTopFiveByStore(listStore.get(i).getName(), "", 0);
+                    }
+                //}
+        }
+
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.put(arr);
+        JSONObject jsonObject = new JSONObject ();
+        jsonObject.put("objTopMaterialByMovementsStore", jsonArray);
+
+        //log.info(">> jsonObject.toString()********************** : {}",jsonObject.toString());
+
+        return jsonObject.toString();
 
     }
 

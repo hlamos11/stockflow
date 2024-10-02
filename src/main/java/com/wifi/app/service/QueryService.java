@@ -3,6 +3,7 @@ package com.wifi.app.service;
 
 
 import com.wifi.app.objects.MatDTO;
+import com.wifi.app.objects.ResultQueryDTO;
 import com.wifi.app.objects.SucursalDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,14 +60,14 @@ public class QueryService implements IQueryService{
                 "WHERE s.client_id = c.id\n" +
                 "AND s.id = d.idestablishment";
 
-        log.info(">> typedQuery ******************************************************* : {}", typedQuery);
+        //log.info(">> typedQuery ******************************************************* : {}", typedQuery);
 
         TypedQuery<SucursalDetail> queryTipado = em.createQuery(typedQuery, SucursalDetail.class);
         List<SucursalDetail> list = queryTipado.getResultList();
 
         em.close();
 
-        log.info(">> list Sucursales ******************************************************* : {}", list);
+        //log.info(">> list Sucursales ******************************************************* : {}", list);
 
         return list;
 
@@ -137,6 +138,89 @@ public class QueryService implements IQueryService{
     }
 
     @Override
+    public List<Object[]> JPQLQueryChartTopFiveMaterialUsed() {
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNativeQuery("SELECT COUNT(*) AS count,  \n" +
+                "       a.model\n" +
+                "FROM material a INNER JOIN movements_material b ON  a.id = b.material_id \n" +
+                "AND b.type_movement = 'SALIDA'\n" +
+                "GROUP BY model\n" +
+                "ORDER BY count DESC\n" +
+                "LIMIT 5 ");
+
+        //log.info(">> queryYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY ******************************************************* : {}", query);
+
+        List<Object[]> list =(List<Object[]>)query.getResultList();
+
+        em.close();
+        return list;
+    }
+
+    @Override
+    public List<Object[]> JPQLQueryChartMovementsByStore() {
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNativeQuery("SELECT COUNT(*) AS count,  \n" +
+                "       s.name\n" +
+                "FROM movements_material m INNER JOIN store s ON  m.store_id = s.id \n" +
+                "GROUP BY store_id\n" +
+                "ORDER BY count DESC;");
+
+        //log.info(">> JPQLQueryChartMovementsByStore: query ******************************************************* : {}", query);
+
+        List<Object[]> list =(List<Object[]>)query.getResultList();
+
+        em.close();
+        return list;
+    }
+
+    @Override
+    public List<Object[]> JPQLQueryChartMovementsByStoreAndExit() {
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNativeQuery("select count(*) as count, m.model, s.name "
+                + " from  movements_material a, material m, store s "
+                + " where a.material_id = m.id "
+                + " and s.id = a.store_id "
+                + " and a.type_movement = 'SALIDA' "
+                + "group by m.model, a.store_id "
+                + "ORDER BY count DESC "
+                + "LIMIT 5;");
+
+        //log.info(">> JPQLQueryChartMovementsByStoreAndExit: query ******************************************************* : {}", query);
+
+        List<Object[]> list =(List<Object[]>)query.getResultList();
+
+        em.close();
+        return list;
+    }
+
+    @Override
+    public List<Object[]> JPQLQueryChartTopFiveMaterialByStore(Integer id) {
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNativeQuery("SELECT Count(*) AS count, "
+                + "       mm.material_id, "
+                + "       m.description, "
+                + "       m.model "
+                + "FROM   movements_material mm, "
+                + "       material m "
+                + "WHERE  mm.store_id = " + id
+                + "       AND m.id = mm.material_id "
+                + "GROUP  BY m.model "
+                + "ORDER  BY count DESC "
+                + "LIMIT  1;");
+
+        //log.info(">> JPQLQueryChartTopFiveMaterialByStore: query ******************************************************* : {}", query);
+
+        List<Object[]> list =(List<Object[]>)query.getResultList();
+
+        em.close();
+        return list;
+    }
+
+    @Override
     public List<MatDTO> JPQLQueryMat(int id) {
         EntityManager em = emf.createEntityManager();
 
@@ -196,9 +280,9 @@ public class QueryService implements IQueryService{
                 "WHERE client_id = "+ id + "\n" +
                 "AND nameestablishment = '"+ name + "';" );
 
-        log.info(">> query        ******************************************************* : {}", query);
+        //log.info(">> query        ******************************************************* : {}", query);
         BigInteger count = (BigInteger) query.getSingleResult();
-        log.info(">> count        ******************************************************* : {}", count);
+        //log.info(">> count        ******************************************************* : {}", count);
         em.close();
         return count;
     }
@@ -213,9 +297,9 @@ public class QueryService implements IQueryService{
                 "WHERE status = 1 AND client_id = "+ client_id + ";" );
 
 
-        log.info(">> JPQLQueryEstablishmentByClientId     query   ******************************************************* : {}", query);
+        //log.info(">> JPQLQueryEstablishmentByClientId     query   ******************************************************* : {}", query);
         BigInteger  count = (BigInteger) query.getSingleResult();
-        log.info(">> JPQLQueryEstablishmentByClientId     count   ******************************************************* : {}", count);
+        //log.info(">> JPQLQueryEstablishmentByClientId     count   ******************************************************* : {}", count);
         em.close();
         return count;
     }

@@ -56,9 +56,11 @@ permalink: /movements-material
                                             <th>Desc.</th>
                                             <th>Resp.</th>
                                             <th>R. Email</th>
+                                            <th>Pasos</th>
+                                            <th>Movimiento</th>
                                             <th>Bodega</th>
 <!--                                            <th>DESTINO</th>-->
-                                            <th>Movimiento</th>
+
                                             <th>Sitio</th>
                                             <th>F. Entrada</th>
                                             <th>F. Salida</th>
@@ -78,9 +80,10 @@ permalink: /movements-material
                                             <td th:text="${data.material.description}">description</td>
                                             <td th:text="${data.responsible.name}">Responsable</td>
                                             <td th:text="${data.responsible.email}">Correo</td>
+                                            <td th:text="${data.step}">Pasos</td>
+                                            <td th:text="${data.typeMovement}">tipo de movimiento</td>
                                             <td th:text="${data.store.name}">Bodega</td>
 <!--                                            <td th:text="${data.destination.name}">Ubicacion</td>-->
-                                            <td th:text="${data.typeMovement}">tipo de movimiento
                                             <td th:text="${data.siteId} != 8 ? ${data.siteId} : 'N/A' " >Site</td>
                                             <td th:text="${data.dateIn}">Fecha de Entrada</td>
                                             <td th:text="${data.dateOut}">Fecha de Salida</td>

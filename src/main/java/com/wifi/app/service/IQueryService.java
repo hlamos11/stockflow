@@ -2,6 +2,7 @@ package com.wifi.app.service;
 
 
 import com.wifi.app.objects.MatDTO;
+import com.wifi.app.objects.ResultQueryDTO;
 import com.wifi.app.objects.SucursalDetail;
 
 import java.math.BigInteger;
@@ -21,6 +22,13 @@ public interface IQueryService {
     List<Object[]> JPQLQueryFindMaterialByStoreId(int id);
 
     List<Object[]> JPQLQueryChartUsersMovements();
+    List<Object[]> JPQLQueryChartTopFiveMaterialUsed();
+
+    List<Object[]> JPQLQueryChartMovementsByStore();
+
+    List<Object[]> JPQLQueryChartMovementsByStoreAndExit();
+
+    List<Object[]> JPQLQueryChartTopFiveMaterialByStore(Integer id);
 
     List<MatDTO> JPQLQueryMat(int id);
 }

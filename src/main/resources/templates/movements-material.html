@@ -278,9 +278,11 @@
                                             <th>Desc.</th>
                                             <th>Resp.</th>
                                             <th>R. Email</th>
+                                            <th>Pasos</th>
+                                            <th>Movimiento</th>
                                             <th>Bodega</th>
 <!--                                            <th>DESTINO</th>-->
-                                            <th>Movimiento</th>
+
                                             <th>Sitio</th>
                                             <th>F. Entrada</th>
                                             <th>F. Salida</th>
@@ -300,9 +302,10 @@
                                             <td th:text="${data.material.description}">description</td>
                                             <td th:text="${data.responsible.name}">Responsable</td>
                                             <td th:text="${data.responsible.email}">Correo</td>
+                                            <td th:text="${data.step}">Pasos</td>
+                                            <td th:text="${data.typeMovement}">tipo de movimiento</td>
                                             <td th:text="${data.store.name}">Bodega</td>
 <!--                                            <td th:text="${data.destination.name}">Ubicacion</td>-->
-                                            <td th:text="${data.typeMovement}">tipo de movimiento
                                             <td th:text="${data.siteId} != 8 ? ${data.siteId} : 'N/A' " >Site</td>
                                             <td th:text="${data.dateIn}">Fecha de Entrada</td>
                                             <td th:text="${data.dateOut}">Fecha de Salida</td>
@@ -342,6 +345,10 @@
   <!-- End plugin js for this page-->
   <!-- inject:js -->
 
+<!-- Plugin js for this page-->
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- End plugin js for this page-->
+
   <script src="/assets/template/js/off-canvas.js"></script>
   <script src="/assets/template/js/hoverable-collapse.js"></script>
   <script src="/assets/template/js/template.js"></script>
@@ -367,9 +374,10 @@
   <script src=" /assets/template/js/morris.js"></script>
   <script src=" /assets/template/js/chartist.js"></script>
   <script src=" /assets/template/js/chart.js"></script>
-<script src=" /assets/template/js/js-grid.js"></script>
-<script src=" /assets/template/js/db.js"></script>
+  <script src=" /assets/template/js/js-grid.js"></script>
+  <script src=" /assets/template/js/db.js"></script>
   <!-- End custom js for this page-->
+
 
 
 </body>
