@@ -58,7 +58,7 @@ permalink: /register-establishments
                                                     <label for="inputProvince" class="form-label">Seleccione la Provincia: <label id="lb_province" class="required-text"></label></label>
                                                     <select class="form-select" id="inputProvince" th:value="*{province}" name="province" required>
                                                         <option selected></option>
-                                                        <option th:each="province:${province}" th:text="${province.provincename}"></option>
+                                                        <option th:each="province:${province}" th:text="${province.name}"></option>
                                                     </select>
                                                 </div>
                                                 <div class="form-row py-1">

@@ -1,6 +1,7 @@
 package com.wifi.app.service;
 
 
+import com.wifi.app.objects.GeneratorHistDTO;
 import com.wifi.app.objects.MatDTO;
 import com.wifi.app.objects.ResultQueryDTO;
 import com.wifi.app.objects.SucursalDetail;
@@ -31,4 +32,6 @@ public interface IQueryService {
     List<Object[]> JPQLQueryChartTopFiveMaterialByStore(Integer id);
 
     List<MatDTO> JPQLQueryMat(int id);
+
+    List<GeneratorHistDTO> JPQLQueryGeneratorHist(int id);
 }

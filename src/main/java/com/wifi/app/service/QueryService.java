@@ -2,8 +2,8 @@ package com.wifi.app.service;
 
 
 
+import com.wifi.app.objects.GeneratorHistDTO;
 import com.wifi.app.objects.MatDTO;
-import com.wifi.app.objects.ResultQueryDTO;
 import com.wifi.app.objects.SucursalDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -236,6 +236,25 @@ public class QueryService implements IQueryService{
 
         em.close();
 
+        return list;
+    }
+
+    @Override
+    public List<GeneratorHistDTO> JPQLQueryGeneratorHist(int id) {
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNativeQuery( "SELECT d.created_at as fecha, site_id as id, s.name as sitio, p.name as provincia, p.region as region, m.tank_level as maxNivel, d.current_level as nivelActual, d.refill as suministro, d.hours_worked as horas, d.estimated_amount as costo, "
+                + "round((d.current_level / m.tank_level * 100),2) as nivelPrevio,  round((((d.current_level + d.refill) * 100) /  m.tank_level),2) AS nivelFinal, m.tank_level - d.current_level AS recargar "
+                + "from mobil_generator m, mobil_generator_detail d, province p, site s "
+                + "where m.site_id = " + id
+                + " and m.id = d.mobil_generator_id "
+                + "and m.province_id = p.id "
+                + "and m.site_id = s.id "
+                + "order by fecha asc;");
+
+        List<GeneratorHistDTO> list =(List<GeneratorHistDTO>)query.getResultList();
+
+        em.close();
         return list;
     }
 

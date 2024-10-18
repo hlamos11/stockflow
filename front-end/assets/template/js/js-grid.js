@@ -66,7 +66,6 @@
       });
     }
 
-
     //Static
     if ($("#js-grid-static").length) {
       $("#js-grid-static").jsGrid({

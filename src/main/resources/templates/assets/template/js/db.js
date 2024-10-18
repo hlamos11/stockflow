@@ -64,7 +64,7 @@
     ];
 
     db.clients = [{
-        "Name": "Otto Clay",
+        "Name": "Hugo Lamos",
         "Age": 61,
         "Country": 6,
         "Address": "Ap #897-1459 Quam Avenue",
@@ -72,7 +72,6 @@
       }
     ];
 
-   console.log(db.clients);
 
     db.users = [{
         "ID": "x",

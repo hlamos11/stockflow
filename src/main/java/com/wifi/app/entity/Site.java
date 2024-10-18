@@ -25,4 +25,7 @@ public class Site {
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
     private List<Material> materials;
 
+    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
+    private List<MobilGenerator> mobilGenerator;
+
 }

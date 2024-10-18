@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface ProvinceRepository extends JpaRepository <Province, Integer> {
 
     public Optional<Province> findProvinceById(Integer id);
-    public Optional<Province> findProvinceByProvincename(String name);
+    public Optional<Province> findProvinceByName(String name);
 }
