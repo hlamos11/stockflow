@@ -82,7 +82,10 @@ public class GeneratorController {
     public String getGeneratorDetail(@ModelAttribute MobilGenerator getMobilGeneratorId, Model model, GeneratorDetailDTO generatorDetailDTO){
 
         mobilGenerator = generatorService.findMobilGeneratorById(getMobilGeneratorId.getId());
+        MobilGeneratorDetail detail = mobilGeneratorDetailService.getMaxRegister(mobilGenerator.getId());
 
+
+        generatorDetailDTO.setCurrentLevel(detail.getCurrentLevel());
         generatorDetailDTO.setMobilGeneratorId(mobilGenerator.getId());
         model.addAttribute( "generatorDetailDTO", generatorDetailDTO);
         model.addAttribute("capTank", mobilGenerator.getTankLevel());
