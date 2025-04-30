@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -73,11 +74,8 @@ public class ResponsibleController {
 
         redirectAttributes.addFlashAttribute("message", "Responsable Registrado");
 
-        if (GLOBAL_USER_NAME != null ){
-            responsibleMaterialDTO.setUser(GLOBAL_USER_NAME);
-        }else {
-            responsibleMaterialDTO.setUser("nullRegResp");
-        }
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        responsibleMaterialDTO.setUser(username);
 
         //log.info(">> responsibleMaterialDTO : {}", responsibleMaterialDTO.toString());
         responsibleMaterialService.register(responsibleMaterialDTO);

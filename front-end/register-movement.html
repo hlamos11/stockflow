@@ -202,16 +202,14 @@ permalink: /register-movement
 
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label for="dateReturn" class="col-sm-3 col-form-label">Fecha de
-                                                    Retorno:
-                                                    <label class="required-text">*</label></label>
-                                                <div class="col-sm-9">
-                                                    <input type="date" id="dateReturn"
-                                                           placeholder="start time"
-                                                           min="2021-01-01" max="2100-12-31"
-                                                           class="form-control"
-                                                           th:value="*{dateReturn}" name="dateReturn" disabled>
-                                                </div>
+                                                <label for="dateReturn" class="col-sm-3 col-form-label">Fecha de Retorno:</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="date" id="dateReturn"
+                                                               placeholder="start time"
+                                                               min="2021-01-01" max="2100-12-31"
+                                                               class="form-control"
+                                                               th:value="*{dateReturn}" name="dateReturn" disabled>
+                                                    </div>
                                             </div>
                                         </div>
 

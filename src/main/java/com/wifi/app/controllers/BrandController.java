@@ -72,7 +72,6 @@ public class BrandController {
 
 
         redirectAttributes.addFlashAttribute("message", "Fabricante Registrado");
-        log.info(">> brandDTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO : {}", brandDTO.toString());
         brandService.register(brandDTO);
 
         return "redirect:/register-brand";

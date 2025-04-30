@@ -15,7 +15,6 @@ import com.wifi.app.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,7 +36,6 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
 import static com.wifi.app.res.NewDateExpired.NewDate;
 
 @Controller

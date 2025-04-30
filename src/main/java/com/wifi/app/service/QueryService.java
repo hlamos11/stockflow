@@ -243,8 +243,8 @@ public class QueryService implements IQueryService{
     public List<GeneratorHistDTO> JPQLQueryGeneratorHist(int id) {
         EntityManager em = emf.createEntityManager();
 
-        Query query = em.createNativeQuery( "SELECT d.created_at as fecha, site_id as id, s.name as sitio, p.name as provincia, p.region as region, m.tank_level as maxNivel, d.current_level as nivelActual, d.refill as suministro, d.hours_worked as horas, d.estimated_amount as costo, "
-                + "round((d.current_level / m.tank_level * 100),2) as nivelPrevio,  round((((d.current_level + d.refill) * 100) /  m.tank_level),2) AS nivelFinal, m.tank_level - d.current_level AS recargar "
+        Query query = em.createNativeQuery( "SELECT d.date as fecha, site_id as id, s.name as sitio, p.name as provincia, p.region as region, m.tank_level as maxNivel, d.previous_level as nivelAnterior, d.current_level as nivelActual, d.refill as suministro, d.hour_meter as horometro, d.estimated_amount as costo, "
+                + "round((d.current_level / m.tank_level * 100),2) as nivelPrevio,  round((((d.current_level + d.refill) * 100) /  m.tank_level),2) AS nivelFinal, m.tank_level - d.current_level AS recargar, d.hours_worked as horas "
                 + "from mobil_generator m, mobil_generator_detail d, province p, site s "
                 + "where m.site_id = " + id
                 + " and m.id = d.mobil_generator_id "

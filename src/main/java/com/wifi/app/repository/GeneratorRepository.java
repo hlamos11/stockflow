@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GeneratorRepository extends JpaRepository<MobilGenerator, Integer> {
+
+    public MobilGenerator findMobilGeneratorById(Integer id);
 }

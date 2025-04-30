@@ -24,15 +24,130 @@ permalink: /register-generator-detail
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title">Registro de Historico</h4>
+                                <!-- Dummy Modal Starts -->
+                                <div class="modal demo-modal" th:if="${modal}" th:text="${modal}">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Modal title</h5>
+                                                <button type="button" class="close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Modal body text goes here.</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success">Submit</button>
+                                                <button type="button" class="btn btn-light">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Dummy Modal Ends -->
+
+                                <h4 class="card-title">
+                                    Registro Histórico - Generador <span th:text="${idTank}">ID</span>
+                                </h4>
                                 <div class="alert alert-info text-center" th:if="${message}" th:text="${message}"></div>
 
 
-                                <form id="formRegGeneratorDetail" class="form-sample" method="post" th:action="@{/register-generator-detail}"
-                                      th:object="${GeneratorDetailDTO}">
+                                <form  th:object="${generatorDetailDTO}" th:action="@{/register-generator-detail}" method="post">
+
+                                    <p class="card-description">
+
+                                    </p>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="hourMeterId" class="col-sm-3 col-form-label">Horometro:
+                                                    <label id="lb_hourMeter" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" id="hourMeterId" class="form-control" autofocus
+                                                           name="hourMeter" th:value="*{hourMeter}" min="1"
+                                                           th:errorClass="is-invalid" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="currentLevelId" class="col-sm-3 col-form-label">Nivel Actual:
+                                                    <label id="lb_currentLevel" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <input  type="number" id="currentLevelId" class="form-control" min="0"
+                                                            th:attr="max=${capTank}"
+                                                           name="currentLevel" th:value="*{currentLevel}"
+                                                           th:errorClass="is-invalid"><span th:text="'Max. Cap.' + ${capTank}"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="refillId" class="col-sm-3 col-form-label">Recarga:
+                                                    <label id="lb_refill" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" id="refillId" class="form-control"
+                                                           name="refill" th:value="*{refill}" min="1"
+                                                           th:errorClass="is-invalid" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="estimatedAmountId" class="col-sm-3 col-form-label">Monto Estimado:
+                                                    <label id="lb_estimatedAmount" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" min="1"  step="0.01" id="estimatedAmountId" class="form-control"
+                                                           name="estimatedAmount" th:value="*{estimatedAmount}"
+                                                           th:errorClass="is-invalid">
+                                                </div>
+                                            </div>
+                                        </div>
 
 
-                                    <button id="btnRegMovement"  class="btn btn-info mb-2">Guardar</button>
+
+                                        <!--
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="mobilGeneratorId" class="col-sm-3 col-form-label">Id Generador
+                                                    <label id="lb_mobilGeneratorId" class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <input  disabled type="number" id="mobilGeneratorId" class="form-control"
+                                                           name="mobilGeneratorId" th:value="*{mobilGeneratorId}" th:field="*{mobilGeneratorId}"
+                                                           th:errorClass="is-invalid" text="*{mobilGeneratorId}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        -->
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="dateRecharge" class="col-sm-3 col-form-label">Fecha de Recarga:
+                                                    <label class="required-text"></label></label>
+                                                <div class="col-sm-9">
+                                                    <input type="date" id="dateRecharge"
+                                                           placeholder="start time"
+                                                           min="2021-01-01" max="2100-12-31"
+                                                           class="form-control"
+                                                           required
+                                                           th:value="*{date}" name="date">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" id="iTankLevelId" th:value="${capTank}">
+                                    </div>
+
+
+                                    <a class="btn btn-info mb-2" th:href="@{/generator-management}">Atras</a>
+                                    <button type="submit" class="btn btn-info mb-2">Guardar</button>
                                 </form>
                             </div>
                         </div>

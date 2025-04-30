@@ -19,8 +19,8 @@ public class AppApplication  {
 
        SpringApplication.run(AppApplication.class, args);
 
-
 /*
+
        SpringApplication app = new SpringApplication(AppApplication.class);
 
 
@@ -43,7 +43,11 @@ public class AppApplication  {
 
         app.setDefaultProperties(properties);
         app.run(args);
-*/
+
+ */
+
+
+
 
 
     }

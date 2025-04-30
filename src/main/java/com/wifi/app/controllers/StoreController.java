@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.math.BigInteger;
 import java.util.List;
 
-import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -66,11 +67,8 @@ public class StoreController {
             return "register-store";
         }
 
-        if (GLOBAL_USER_NAME != null ){
-            storeDTO.setUser(GLOBAL_USER_NAME);
-        }else {
-            storeDTO.setUser("nullRegStor");
-        }
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        storeDTO.setUser(username);
 
         redirectAttributes.addFlashAttribute("message", "Bodega Registrada");
         //log.info(">> clientDTO : {}", storeDTO.toString());

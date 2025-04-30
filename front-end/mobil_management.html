@@ -30,7 +30,8 @@ permalink: /generator-management
                                     <h4 class="modal-title">Historico Abastecimiento</h4>
                                 </div>
                                 <div class="modal-body">
-
+                                    <button id="btnExportExcel" class="btn btn-success mb-3">Exportar a Excel</button>
+                                    <!--<button id="btnClearFilters" class="btn btn-secondary mb-3">Limpiar filtros</button>-->
                                     <div id="js-grid-generator_hist"></div>
 
                                     <!-- <div class="table-responsive">
@@ -57,8 +58,10 @@ permalink: /generator-management
                                 <div class="card-body">
                                     <h4 class="card-title">Generadores</h4>
                                     <div class="d-flex table-responsive">
-                                        <div class="btn-group mr-2">
-                                            <button class="btn btn-sm btn-primary"><i class="mdi mdi-plus-circle-outline"></i> Crear Generador</button>
+                                        <div class="btn-group mr-2" th:if="${user.typeuser} == 'admin'">
+                                            <a class="btn btn-sm btn-primary" href="/register-generator" role="tab" aria-controls="home-2" aria-selected="true">
+                                                <i class="mdi mdi-plus-circle-outline"></i> Crear
+                                            </a>
                                         </div>
                                         <div class="btn-group mr-2">
                                             <button type="button" class="btn btn-light"><i class="mdi mdi-alert-circle-outline"></i></button>
@@ -68,35 +71,49 @@ permalink: /generator-management
                                             <button type="button" class="btn btn-light"><i class="mdi mdi-printer"></i></button>
                                         </div>
 
+
                                     </div>
                                     <div class="table-responsive mt-2">
                                         <table id="order-listing" class="table mt-3 border-top"  >
                                             <thead>
                                             <tr>
-                                                <th>Provincia</th>
-                                                <th>Sitio</th>
+                                                <th>ID</th>
                                                 <th>Nombre</th>
-                                                <th>Nivel Max. Gal.</th>
-                                                <th>Historico</th>
+                                                <th>Region</th>
+                                                <th>Tanque (Gal)</th>
+                                                <th>Nivel Actual %</th>
+                                                <th>Recargar</th>
+                                                <th>Opciones</th>
 
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="data : ${dataMobilGenerator}">
-                                                <td th:text="${data.province.name}">province</td>
-                                                <td th:text="${data.site.id}">site id</td>
-                                                <td th:text="${data.site.name}">site name</td>
-                                                <td th:text="${data.tankLevel}">Nivel</td>
+                                            <tr th:each="mobilGenerator : ${mobilGenerators}">
+                                                <td th:text="${mobilGenerator.site.id}">sitio</td>
+                                                <td th:text="${mobilGenerator.site.name}">site name</td>
+                                                <td th:text="${mobilGenerator.province.region}">Region</td>
+                                                <td th:text="${mobilGenerator.tankLevel}">Tanque (Gal)</td>
+                                                <td th:text="${mobilGenerator.currentLevel +' %'}">Nivel Actual</td>
+                                                <td th:text="${mobilGenerator.refill +' Gal.'}">Recargar</td>
                                                 <td>
                                                     <div class="row">
                                                         <div>
-                                                            <button type="button" class="btn btn-light" th:onclick="searchGeneratorHistById([[${data.site.id}]])">
+                                                            <button type="button" class="btn btn-light" th:onclick="searchGeneratorHistById([[${mobilGenerator.site.id}]])">
                                                                 <i class="mdi mdi-eye text-primary"></i>
                                                             </button>
                                                         </div>
 
+                                                       <!-- <div>
+                                                            <form  th:action="@{/register-generator-detail/{id}(id=${data.id})}" th:if="${user.typeuser} == 'admin' OR ${user.typeuser} == 'superuser'" method="get">
+                                                                <button type="submit" class="btn btn-light"><i class="mdi mdi-plus-circle text-primary"></i></button>
+                                                            </form>
+                                                        </div>
+                                                        -->
+
                                                         <div>
-                                                            <form  th:action="@{/register-generator-detail(id=${data.id})}" th:if="${user.typeuser} == 'admin' OR ${user.typeuser} == 'superuser'" method="get">
+                                                            <form  th:action="@{/register-generator-detail}" method="get"
+                                                                   th:if="${user.typeuser} == 'admin' OR ${user.typeuser} == 'superuser'">
+                                                                <input type="hidden" name="id" th:value="${mobilGenerator.id}">
                                                                 <button type="submit" class="btn btn-light"><i class="mdi mdi-plus-circle text-primary"></i></button>
                                                             </form>
                                                         </div>

@@ -65,7 +65,6 @@ public class ProductController {
         }
 
         redirectAttributes.addFlashAttribute("message", "Producto Registrado");
-        log.info(">> productDTO : {}", productDTO.toString());
         productService.register(productDTO);
         return  "redirect:/register-product";
     }

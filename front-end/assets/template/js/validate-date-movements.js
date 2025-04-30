@@ -1,5 +1,11 @@
 (function($) {
 
+var dateRecharge = $('#dateRecharge').val();
+
+if (dateRecharge == null ) {
+    return false;
+   }
+
     $("#typeMovement").change(function() {
 
         $('#dateReturn').val("");

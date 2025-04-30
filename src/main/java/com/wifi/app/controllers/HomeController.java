@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,11 +53,11 @@ public class HomeController {
     private final StoreService storeService;
 
     private final QueryService queryservice;
-    public static String GLOBAL_USER_NAME = null;
+
 
     @GetMapping("/")
     public String index(Authentication authentication){
-//        return authentication == null ? "index" : "redirect:/authenticated";
+
         return authentication == null ? "/login" : "redirect:/authenticated";
     }
 
@@ -204,7 +205,7 @@ public class HomeController {
         MaterialTopFiveByStore [] arr = new MaterialTopFiveByStore [listStore.size()];
 
         for ( int i=0; i < listStore.size(); i++) {
-            System.out.println("store:  " + listStore.get(i).getId());
+            //System.out.println("store:  " + listStore.get(i).getId());
                // if(listStore.get(i).getId() !=8 ){
                     List<Object[]> resultQueryDTO = queryservice.JPQLQueryChartTopFiveMaterialByStore(listStore.get(i).getId());
 
@@ -244,7 +245,9 @@ public class HomeController {
             throw new RuntimeException(e);
         }
 
-        Optional<User> user = userRepository.findUserByUsername(GLOBAL_USER_NAME);
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        Optional<User> user = userRepository.findUserByUsername(username);
         date_expired = user.get().getDate_expired();
 
         if(date_local.after(date_expired) ){

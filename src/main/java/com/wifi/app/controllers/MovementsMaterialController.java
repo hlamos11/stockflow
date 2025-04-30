@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.text.ParseException;
 import java.util.List;
 
-import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -93,21 +94,13 @@ public class MovementsMaterialController {
     @PostMapping("/register-movement")
     public String register(@Validated MovementDTO movementDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws ParseException {
 
-        log.info("register-movement: movementDTO = ", movementDTO);
-
         CalculateInventory calculateInventory = new CalculateInventory(inventoryMaterialService, materialService, siteService, storeService);
         Integer respMovement = movementsByMaterial(movementDTO.getMaterialId(), movementDTO.getTypeMovement());
         Integer resp = 0;
         Material material = materialService.findMaterialById(movementDTO.getMaterialId());
 
-        //log.info("register-movement: GLOBAL_USER_NAME = ", GLOBAL_USER_NAME);
-
-        if (GLOBAL_USER_NAME != null ){
-            movementDTO.setUser(GLOBAL_USER_NAME);
-        }else {
-            movementDTO.setUser("nullRegMov");
-        }
-
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        movementDTO.setUser(username);
 
         if (respMovement == 0) {
             movementDTO.setStep(1);

@@ -67,7 +67,6 @@ public class TypeBusinessController {
         }
 
         redirectAttributes.addFlashAttribute("message", "Tipo de negocio Registrado");
-        log.info(">> typeBusinessDTO : {}", typeBusinessDTO.toString());
         typeBusinessService.register(typeBusinessDTO);
         return  "redirect:/register-typebusiness";
     }
@@ -75,8 +74,6 @@ public class TypeBusinessController {
     @PostMapping("/delete_type_business")
     public String delete(@Validated Integer  id, String name, RedirectAttributes redirectAttributes) {
 
-        log.info(">> id : {}", id);
-        log.info(">> name : {}", name);
         //valida si las sucursales tienen el tipo de negocio asignado
 
         List<Establishment> countTypeBusiness = establishmentService.findEstablishmentByType(name);

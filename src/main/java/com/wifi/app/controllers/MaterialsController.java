@@ -1,8 +1,6 @@
 package com.wifi.app.controllers;
 
 
-
-import com.google.gson.Gson;
 import com.wifi.app.entity.*;
 import com.wifi.app.objects.MatDTO;
 import com.wifi.app.objects.MaterialDTO;
@@ -15,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,19 +21,16 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.math.BigInteger;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
-import static com.wifi.app.controllers.HomeController.GLOBAL_USER_NAME;
+
+import java.util.ArrayList;
+
+import java.util.List;
+
+
+
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 
@@ -126,12 +122,9 @@ public class MaterialsController {
             return "register-material";
         }
 
-        if (GLOBAL_USER_NAME != null ){
-            materialDTO.setUser(GLOBAL_USER_NAME);
-        }else {
-            materialDTO.setUser("nullRegMat");
-        }
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
+        materialDTO.setUser(username);
         materialDTO.setSiteId(8);
         materialDTO.setEnabled(true);
 
@@ -183,11 +176,7 @@ public class MaterialsController {
     @PostMapping("/materials-detail")
     public String viewMaterialByStoreId(@Validated Integer id, Model model) {
 
-        System.out.println("post id: "+id);
-
         List<Material> materialList = materialService.findMaterialByStoreId(id);
-
-        System.out.println("post materialList : "+materialList);
 
         model.addAttribute("dataMaterialByStoreId", materialList);
 
@@ -203,7 +192,7 @@ public class MaterialsController {
 
         //List<Object[]> listMat = queryservice.JPQLQueryFindMaterialByStoreId(id);
         List<MatDTO> list = queryservice.JPQLQueryMat(id);
-        System.out.println("JPQLQueryMat: " + list);
+
        // List <Material> list = materialService.findMaterialByStoreId(id);
 
         JSONArray jsonArrayMat = new JSONArray();
@@ -216,8 +205,6 @@ public class MaterialsController {
 
         jsonObject.put("ListMat", jsonArrayMat);
         //jsonObject.put("ListMat1", jsonArrayMat1);
-
-        log.info(">> jsonObject.toString()********************** : {}",jsonObject.toString());
 
 
         return jsonObject.toString();

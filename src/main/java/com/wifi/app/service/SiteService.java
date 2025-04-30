@@ -28,4 +28,9 @@ public class SiteService {
     public Site findSiteById (Integer id){
         return siteRepository.findSiteById(id);
     }
+
+    @Transactional
+    public List<Site> findAllByOrderByIdDesc (){
+        return siteRepository.findAllByOrderByIdDesc();
+    }
 }

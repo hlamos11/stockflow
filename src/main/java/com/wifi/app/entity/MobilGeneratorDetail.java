@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -25,6 +25,9 @@ public class MobilGeneratorDetail {
     @Column(name = "hours_worked")
     private Integer hoursWorked;
 
+    @Column(name = "previous_level")
+    private Integer previousLevel;
+
     @Column(name = "current_level")
     private Integer currentLevel;
 
@@ -33,10 +36,15 @@ public class MobilGeneratorDetail {
     @Column(name = "estimated_amount")
     private Double estimatedAmount;
 
-
     @ManyToOne
     @JoinColumn
     private MobilGenerator mobilGenerator;
+
+    @Column(name = "hour_meter")
+    private Integer hourMeter;
+
+    @Column(name = "date")
+    private Date date;
 
 
 
