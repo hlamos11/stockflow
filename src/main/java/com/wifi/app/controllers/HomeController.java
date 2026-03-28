@@ -54,6 +54,7 @@ public class HomeController {
 
     private final QueryService queryservice;
 
+
     @GetMapping("/")
     public String index(Authentication authentication){
 
