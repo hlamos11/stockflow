@@ -32,10 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
+# Extras del proyecto
 librerias_externas/
 appTest/
 front-end/
 out/
-target/
-.idea/
-*.iml
