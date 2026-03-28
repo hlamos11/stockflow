@@ -1,12 +1,7 @@
 (function($) {
 
-var dateRecharge = $('#dateRecharge').val();
-
-if (dateRecharge == null ) {
-    return false;
-   }
-
     $("#typeMovement").change(function() {
+    console.log("Entro change tipo de movimiento");
 
         $('#dateReturn').val("");
         $('#dateTransfer').val("");
