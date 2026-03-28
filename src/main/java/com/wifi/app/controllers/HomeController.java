@@ -54,11 +54,10 @@ public class HomeController {
 
     private final QueryService queryservice;
 
-
     @GetMapping("/")
     public String index(Authentication authentication){
 
-        return authentication == null ? "/login" : "redirect:/authenticated";
+        return authentication == null ? "redirect:/login" : "redirect:/authenticated";
     }
 
     @GetMapping("/authenticated")
